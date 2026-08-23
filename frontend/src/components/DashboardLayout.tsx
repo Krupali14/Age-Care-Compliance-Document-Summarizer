@@ -1,42 +1,64 @@
-import { NavLink, Outlet, Link } from "react-router-dom";
-
-const navItems = [
-  { to: "/dashboard/upload", label: "Upload" },
-  { to: "/dashboard/summaries", label: "Summaries" },
-  { to: "/dashboard/obligations-risks", label: "Obligations & Risks" },
-  { to: "/dashboard/deadlines", label: "Deadlines" },
-  { to: "/dashboard/action-items", label: "Action Items" },
-];
+import { useState } from "react";
+import { NavLink, Outlet, Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 export default function DashboardLayout() {
+  const { logout } = useAuth();
+  const navigate = useNavigate();
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  function handleSignOut() {
+    logout();
+    navigate("/login");
+  }
+
   return (
-    <div className="flex min-h-screen flex-col bg-slate-50 md:flex-row">
-      <aside className="w-full shrink-0 border-b border-slate-200 bg-white md:w-60 md:border-b-0 md:border-r">
-        <div className="px-6 py-5">
-          <Link to="/" className="text-sm font-semibold text-brand-700">
-            Aged Care Compliance
+    <div className="min-h-screen bg-parchment">
+      <header className="sticky top-0 z-40 flex h-14 items-center justify-between border-b border-ink/10 bg-white/90 px-4 backdrop-blur md:px-6">
+        <div className="flex items-center gap-6">
+          <Link to="/" className="flex items-center gap-2 font-display text-sm font-semibold text-ink">
+            <span className="flex h-6 w-6 items-center justify-center rounded bg-ink text-[10px] font-mono text-parchment">§</span>
+            Compliance
           </Link>
-        </div>
-        <nav className="flex gap-1 overflow-x-auto px-3 pb-3 md:flex-col md:overflow-visible md:pb-6">
-          {navItems.map((item) => (
+          <nav className="hidden items-center gap-1 sm:flex">
             <NavLink
-              key={item.to}
-              to={item.to}
+              to="/dashboard"
+              end
               className={({ isActive }) =>
-                `whitespace-nowrap rounded-md px-3 py-2 text-sm font-medium transition ${
-                  isActive
-                    ? "bg-brand-50 text-brand-700"
-                    : "text-slate-600 hover:bg-slate-100"
+                `rounded-md px-3 py-1.5 text-sm font-medium transition ${
+                  isActive ? "bg-teal-50 text-teal-600" : "text-slate-500 hover:bg-parchment-200 hover:text-ink"
                 }`
               }
             >
-              {item.label}
+              Documents
             </NavLink>
-          ))}
-        </nav>
-      </aside>
+          </nav>
+        </div>
 
-      <main className="flex-1 px-6 py-8 md:px-10">
+        <div className="relative">
+          <button
+            onClick={() => setMenuOpen((v) => !v)}
+            className="flex h-8 w-8 items-center justify-center rounded-full bg-ink font-mono text-xs text-parchment transition hover:opacity-90"
+          >
+            A
+          </button>
+          {menuOpen && (
+            <>
+              <div className="fixed inset-0 z-40" onClick={() => setMenuOpen(false)} />
+              <div className="absolute right-0 top-10 z-50 w-44 overflow-hidden rounded-md border border-ink/10 bg-white py-1 shadow-card-hover animate-fade-up" style={{ animationDuration: "0.15s" }}>
+                <button
+                  onClick={handleSignOut}
+                  className="block w-full px-3.5 py-2 text-left text-sm text-slate-600 transition hover:bg-parchment-100"
+                >
+                  Sign out
+                </button>
+              </div>
+            </>
+          )}
+        </div>
+      </header>
+
+      <main className="mx-auto max-w-[1600px] px-4 py-6 md:px-6 md:py-8">
         <Outlet />
       </main>
     </div>

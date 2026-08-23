@@ -3,7 +3,7 @@ import os
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.routers import actions, deadlines, obligations, risks, summarize, upload
+from app.routers import actions, auth, deadlines, documents, obligations, risks, summarize, upload
 
 app = FastAPI(title="Aged Care Compliance Summariser API")
 
@@ -17,7 +17,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+app.include_router(auth.router)
 app.include_router(upload.router)
+app.include_router(documents.router)
 app.include_router(summarize.router)
 app.include_router(obligations.router)
 app.include_router(risks.router)

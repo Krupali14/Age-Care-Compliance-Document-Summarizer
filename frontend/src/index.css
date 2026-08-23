@@ -1,3 +1,28 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-parchment font-sans text-ink antialiased;
+  }
+
+  ::selection {
+    @apply bg-teal/20 text-ink;
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-teal ring-offset-2 ring-offset-parchment;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
