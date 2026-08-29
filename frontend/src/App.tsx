@@ -7,6 +7,7 @@ import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import DashboardLayout from "./components/DashboardLayout";
 import DocumentDetail from "./pages/DocumentDetail";
+import EvalPage from "./pages/EvalPage";
 
 const queryClient = new QueryClient();
 
@@ -21,6 +22,7 @@ export default function App() {
             <Route path="/dashboard" element={<DashboardLayout />}>
               <Route index element={<Dashboard />} />
               <Route path="documents/:id" element={<DocumentDetail />} />
+              <Route path="documents/:id/eval" element={<EvalPage />} />
             </Route>
           </Route>
         </Routes>

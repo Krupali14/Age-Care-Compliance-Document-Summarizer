@@ -1,0 +1,6 @@
+{
+  "obligations": ["Staff must report incidents within 24 hours"],
+  "risks": ["Delayed incident reporting"],
+  "deadlines": ["Report within 24 hours"],
+  "action_items": ["File incident report"]
+}
