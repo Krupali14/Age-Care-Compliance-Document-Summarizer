@@ -8,6 +8,43 @@ import {
 import CategoryTable from "../components/CategoryTable";
 import AIAssistant from "../components/AIAssistant";
 
+// Section summaries come back as Markdown bullets with **bold** key terms, so the
+// duty, role, and date in each line are scannable rather than buried in prose.
+function SummaryMarkdown({ text }: { text: string }) {
+  return (
+    <div className="text-[15px] leading-relaxed text-slate-600">
+      <ReactMarkdown
+        components={{
+          ul: ({ children }) => <ul className="space-y-2">{children}</ul>,
+          li: ({ children }) => (
+            <li className="relative pl-5 before:absolute before:left-0 before:top-[0.6em] before:h-1.5 before:w-1.5 before:rounded-full before:bg-teal">
+              {children}
+            </li>
+          ),
+          ol: ({ children }) => <ol className="list-decimal space-y-2 pl-5">{children}</ol>,
+          strong: ({ children }) => <strong className="font-semibold text-ink">{children}</strong>,
+          em: ({ children }) => <em className="italic text-slate-500">{children}</em>,
+          code: ({ children }) => (
+            <code className="rounded bg-ink/5 px-1 py-0.5 font-mono text-[13px] text-ink">{children}</code>
+          ),
+          a: ({ href, children }) => (
+            <a href={href} className="font-medium text-teal underline underline-offset-2">{children}</a>
+          ),
+          h1: ({ children }) => <p className="font-semibold text-ink">{children}</p>,
+          h2: ({ children }) => <p className="font-semibold text-ink">{children}</p>,
+          h3: ({ children }) => <p className="font-semibold text-ink">{children}</p>,
+          blockquote: ({ children }) => (
+            <blockquote className="border-l-2 border-teal/40 pl-3 text-slate-500">{children}</blockquote>
+          ),
+          p: ({ children }) => <p className="leading-relaxed">{children}</p>,
+        }}
+      >
+        {text}
+      </ReactMarkdown>
+    </div>
+  );
+}
+
 const STATUS_MESSAGES: Record<string, string> = {
   pending: "This document is still being processed. Extraction results will appear here once complete.",
   processing: "This document is still being processed. Extraction results will appear here once complete.",
@@ -161,9 +198,9 @@ export default function DocumentDetail() {
 
       <div className="mt-4 overflow-hidden rounded-xl border border-ink/10 bg-white shadow-card">
         {tab === "Summary" && (
-          <div className="space-y-3 p-6">
+          <div className="space-y-4 p-6">
             {(summaries ?? []).map((s: { id: number; text: string }) => (
-              <p key={s.id} className="leading-relaxed text-slate-600">{s.text}</p>
+              <SummaryMarkdown key={s.id} text={s.text} />
             ))}
             {summaries?.length === 0 && <p className="text-slate-500">No summary yet.</p>}
           </div>

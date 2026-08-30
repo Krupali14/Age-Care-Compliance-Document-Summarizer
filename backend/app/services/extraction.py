@@ -44,11 +44,24 @@ Section heading: {heading}
 Section text:
 {text}
 
-Extract: a short summary of this section, any obligations (things people/the \
+Extract: a summary of this section, any obligations (things people/the \
 organisation are required to do), any risks (with severity high/medium/low), \
 any deadlines (with responsible role if stated), and any action items (with \
 responsible role, timeframe, and priority where possible). Only extract what \
-is explicitly stated or clearly implied in the text — do not invent details."""
+is explicitly stated or clearly implied in the text — do not invent details.
+
+Format the summary as Markdown bullet points — 2 to 4 bullets, each starting with \
+"- ", one sentence each. Use emphasis to make the bullet scannable:
+
+- **Bold** the hard facts: the duty itself, the responsible role, any date or \
+deadline, and any dollar amount, number, or threshold.
+- *Italicise* the qualifiers: conditions and exceptions ("*unless the provider \
+notifies the Commission*"), and cross-references to other provisions \
+("*see section 91*").
+
+Bold and italicise individual terms or short phrases only — never a whole \
+sentence, and never both marks on the same words. Do not add a heading or any \
+text outside the bullets."""
 
 
 def extract_section(section: ParsedSection) -> SectionExtraction:

@@ -1,4 +1,6 @@
 import logging
+import os
+from concurrent.futures import ThreadPoolExecutor
 
 from app.database import SessionLocal
 from app.models import ActionItem, Deadline, Document, Obligation, Risk, Section, Summary
@@ -37,7 +39,10 @@ def process_document(document_id: int, file_path: str) -> None:
         db.commit()
         return
 
-    summary_parts = []
+    # Create every Section row first, then fan the LLM calls out. Extraction is
+    # network-bound (one API round-trip per section), so a serial loop over a
+    # few hundred sections is the dominant cost once parsing is fast.
+    rows = []
     for parsed in parsed_sections:
         section = Section(
             document_id=document.id,
@@ -47,10 +52,18 @@ def process_document(document_id: int, file_path: str) -> None:
             raw_text=parsed.raw_text,
         )
         db.add(section)
-        db.flush()
+        rows.append((section, parsed))
+    db.flush()
 
+    max_workers = int(os.environ.get("EXTRACTION_CONCURRENCY", "8"))
+    with ThreadPoolExecutor(max_workers=max_workers) as pool:
+        futures = [pool.submit(extract_section, parsed) for _section, parsed in rows]
+
+    summary_parts = []
+    # Iterating the futures in submit order keeps summaries in document order.
+    for (section, parsed), future in zip(rows, futures):
         try:
-            extraction = extract_section(parsed)
+            extraction = future.result()
         except Exception:  # noqa: BLE001 - one bad section shouldn't fail the doc
             logger.exception(
                 "Failed to extract section id=%s heading=%r for document id=%s",
