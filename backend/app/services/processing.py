@@ -46,9 +46,17 @@ def process_document(document_id: int, file_path: str) -> None:
 
     try:
         parsed_sections = parse_document(file_path)
-    except Exception as exc:  # noqa: BLE001 - unrecoverable parse failure
+    except Exception:  # noqa: BLE001 - unrecoverable parse failure
+        # The parser's own message names internal paths and library internals
+        # ("File format not allowed: 19_report.pdf"), which tells a user nothing and
+        # exposes how files are stored. The detail belongs in the log; the row gets
+        # something a person can act on.
+        logger.exception("Failed to parse document id=%s at %s", document.id, file_path)
         document.status = "failed"
-        document.error_message = str(exc)
+        document.error_message = (
+            "This file could not be read. It may be corrupt, password-protected, or "
+            "saved in an unsupported format."
+        )
         db.commit()
         return
 

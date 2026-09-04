@@ -17,4 +17,5 @@ venv/
 .superpowers/
 .playwright-mcp/
 graphify-out/
-
+.claude/
+.impeccable/

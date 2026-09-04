@@ -54,8 +54,10 @@ export default function Dashboard() {
     try {
       await uploadDocument(file);
       queryClient.invalidateQueries({ queryKey: ["documents"] });
-    } catch {
-      setUploadError("Upload failed. Check the file type and size, then try again.");
+    } catch (err) {
+      // The API names the actual problem — wrong format, empty file, over the size
+      // limit — and the user can only act on it if they are told which.
+      setUploadError(err instanceof Error && err.message ? err.message : "Upload failed. Try again.");
     } finally {
       if (fileInput.current) fileInput.current.value = "";
     }
@@ -67,8 +69,8 @@ export default function Dashboard() {
     try {
       await deleteDocument(deleteTarget.id);
       queryClient.invalidateQueries({ queryKey: ["documents"] });
-    } catch {
-      setDeleteError("Delete failed. Try again.");
+    } catch (err) {
+      setDeleteError(err instanceof Error && err.message ? err.message : "Could not delete this document.");
     } finally {
       setDeleteTarget(null);
     }

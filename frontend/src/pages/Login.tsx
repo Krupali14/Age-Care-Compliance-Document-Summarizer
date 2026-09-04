@@ -19,8 +19,10 @@ export default function Login() {
       if (mode === "login") await login(email, password);
       else await register(email, password);
       navigate("/dashboard");
-    } catch {
-      setError("Authentication failed. Check your credentials.");
+    } catch (err) {
+      // The API says exactly what was wrong with the address or password; showing
+      // "check your credentials" instead just makes the user guess.
+      setError(err instanceof Error && err.message ? err.message : "Authentication failed.");
     } finally {
       setSubmitting(false);
     }
@@ -51,6 +53,7 @@ export default function Login() {
                 id="email"
                 type="email"
                 required
+                autoComplete="email"
                 placeholder="you@facility.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -65,6 +68,8 @@ export default function Login() {
                 id="password"
                 type="password"
                 required
+                minLength={8}
+                autoComplete={mode === "login" ? "current-password" : "new-password"}
                 placeholder="••••••••"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}

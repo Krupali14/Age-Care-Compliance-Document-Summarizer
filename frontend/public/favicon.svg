@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Compliance Summariser">
+  <!-- The same mark the header, landing and login pages use: the section sign on
+       ink, which is the symbol the documents themselves are organised by. -->
+  <rect width="32" height="32" rx="7" fill="#14213D"/>
+  <text
+    x="16" y="16"
+    text-anchor="middle" dominant-baseline="central"
+    font-family="Georgia, 'Times New Roman', 'Nimbus Roman', serif"
+    font-size="20" font-weight="600" fill="#F7F4EC"
+  >§</text>
+</svg>

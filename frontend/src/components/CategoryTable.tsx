@@ -43,7 +43,10 @@ export default function CategoryTable({
   }
 
   return (
-    <table className="w-full text-left text-sm">
+    // The table needs more width than a phone has; without its own scroller the
+    // last column is simply clipped off and unreachable.
+    <div className="overflow-x-auto">
+    <table className="w-full min-w-[34rem] text-left text-sm">
       <thead className="border-b border-ink/10 text-xs uppercase tracking-wide text-slate-400">
         <tr>
           <th className="py-3 pl-5">Text</th>
@@ -84,5 +87,6 @@ export default function CategoryTable({
         })}
       </tbody>
     </table>
+    </div>
   );
 }

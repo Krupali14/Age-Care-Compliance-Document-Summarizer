@@ -106,7 +106,10 @@ def test_process_document_marks_failed_on_parse_error():
 
     db.refresh(doc)
     assert doc.status == "failed"
-    assert doc.error_message == "cannot parse"
+    # The parser's own wording names internal paths and library internals, so the
+    # stored message is one a user can act on and the detail stays in the log.
+    assert "cannot parse" not in doc.error_message
+    assert "could not be read" in doc.error_message
 
 
 def test_upload_to_read_endpoint_end_to_end(client, session_local, tmp_path, monkeypatch):

@@ -7,6 +7,7 @@ import {
 } from "../api/extractions";
 import CategoryTable from "../components/CategoryTable";
 import AIAssistant from "../components/AIAssistant";
+import NotFound from "./NotFound";
 
 // Section summaries come back as Markdown bullets with **bold** key terms, so the
 // duty, role, and date in each line are scannable rather than buried in prose.
@@ -66,7 +67,12 @@ export default function DocumentDetail() {
   const docId = Number(id);
   const isDesktop = useIsDesktop();
 
-  const { data: document } = useQuery({ queryKey: ["document", docId], queryFn: () => getDocument(docId) });
+  const { data: document, isError: documentMissing } = useQuery({
+    queryKey: ["document", docId],
+    queryFn: () => getDocument(docId),
+    // A document that 404s will 404 again; retrying only prolongs "Loading…".
+    retry: false,
+  });
   const { data: summaries } = useQuery({ queryKey: ["summaries", docId], queryFn: () => getSummaries(docId), enabled: !!document });
   const { data: obligations } = useQuery({ queryKey: ["obligations", docId], queryFn: () => getObligations(docId), enabled: !!document });
   const { data: risks } = useQuery({ queryKey: ["risks", docId], queryFn: () => getRisks(docId), enabled: !!document });
@@ -120,9 +126,17 @@ export default function DocumentDetail() {
   }
 
   const statusMessage = document && document.status !== "done" ? STATUS_MESSAGES[document.status] : undefined;
-  const showSplit = isDesktop && aiOpen && !focusMode;
+  // Nothing was extracted, so there is nothing for the assistant to cite. Offering
+  // it anyway just produces a failed request.
+  const canAssist = !!document && document.sections.length > 0;
+  const showSplit = isDesktop && aiOpen && !focusMode && canAssist;
 
-  const documentContent = !document ? (
+  const documentContent = documentMissing ? (
+    <NotFound
+      title="Document not found"
+      message="This document doesn't exist, or it belongs to another account."
+    />
+  ) : !document ? (
     <p className="p-6 text-slate-500">Loading…</p>
   ) : (
     <>
@@ -183,7 +197,7 @@ export default function DocumentDetail() {
       )}
       {document.status === "failed" && (
         <p className="mt-3 rounded-md bg-coral-50 px-4 py-2 text-sm text-coral">
-          Processing failed{document.error_message ? `: ${document.error_message}` : "."}
+          {document.error_message ?? "This document could not be processed."}
         </p>
       )}
 
@@ -286,7 +300,7 @@ export default function DocumentDetail() {
       </div>
 
       {/* Reopen affordance: desktop collapsed panel, or focus mode */}
-      {(!showSplit && isDesktop) && (
+      {(!showSplit && isDesktop && canAssist) && (
         <button
           onClick={() => { setAiOpen(true); setFocusMode(false); }}
           className="fixed bottom-6 right-6 z-30 flex items-center gap-2 rounded-full bg-ink px-4 py-3 text-sm font-medium text-parchment shadow-stack transition hover:-translate-y-0.5 hover:shadow-xl"
@@ -297,7 +311,7 @@ export default function DocumentDetail() {
       )}
 
       {/* Mobile: floating trigger + bottom-sheet drawer */}
-      {!isDesktop && (
+      {!isDesktop && canAssist && (
         <>
           <button
             onClick={() => setAiOpen(true)}
