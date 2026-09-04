@@ -4,10 +4,23 @@ from concurrent.futures import ThreadPoolExecutor
 
 from app.database import SessionLocal
 from app.models import ActionItem, Deadline, Document, Obligation, Risk, Section, Summary
-from app.services.docling_parser import parse_document
-from app.services.extraction import extract_section
+from app.services.docling_parser import ParsedSection, parse_document
+from app.services.extraction import (
+    SectionExtraction,
+    check_relevance,
+    extract_batch,
+    plan_batches,
+)
 
 logger = logging.getLogger(__name__)
+
+RETRY_BATCH_SIZES = (4, 1)
+
+# A parsed "section" this short is a table-of-contents fragment or a stray page
+# number ("ii Aged Care Act 2024", "system 77"), not content. Sending one to the
+# model wastes a slot and invites it to invent a summary from the heading alone.
+# The row is still stored, so the document reads complete; it just isn't extracted.
+EXTRACTABLE_MIN_CHARS = 40
 
 
 def process_document(document_id: int, file_path: str) -> None:
@@ -39,9 +52,22 @@ def process_document(document_id: int, file_path: str) -> None:
         db.commit()
         return
 
+    # Gate before spending any extraction calls: an out-of-scope upload should
+    # come back as one warning, not a page of invented obligations and risks.
+    try:
+        relevance = check_relevance(document.filename, parsed_sections)
+    except Exception:  # noqa: BLE001 - a failed gate must not block a valid document
+        logger.exception("Relevance check failed for document id=%s", document.id)
+        relevance = None
+    if relevance is not None and not relevance.is_relevant:
+        document.status = "unsupported"
+        document.error_message = relevance.reason
+        db.commit()
+        return
+
     # Create every Section row first, then fan the LLM calls out. Extraction is
-    # network-bound (one API round-trip per section), so a serial loop over a
-    # few hundred sections is the dominant cost once parsing is fast.
+    # network-bound, so the call count is the dominant cost once parsing is fast —
+    # sections are packed several to a call and the calls run concurrently.
     rows = []
     for parsed in parsed_sections:
         section = Section(
@@ -55,20 +81,63 @@ def process_document(document_id: int, file_path: str) -> None:
         rows.append((section, parsed))
     db.flush()
 
-    max_workers = int(os.environ.get("EXTRACTION_CONCURRENCY", "8"))
-    with ThreadPoolExecutor(max_workers=max_workers) as pool:
-        futures = [pool.submit(extract_section, parsed) for _section, parsed in rows]
+    parsed_only = [parsed for _section, parsed in rows]
+    extractable = [
+        (i, parsed) for i, parsed in enumerate(parsed_only)
+        if len(parsed.raw_text.strip()) >= EXTRACTABLE_MIN_CHARS
+    ]
+    # Extraction calls are network-bound and generate independently, so wall-clock
+    # scales with how many are in flight, not with CPU. The client paces them to stay
+    # under the provider's tokens-per-minute ceiling.
+    max_workers = int(os.environ.get("EXTRACTION_CONCURRENCY", "16"))
+    extractions: dict[int, SectionExtraction] = {}
+
+    def run(batches: list[list[tuple[int, ParsedSection]]]) -> None:
+        with ThreadPoolExecutor(max_workers=max_workers) as pool:
+            futures = [pool.submit(extract_batch, batch) for batch in batches]
+            for batch, future in zip(batches, futures):
+                try:
+                    extractions.update(future.result())
+                except Exception:  # noqa: BLE001 - one bad batch shouldn't fail the doc
+                    logger.exception(
+                        "Failed to extract %s section(s) starting at index %s for document id=%s",
+                        len(batch), batch[0][0], document.id,
+                    )
+
+    run(plan_batches(extractable))
+
+    # A section can go missing because its batch call failed, or because the model
+    # skipped it or mislabelled it inside an otherwise-good batch. Retry those on
+    # their own — a single-section call has nothing to confuse it with. Without this
+    # pass, a long document silently loses whole stretches of its content.
+    # Small retry batches first — few enough that the model has little to confuse,
+    # but not so few that a long document pays a separate call per missed section.
+    # Whatever still fails gets a call to itself, which has nothing to confuse at all.
+    for size in RETRY_BATCH_SIZES:
+        missing = [i for i, _ in extractable if i not in extractions]
+        if not missing:
+            break
+        logger.info(
+            "Retrying %s missed section(s) %s at a time for document id=%s",
+            len(missing), size, document.id,
+        )
+        run([
+            [(i, parsed_only[i]) for i in missing[n : n + size]]
+            for n in range(0, len(missing), size)
+        ])
+
+    still_missing = [i for i, _ in extractable if i not in extractions]
+    if still_missing:
+        logger.error(
+            "Extraction incomplete for document id=%s: %s of %s extractable sections "
+            "have no result", document.id, len(still_missing), len(extractable),
+        )
 
     summary_parts = []
-    # Iterating the futures in submit order keeps summaries in document order.
-    for (section, parsed), future in zip(rows, futures):
-        try:
-            extraction = future.result()
-        except Exception:  # noqa: BLE001 - one bad section shouldn't fail the doc
-            logger.exception(
-                "Failed to extract section id=%s heading=%r for document id=%s",
-                section.id, parsed.heading, document.id,
-            )
+    # Walking rows in order keeps summaries in document order.
+    for idx, (section, parsed) in enumerate(rows):
+        extraction = extractions.get(idx)
+        if extraction is None:
             continue
 
         summary_parts.append(extraction.summary)

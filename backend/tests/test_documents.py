@@ -146,3 +146,38 @@ def test_delete_document_removes_extracted_rows(client, db_session, tmp_path, mo
     assert db_session.query(Risk).filter_by(document_id=doc_id).count() == 0
     assert db_session.query(Deadline).filter_by(document_id=doc_id).count() == 0
     assert db_session.query(ActionItem).filter_by(document_id=doc_id).count() == 0
+
+
+def test_deadlines_endpoint_hides_dates_that_have_already_passed(client, session_local):
+    """Rows stored before the stale-date rule existed — and rows whose date has since
+    gone by — must not be served to the UI as though they were still due."""
+    from datetime import date, timedelta
+    from app.models import Deadline, Document, Section, User
+
+    headers = _auth_header(client)
+    db = session_local()
+    user = db.query(User).filter_by(email="a@b.com").one()
+    doc = Document(user_id=user.id, filename="d.pdf", file_type="pdf", status="done")
+    db.add(doc)
+    db.flush()
+    section = Section(document_id=doc.id, heading="S", order_idx=0, page_ref=None, raw_text="t")
+    db.add(section)
+    db.flush()
+
+    future = (date.today() + timedelta(days=30)).isoformat()
+    for description, due in [
+        ("Past ISO date", "2024-01-15"),
+        ("Past worded date", "August 2025"),
+        ("Future date", future),
+        ("Relative timeframe", "within 30 days of the incident"),
+    ]:
+        db.add(Deadline(document_id=doc.id, section_id=section.id, description=description, due_date=due))
+    db.commit()
+
+    rows = client.get(f"/api/deadlines/{doc.id}", headers=headers).json()
+    served = {r["description"]: r["due_date"] for r in rows}
+
+    assert served["Past ISO date"] is None
+    assert served["Past worded date"] is None
+    assert served["Future date"] == future
+    assert served["Relative timeframe"] == "within 30 days of the incident"

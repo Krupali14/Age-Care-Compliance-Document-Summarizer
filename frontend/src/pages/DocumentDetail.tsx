@@ -170,12 +170,25 @@ export default function DocumentDetail() {
       )} */}
 
       {statusMessage && <p className="mt-3 rounded-md bg-amber-50 px-4 py-2 text-sm text-amber">{statusMessage}</p>}
+      {document.status === "unsupported" && (
+        <div className="mt-3 flex items-start gap-2.5 rounded-md border border-amber/30 bg-amber-50 px-4 py-3 text-sm text-amber">
+          <span className="mt-0.5 shrink-0">⚠</span>
+          <span>
+            <strong className="font-semibold">This document can&rsquo;t be summarised.</strong>{" "}
+            {document.error_message ?? "It doesn't look like an aged-care compliance document."} No
+            obligations, risks or deadlines were extracted. Upload a compliance, policy or
+            regulatory document instead.
+          </span>
+        </div>
+      )}
       {document.status === "failed" && (
         <p className="mt-3 rounded-md bg-coral-50 px-4 py-2 text-sm text-coral">
           Processing failed{document.error_message ? `: ${document.error_message}` : "."}
         </p>
       )}
 
+      {document.status !== "unsupported" && (
+      <>
       <div className="mt-4 flex gap-1 overflow-x-auto border-b border-ink/10">
         {TABS.map((t) => (
           <button
@@ -242,6 +255,8 @@ export default function DocumentDetail() {
           </div>
         )}
       </div>
+      </>
+      )}
     </>
   );
 

@@ -1,472 +1,487 @@
 {
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/.claude/settings.json": {
-    "mtime": 1787003749.5770798,
+  ".claude/settings.json": {
+    "mtime": 1788005784.2241437,
     "ast_hash": "e1073342e958ac9f00716938c8f165e3",
     "semantic_hash": "e1073342e958ac9f00716938c8f165e3"
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/backend/alembic/env.py": {
+  "backend/alembic/env.py": {
     "mtime": 1786770914.1073835,
     "ast_hash": "ccbdf4f9c067d6246bd69eec5a0f807e",
     "semantic_hash": "ccbdf4f9c067d6246bd69eec5a0f807e"
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/backend/alembic/versions/0001_baseline.py": {
-    "mtime": 1786990126.5989983,
+  "backend/alembic/versions/0001_baseline.py": {
+    "mtime": 1788005784.2300358,
     "ast_hash": "a47e0fd93774e6bf1f78c67aa788610f",
     "semantic_hash": "a47e0fd93774e6bf1f78c67aa788610f"
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/backend/alembic/versions/0002_initial_schema.py": {
-    "mtime": 1786990114.709517,
+  "backend/alembic/versions/0002_initial_schema.py": {
+    "mtime": 1788005784.2303958,
     "ast_hash": "99fd21cff23e8ad52e7226bee8bbc21a",
     "semantic_hash": "99fd21cff23e8ad52e7226bee8bbc21a"
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/backend/app/__init__.py": {
+  "backend/app/__init__.py": {
     "mtime": 1786770876.3669767,
     "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
     "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/backend/app/auth.py": {
-    "mtime": 1786987053.8536065,
+  "backend/app/auth.py": {
+    "mtime": 1788005784.230653,
     "ast_hash": "a17b5616a0763761e842fe589b6bf0ae",
     "semantic_hash": "a17b5616a0763761e842fe589b6bf0ae"
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/backend/app/config.py": {
-    "mtime": 1786984647.7396774,
-    "ast_hash": "99eb708082db493316dc58659d32d93a",
-    "semantic_hash": "99eb708082db493316dc58659d32d93a"
+  "backend/app/config.py": {
+    "mtime": 1788367501.1970444,
+    "ast_hash": "306e657098c03afc875cd456bb915d75",
+    "semantic_hash": ""
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/backend/app/database.py": {
+  "backend/app/database.py": {
     "mtime": 1786770883.583306,
     "ast_hash": "196437e1b13802bfc8850b94b6228edb",
     "semantic_hash": "196437e1b13802bfc8850b94b6228edb"
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/backend/app/main.py": {
-    "mtime": 1786989324.6955392,
+  "backend/app/main.py": {
+    "mtime": 1788005784.2311947,
     "ast_hash": "193034e4cd4d7f9ff38ddf206f912667",
     "semantic_hash": "193034e4cd4d7f9ff38ddf206f912667"
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/backend/app/models/__init__.py": {
-    "mtime": 1786987053.854165,
+  "backend/app/models/__init__.py": {
+    "mtime": 1788005784.2314994,
     "ast_hash": "b40aa425c452f21b24bef053c7f5a1db",
     "semantic_hash": "b40aa425c452f21b24bef053c7f5a1db"
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/backend/app/models/action_item.py": {
-    "mtime": 1786987053.8543766,
+  "backend/app/models/action_item.py": {
+    "mtime": 1788005784.2317464,
     "ast_hash": "9757c77f53b103531828a10fdaac5143",
     "semantic_hash": "9757c77f53b103531828a10fdaac5143"
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/backend/app/models/deadline.py": {
-    "mtime": 1786987053.854622,
+  "backend/app/models/deadline.py": {
+    "mtime": 1788005784.2320135,
     "ast_hash": "0be39b65f09b8ef9789b1607487b466d",
     "semantic_hash": "0be39b65f09b8ef9789b1607487b466d"
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/backend/app/models/document.py": {
-    "mtime": 1786987053.8550181,
+  "backend/app/models/document.py": {
+    "mtime": 1788005784.2322657,
     "ast_hash": "f20b2e461779debabe5b794ba94e5ae4",
     "semantic_hash": "f20b2e461779debabe5b794ba94e5ae4"
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/backend/app/models/eval_run.py": {
-    "mtime": 1786987053.8552182,
+  "backend/app/models/eval_run.py": {
+    "mtime": 1788005784.2325366,
     "ast_hash": "a038d913e0e6a25a828ad6b05ceab32c",
     "semantic_hash": "a038d913e0e6a25a828ad6b05ceab32c"
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/backend/app/models/obligation.py": {
-    "mtime": 1786987053.855508,
+  "backend/app/models/obligation.py": {
+    "mtime": 1788005784.2328322,
     "ast_hash": "c6ee4538e2d2918dfa083d86677a215a",
     "semantic_hash": "c6ee4538e2d2918dfa083d86677a215a"
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/backend/app/models/risk.py": {
-    "mtime": 1786987053.8558102,
+  "backend/app/models/risk.py": {
+    "mtime": 1788005784.23307,
     "ast_hash": "fb3bd05aaf846cf3822502335a88b38c",
     "semantic_hash": "fb3bd05aaf846cf3822502335a88b38c"
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/backend/app/models/section.py": {
-    "mtime": 1786987053.8560526,
+  "backend/app/models/section.py": {
+    "mtime": 1788005784.233301,
     "ast_hash": "554492945d5ecb5b39a0e3c194a7357f",
     "semantic_hash": "554492945d5ecb5b39a0e3c194a7357f"
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/backend/app/models/summary.py": {
-    "mtime": 1786987053.8562815,
+  "backend/app/models/summary.py": {
+    "mtime": 1788005784.2335079,
     "ast_hash": "a14896b00879c748f0355c43c13f4551",
     "semantic_hash": "a14896b00879c748f0355c43c13f4551"
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/backend/app/models/user.py": {
-    "mtime": 1786987053.8572428,
+  "backend/app/models/user.py": {
+    "mtime": 1788005784.2337303,
     "ast_hash": "3e10005d38379ef32a3d1e2e7420952b",
     "semantic_hash": "3e10005d38379ef32a3d1e2e7420952b"
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/backend/app/routers/__init__.py": {
+  "backend/app/routers/__init__.py": {
     "mtime": 1786770893.924436,
     "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
     "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/backend/app/routers/actions.py": {
-    "mtime": 1786987704.5656002,
+  "backend/app/routers/actions.py": {
+    "mtime": 1788005784.2340207,
     "ast_hash": "2abd58a0ce526cf4e745948056176db2",
     "semantic_hash": "2abd58a0ce526cf4e745948056176db2"
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/backend/app/routers/auth.py": {
-    "mtime": 1786987053.8574831,
+  "backend/app/routers/auth.py": {
+    "mtime": 1788005784.2342777,
     "ast_hash": "4e763e8750bf01ff0b85790da79ada4d",
     "semantic_hash": "4e763e8750bf01ff0b85790da79ada4d"
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/backend/app/routers/chat.py": {
-    "mtime": 1786989317.9512832,
-    "ast_hash": "acfa56896152d8a20cedd9b6ee35217d",
-    "semantic_hash": "acfa56896152d8a20cedd9b6ee35217d"
+  "backend/app/routers/chat.py": {
+    "mtime": 1788005784.2345238,
+    "ast_hash": "a4f60c39fafecb9572772196b8c6d400",
+    "semantic_hash": ""
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/backend/app/routers/deadlines.py": {
-    "mtime": 1786987700.52957,
-    "ast_hash": "7f51e2af3683a7f85bc88a85ac597cf3",
-    "semantic_hash": "7f51e2af3683a7f85bc88a85ac597cf3"
+  "backend/app/routers/deadlines.py": {
+    "mtime": 1788367461.4875982,
+    "ast_hash": "e40cdba02213878c81d7d162dc9a6a18",
+    "semantic_hash": ""
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/backend/app/routers/documents.py": {
-    "mtime": 1787003875.9721932,
+  "backend/app/routers/documents.py": {
+    "mtime": 1788005784.2350652,
     "ast_hash": "b554c9b0243d6e0564cf660edd6d8f2b",
     "semantic_hash": "b554c9b0243d6e0564cf660edd6d8f2b"
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/backend/app/routers/eval.py": {
-    "mtime": 1786989095.9209366,
-    "ast_hash": "ba7b58dbc0ccacb20da3ade9c66b8849",
-    "semantic_hash": "ba7b58dbc0ccacb20da3ade9c66b8849"
+  "backend/app/routers/eval.py": {
+    "mtime": 1788005784.2354016,
+    "ast_hash": "deecad9ef691f5c38e2da8327b07061f",
+    "semantic_hash": ""
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/backend/app/routers/obligations.py": {
-    "mtime": 1786987691.8661544,
+  "backend/app/routers/obligations.py": {
+    "mtime": 1788005784.235874,
     "ast_hash": "bc792c5b0d4db9ab55016777fc82149e",
     "semantic_hash": "bc792c5b0d4db9ab55016777fc82149e"
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/backend/app/routers/risks.py": {
-    "mtime": 1786987696.487427,
+  "backend/app/routers/risks.py": {
+    "mtime": 1788005784.2361655,
     "ast_hash": "ba0788bce6e344b2d3719996ea4bc72f",
     "semantic_hash": "ba0788bce6e344b2d3719996ea4bc72f"
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/backend/app/routers/summarize.py": {
-    "mtime": 1786987687.690543,
+  "backend/app/routers/summarize.py": {
+    "mtime": 1788005784.2364337,
     "ast_hash": "ed3230c98b36cf8f72ac78d4466b9aa3",
     "semantic_hash": "ed3230c98b36cf8f72ac78d4466b9aa3"
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/backend/app/routers/upload.py": {
-    "mtime": 1786987053.8576462,
+  "backend/app/routers/upload.py": {
+    "mtime": 1788005784.2366884,
     "ast_hash": "f34134d3a63e7e69b17ce834492b2775",
     "semantic_hash": "f34134d3a63e7e69b17ce834492b2775"
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/backend/app/schemas.py": {
-    "mtime": 1786987053.8579273,
+  "backend/app/schemas.py": {
+    "mtime": 1788005784.237039,
     "ast_hash": "0932c4b61cb08d092a913c78f82b7777",
     "semantic_hash": "0932c4b61cb08d092a913c78f82b7777"
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/backend/app/services/__init__.py": {
-    "mtime": 1786987053.8579702,
+  "backend/app/services/__init__.py": {
+    "mtime": 1788005784.2370791,
     "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
     "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/backend/app/services/docling_parser.py": {
-    "mtime": 1786987053.8583996,
-    "ast_hash": "581a945ffcde29cedce4d78b24d46575",
-    "semantic_hash": "581a945ffcde29cedce4d78b24d46575"
+  "backend/app/services/docling_parser.py": {
+    "mtime": 1788069145.435218,
+    "ast_hash": "2c9f2739aa3e737f61d60dc757c8c8c4",
+    "semantic_hash": ""
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/backend/app/services/eval_scoring.py": {
-    "mtime": 1786988995.0664146,
-    "ast_hash": "cc52c3b5fe41869d17a01c5c42b567a4",
-    "semantic_hash": "cc52c3b5fe41869d17a01c5c42b567a4"
+  "backend/app/services/eval_scoring.py": {
+    "mtime": 1788005784.2378657,
+    "ast_hash": "c8ed570d2c26358993005d06357e940c",
+    "semantic_hash": ""
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/backend/app/services/extraction.py": {
-    "mtime": 1786987053.8586211,
-    "ast_hash": "7573986da8bc0aa52c7b6e7f3d43710f",
-    "semantic_hash": "7573986da8bc0aa52c7b6e7f3d43710f"
+  "backend/app/services/extraction.py": {
+    "mtime": 1788366811.0181584,
+    "ast_hash": "d7e24c0360b6edf79b8f9384c602a01a",
+    "semantic_hash": ""
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/backend/app/services/llm.py": {
-    "mtime": 1786987053.8587973,
-    "ast_hash": "5ed74bc0e0e5818551789488332880e7",
-    "semantic_hash": "5ed74bc0e0e5818551789488332880e7"
+  "backend/app/services/llm.py": {
+    "mtime": 1788366051.94213,
+    "ast_hash": "273febf2624f9095d40b8bcb114b3ee0",
+    "semantic_hash": ""
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/backend/app/services/processing.py": {
-    "mtime": 1786987465.342497,
-    "ast_hash": "b2b22d8449b3d3b617950b75cb91bf84",
-    "semantic_hash": "b2b22d8449b3d3b617950b75cb91bf84"
+  "backend/app/services/processing.py": {
+    "mtime": 1788367095.3839831,
+    "ast_hash": "d2d3706dce2c021dbddd4438a47fee5e",
+    "semantic_hash": ""
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/backend/ground_truth/sample_doc.json": {
-    "mtime": 1786989084.159762,
+  "backend/ground_truth/sample_doc.json": {
+    "mtime": 1788005784.2392316,
     "ast_hash": "80406b95dc44f3e4861ddfd40bb3e2b4",
     "semantic_hash": "80406b95dc44f3e4861ddfd40bb3e2b4"
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/backend/scripts/eval.py": {
-    "mtime": 1786989091.5958667,
-    "ast_hash": "fd91ea5d5daebac7bb43c777f74b1d5a",
-    "semantic_hash": "fd91ea5d5daebac7bb43c777f74b1d5a"
+  "backend/scripts/eval.py": {
+    "mtime": 1788005784.2399018,
+    "ast_hash": "c53b184e4733441a9f736cff35da59f8",
+    "semantic_hash": ""
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/backend/tests/__init__.py": {
-    "mtime": 1786984647.739977,
+  "backend/tests/__init__.py": {
+    "mtime": 1788005784.239938,
     "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
     "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/backend/tests/conftest.py": {
-    "mtime": 1786990206.4711144,
+  "backend/tests/conftest.py": {
+    "mtime": 1788005784.2402272,
     "ast_hash": "e9a8f4889b85d8cd3270979766bd6d99",
     "semantic_hash": "e9a8f4889b85d8cd3270979766bd6d99"
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/backend/tests/test_auth.py": {
-    "mtime": 1786987053.859338,
+  "backend/tests/test_auth.py": {
+    "mtime": 1788005784.2404864,
     "ast_hash": "2e342ed6edccb1dc28caf9deef158904",
     "semantic_hash": "2e342ed6edccb1dc28caf9deef158904"
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/backend/tests/test_chat.py": {
-    "mtime": 1786990216.4826777,
-    "ast_hash": "9d317716489441196575f5633e7e3951",
-    "semantic_hash": "9d317716489441196575f5633e7e3951"
+  "backend/tests/test_chat.py": {
+    "mtime": 1788005784.2407615,
+    "ast_hash": "c3a17e0ba5854650a11acae2fff26b30",
+    "semantic_hash": ""
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/backend/tests/test_config.py": {
-    "mtime": 1786984647.7404425,
-    "ast_hash": "29bf559388052d7c2929b79c8957800d",
-    "semantic_hash": "29bf559388052d7c2929b79c8957800d"
+  "backend/tests/test_config.py": {
+    "mtime": 1788367559.206536,
+    "ast_hash": "327aac44c1515a2f1d86c2e0b634ba30",
+    "semantic_hash": ""
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/backend/tests/test_docling_parser.py": {
-    "mtime": 1786987053.8595912,
-    "ast_hash": "9a8b88d659393279a8d4b56b17d1758d",
-    "semantic_hash": "9a8b88d659393279a8d4b56b17d1758d"
+  "backend/tests/test_docling_parser.py": {
+    "mtime": 1788069145.435374,
+    "ast_hash": "91a9bc96bd8d4a69f8da980235b7ebde",
+    "semantic_hash": ""
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/backend/tests/test_documents.py": {
-    "mtime": 1787003851.2343025,
-    "ast_hash": "bd4ced26cfe7e43de22b24ee61118b76",
-    "semantic_hash": "bd4ced26cfe7e43de22b24ee61118b76"
+  "backend/tests/test_documents.py": {
+    "mtime": 1788367515.9953053,
+    "ast_hash": "701736514cdc8ba6e329caf5ea56f767",
+    "semantic_hash": ""
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/backend/tests/test_eval.py": {
-    "mtime": 1786988999.6053553,
-    "ast_hash": "069f7ca19a575585b3e249d6a197aaf1",
-    "semantic_hash": "069f7ca19a575585b3e249d6a197aaf1"
+  "backend/tests/test_eval.py": {
+    "mtime": 1788005784.2420182,
+    "ast_hash": "22a48518ba69e1434c0f361e7532b7a8",
+    "semantic_hash": ""
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/backend/tests/test_extraction.py": {
-    "mtime": 1786987053.8597903,
-    "ast_hash": "31c78d0cd9815fbdf578af89cde23930",
-    "semantic_hash": "31c78d0cd9815fbdf578af89cde23930"
+  "backend/tests/test_extraction.py": {
+    "mtime": 1788366811.040612,
+    "ast_hash": "68e174848d88b0ae292fd5696b8d51c4",
+    "semantic_hash": ""
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/backend/tests/test_models.py": {
-    "mtime": 1786987053.859947,
+  "backend/tests/test_models.py": {
+    "mtime": 1788005784.2429185,
     "ast_hash": "f746a005a1d70e4067e5519bdc51133c",
     "semantic_hash": "f746a005a1d70e4067e5519bdc51133c"
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/backend/tests/test_processing.py": {
-    "mtime": 1786990250.459584,
-    "ast_hash": "946ca3283bd9bbae58b33c66742f8184",
-    "semantic_hash": "946ca3283bd9bbae58b33c66742f8184"
+  "backend/tests/test_processing.py": {
+    "mtime": 1788366850.3171847,
+    "ast_hash": "91fa99178430f9bddb8d896eaab3926a",
+    "semantic_hash": ""
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/backend/tests/test_upload.py": {
-    "mtime": 1786987053.860185,
+  "backend/tests/test_upload.py": {
+    "mtime": 1788005784.243616,
     "ast_hash": "4580a2d1b045de6d3a1a903e42eadd83",
     "semantic_hash": "4580a2d1b045de6d3a1a903e42eadd83"
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/frontend/package.json": {
-    "mtime": 1786987975.757034,
-    "ast_hash": "33e85d61ac84288ee64b799f7edf67f8",
-    "semantic_hash": "33e85d61ac84288ee64b799f7edf67f8"
+  "frontend/package.json": {
+    "mtime": 1788005784.2456965,
+    "ast_hash": "13c59659edacb67d392050058895da29",
+    "semantic_hash": ""
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/frontend/postcss.config.js": {
+  "frontend/postcss.config.js": {
     "mtime": 1786770821.6355486,
     "ast_hash": "c735540bb63936a123bc867d950c9f69",
     "semantic_hash": "c735540bb63936a123bc867d950c9f69"
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/frontend/src/App.tsx": {
-    "mtime": 1786989119.796738,
+  "frontend/src/App.tsx": {
+    "mtime": 1788005784.2462156,
     "ast_hash": "bdffe3ccf291ce3178bfbc1786963838",
     "semantic_hash": "bdffe3ccf291ce3178bfbc1786963838"
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/frontend/src/api/auth.ts": {
-    "mtime": 1786987984.392485,
+  "frontend/src/api/auth.ts": {
+    "mtime": 1788005784.2467299,
     "ast_hash": "29c9351dc93ef232fd14933f0415dd7e",
     "semantic_hash": "29c9351dc93ef232fd14933f0415dd7e"
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/frontend/src/api/chat.ts": {
-    "mtime": 1786989325.5729003,
-    "ast_hash": "c8c433b0e9b544385975fd991bc511d3",
-    "semantic_hash": "c8c433b0e9b544385975fd991bc511d3"
+  "frontend/src/api/chat.ts": {
+    "mtime": 1788005784.2475429,
+    "ast_hash": "9362ae9856c0e9e79ed6d6c1e8d7a3d8",
+    "semantic_hash": ""
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/frontend/src/api/client.ts": {
-    "mtime": 1786987980.3030856,
-    "ast_hash": "768c5b83f55d601d343d8a378d5762b9",
-    "semantic_hash": "768c5b83f55d601d343d8a378d5762b9"
+  "frontend/src/api/client.ts": {
+    "mtime": 1788367481.3973725,
+    "ast_hash": "5d1a34d7ab5788908546934b05b8196e",
+    "semantic_hash": ""
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/frontend/src/api/documents.ts": {
-    "mtime": 1787003436.7574053,
+  "frontend/src/api/documents.ts": {
+    "mtime": 1788005784.2481997,
     "ast_hash": "7caba026937dd82b1d1bdbfe5789bcc7",
     "semantic_hash": "7caba026937dd82b1d1bdbfe5789bcc7"
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/frontend/src/api/eval.ts": {
-    "mtime": 1786989108.9595702,
+  "frontend/src/api/eval.ts": {
+    "mtime": 1788005784.2485752,
     "ast_hash": "f117103f806d91dd6eb74070133ee483",
     "semantic_hash": "f117103f806d91dd6eb74070133ee483"
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/frontend/src/api/extractions.ts": {
-    "mtime": 1787003917.246247,
+  "frontend/src/api/extractions.ts": {
+    "mtime": 1788005784.2487373,
     "ast_hash": "f11ff51fafd82ef9af799a1e763f1535",
     "semantic_hash": "f11ff51fafd82ef9af799a1e763f1535"
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/frontend/src/components/CategoryTable.tsx": {
-    "mtime": 1787003933.8903496,
-    "ast_hash": "cfd8cdbf96f938407dc0fa437046cd6b",
-    "semantic_hash": "cfd8cdbf96f938407dc0fa437046cd6b"
+  "frontend/src/components/CategoryTable.tsx": {
+    "mtime": 1788005784.2497633,
+    "ast_hash": "e8640964a44420c28c3b2d2aea33e71f",
+    "semantic_hash": ""
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/frontend/src/components/ChatPanel.tsx": {
-    "mtime": 1786989630.610975,
-    "ast_hash": "632579f9d2a0699fba21862f6b56f85e",
-    "semantic_hash": "632579f9d2a0699fba21862f6b56f85e"
+  "frontend/src/components/ConfirmModal.tsx": {
+    "mtime": 1788005784.250031,
+    "ast_hash": "b42a06bf6ad926b4751267104ffc14aa",
+    "semantic_hash": ""
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/frontend/src/components/ConfirmModal.tsx": {
-    "mtime": 1787003449.9400058,
-    "ast_hash": "35c2cc073250ff49d4c569854009ecae",
-    "semantic_hash": "35c2cc073250ff49d4c569854009ecae"
+  "frontend/src/components/DashboardLayout.tsx": {
+    "mtime": 1788005784.2502959,
+    "ast_hash": "d11b83cc3a58483d5925c56e8fe112bc",
+    "semantic_hash": ""
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/frontend/src/components/DashboardLayout.tsx": {
-    "mtime": 1786990138.2711031,
-    "ast_hash": "a40770a1988cf9f654dab1a58c1f42cb",
-    "semantic_hash": "a40770a1988cf9f654dab1a58c1f42cb"
-  },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/frontend/src/components/ProtectedRoute.tsx": {
-    "mtime": 1786987995.0311527,
+  "frontend/src/components/ProtectedRoute.tsx": {
+    "mtime": 1788005784.2504902,
     "ast_hash": "7f6c25d6dd2604eb605d4ab0ec6ba707",
     "semantic_hash": "7f6c25d6dd2604eb605d4ab0ec6ba707"
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/frontend/src/context/AuthContext.tsx": {
-    "mtime": 1786987990.067717,
-    "ast_hash": "0d6cf4e83f0003d0edca885ce44ddaa5",
-    "semantic_hash": "0d6cf4e83f0003d0edca885ce44ddaa5"
+  "frontend/src/context/AuthContext.tsx": {
+    "mtime": 1788367501.1720061,
+    "ast_hash": "c461df04ae6c0f1c2af269dcf14e9757",
+    "semantic_hash": ""
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/frontend/src/main.tsx": {
+  "frontend/src/main.tsx": {
     "mtime": 1786770840.6111186,
     "ast_hash": "460f4ed39769667d01ffbe1c7eb8203f",
     "semantic_hash": "460f4ed39769667d01ffbe1c7eb8203f"
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/frontend/src/pages/Dashboard.tsx": {
-    "mtime": 1787003502.9080474,
-    "ast_hash": "859db3fb2090de3f0e921e7e52e1bb5a",
-    "semantic_hash": "859db3fb2090de3f0e921e7e52e1bb5a"
+  "frontend/src/pages/Dashboard.tsx": {
+    "mtime": 1788364093.9246042,
+    "ast_hash": "6a8089b38253b083c314ad40eaf61d07",
+    "semantic_hash": ""
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/frontend/src/pages/DocumentDetail.tsx": {
-    "mtime": 1787003967.9467142,
-    "ast_hash": "f74f7ad0ed0b509190a2e99dc73c42c1",
-    "semantic_hash": "f74f7ad0ed0b509190a2e99dc73c42c1"
+  "frontend/src/pages/DocumentDetail.tsx": {
+    "mtime": 1788364105.6936235,
+    "ast_hash": "899975d44b26af73a95c930be13e9cde",
+    "semantic_hash": ""
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/frontend/src/pages/EvalPage.tsx": {
-    "mtime": 1786989114.1026425,
-    "ast_hash": "99ea9ee6f33ea93c3dd111bf30a7e303",
-    "semantic_hash": "99ea9ee6f33ea93c3dd111bf30a7e303"
+  "frontend/src/pages/EvalPage.tsx": {
+    "mtime": 1788005784.252023,
+    "ast_hash": "6c62302aec234ba96a4b12072388c9c9",
+    "semantic_hash": ""
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/frontend/src/pages/Landing.tsx": {
-    "mtime": 1786988020.0712113,
-    "ast_hash": "598eb78bf4a5c2672d256bfd6137d049",
-    "semantic_hash": "598eb78bf4a5c2672d256bfd6137d049"
+  "frontend/src/pages/Landing.tsx": {
+    "mtime": 1788005784.2523918,
+    "ast_hash": "002f5f8380bbe243a1545cecaf5ccc33",
+    "semantic_hash": ""
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/frontend/src/pages/Login.tsx": {
-    "mtime": 1786988003.4000778,
-    "ast_hash": "580ec5dcd1531965bec06db198531449",
-    "semantic_hash": "580ec5dcd1531965bec06db198531449"
+  "frontend/src/pages/Login.tsx": {
+    "mtime": 1788005784.252613,
+    "ast_hash": "40c32cf635ae1dff8a2dd1154374ad7e",
+    "semantic_hash": ""
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/frontend/src/vite-env.d.ts": {
-    "mtime": 1786988034.4113896,
+  "frontend/src/vite-env.d.ts": {
+    "mtime": 1788005784.2529795,
     "ast_hash": "0352474ba2918efe13895edbc3780d94",
     "semantic_hash": "0352474ba2918efe13895edbc3780d94"
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/frontend/tailwind.config.js": {
-    "mtime": 1786770819.3881648,
-    "ast_hash": "5b593e9d5fa10c6a5272552e8ea8e1f8",
-    "semantic_hash": "5b593e9d5fa10c6a5272552e8ea8e1f8"
+  "frontend/tailwind.config.js": {
+    "mtime": 1788005784.2532544,
+    "ast_hash": "57637a7c7965ea29518bbdcb2f0b4334",
+    "semantic_hash": ""
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/frontend/tsconfig.json": {
+  "frontend/tsconfig.json": {
     "mtime": 1786770811.1065304,
     "ast_hash": "6b0318b9b75bbb74c7893a0e5ebfd76a",
     "semantic_hash": "6b0318b9b75bbb74c7893a0e5ebfd76a"
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/frontend/vite.config.ts": {
+  "frontend/vite.config.ts": {
     "mtime": 1786770815.3178403,
     "ast_hash": "bdb12881fc813a0f16b53b7b123f25de",
     "semantic_hash": "bdb12881fc813a0f16b53b7b123f25de"
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/.claude/CLAUDE.md": {
-    "mtime": 1787003749.5765126,
+  ".claude/CLAUDE.md": {
+    "mtime": 1788005784.2237566,
     "ast_hash": "db73b0edd7ffbc61ceac177130730865",
     "semantic_hash": "db73b0edd7ffbc61ceac177130730865"
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/.claude/skills/graphify/SKILL.md": {
-    "mtime": 1787003749.5762446,
+  ".claude/skills/graphify/SKILL.md": {
+    "mtime": 1788005784.2249541,
     "ast_hash": "cfc9393ee58a6404953c69901ae300c7",
     "semantic_hash": "cfc9393ee58a6404953c69901ae300c7"
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/.claude/skills/graphify/references/add-watch.md": {
-    "mtime": 1781936247.7675028,
+  ".claude/skills/graphify/references/add-watch.md": {
+    "mtime": 1788005784.2254071,
     "ast_hash": "d59d027fe449f06aa03905a01184e779",
     "semantic_hash": "d59d027fe449f06aa03905a01184e779"
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/.claude/skills/graphify/references/exports.md": {
-    "mtime": 1781936247.7678208,
+  ".claude/skills/graphify/references/exports.md": {
+    "mtime": 1788005784.2256708,
     "ast_hash": "9da2a2152e60a22f07f05fed5158f287",
     "semantic_hash": "9da2a2152e60a22f07f05fed5158f287"
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/.claude/skills/graphify/references/extraction-spec.md": {
-    "mtime": 1781936248.3062305,
+  ".claude/skills/graphify/references/extraction-spec.md": {
+    "mtime": 1788005784.2260678,
     "ast_hash": "2e620982acb506f557538cdcfb1ef6da",
     "semantic_hash": "2e620982acb506f557538cdcfb1ef6da"
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/.claude/skills/graphify/references/github-and-merge.md": {
-    "mtime": 1781936248.3073556,
+  ".claude/skills/graphify/references/github-and-merge.md": {
+    "mtime": 1788005784.2263465,
     "ast_hash": "cde13df085e4c492aeb7ba298a996d0d",
     "semantic_hash": "cde13df085e4c492aeb7ba298a996d0d"
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/.claude/skills/graphify/references/hooks.md": {
-    "mtime": 1781936248.3081217,
+  ".claude/skills/graphify/references/hooks.md": {
+    "mtime": 1788005784.227321,
     "ast_hash": "3f545db6ce646650bb9de588f5512a27",
     "semantic_hash": "3f545db6ce646650bb9de588f5512a27"
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/.claude/skills/graphify/references/query.md": {
-    "mtime": 1781936248.3092878,
+  ".claude/skills/graphify/references/query.md": {
+    "mtime": 1788005784.2277021,
     "ast_hash": "0b329f30b63b0bd89282848575c86428",
     "semantic_hash": "0b329f30b63b0bd89282848575c86428"
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/.claude/skills/graphify/references/transcribe.md": {
-    "mtime": 1781936248.3099592,
+  ".claude/skills/graphify/references/transcribe.md": {
+    "mtime": 1788005784.2279718,
     "ast_hash": "67b6a5fa6c0974e18f60db9f8932fbd8",
     "semantic_hash": "67b6a5fa6c0974e18f60db9f8932fbd8"
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/.claude/skills/graphify/references/update.md": {
-    "mtime": 1781936248.3105712,
+  ".claude/skills/graphify/references/update.md": {
+    "mtime": 1788005784.228324,
     "ast_hash": "2f78598160bfb12ab775831e0787b02a",
     "semantic_hash": "2f78598160bfb12ab775831e0787b02a"
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/CLAUDE.md": {
-    "mtime": 1787003733.5491507,
+  "CLAUDE.md": {
+    "mtime": 1788005784.2292843,
     "ast_hash": "82efb97a359f5c7290bf2513d14686be",
     "semantic_hash": "82efb97a359f5c7290bf2513d14686be"
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/README.md": {
-    "mtime": 1786770967.8677192,
-    "ast_hash": "90e9f973ebd267819ff2dbdeb84b0663",
-    "semantic_hash": "90e9f973ebd267819ff2dbdeb84b0663"
+  "README.md": {
+    "mtime": 1788367348.7245593,
+    "ast_hash": "0d27a8f510cd7df909a00c89041a86e3",
+    "semantic_hash": ""
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/backend/requirements.txt": {
-    "mtime": 1786987053.859045,
+  "backend/requirements.txt": {
+    "mtime": 1788005784.2396078,
     "ast_hash": "95b49a31d9d0e09e63abf9a1c8b7619d",
     "semantic_hash": "95b49a31d9d0e09e63abf9a1c8b7619d"
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/docker-compose.yml": {
-    "mtime": 1786990109.1910973,
+  "docker-compose.yml": {
+    "mtime": 1788005784.243982,
     "ast_hash": "2a3524bbfadf1b0966aa073cb64d2b72",
     "semantic_hash": "2a3524bbfadf1b0966aa073cb64d2b72"
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/docs/superpowers/plans/2026-08-17-aged-care-compliance-summariser.md": {
+  "docs/superpowers/plans/2026-08-17-aged-care-compliance-summariser.md": {
     "mtime": 1786983868.640777,
     "ast_hash": "aa8872fb36760e3cedc658e2680c1e7e",
     "semantic_hash": "aa8872fb36760e3cedc658e2680c1e7e"
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/docs/superpowers/specs/2026-08-17-aged-care-compliance-summariser-design.md": {
+  "docs/superpowers/specs/2026-08-17-aged-care-compliance-summariser-design.md": {
     "mtime": 1786983482.31731,
     "ast_hash": "692d544304ae08a9eed0fd5cdb326e4a",
     "semantic_hash": "692d544304ae08a9eed0fd5cdb326e4a"
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/frontend/index.html": {
-    "mtime": 1786770827.5069747,
-    "ast_hash": "4ec27e466ce7ce7c63878e62873836d4",
-    "semantic_hash": "4ec27e466ce7ce7c63878e62873836d4"
+  "frontend/index.html": {
+    "mtime": 1788005784.24435,
+    "ast_hash": "ccef81d8180d758833ac81b057a43c59",
+    "semantic_hash": ""
   },
-  "/Users/niralpatel/Documents/Australia-Projects/krupali-project-personal/Project Scope Template.pdf": {
+  "Project Scope Template.pdf": {
     "mtime": 1786552728.4809756,
     "ast_hash": "7fc5da1d61bfadb5dc6299114929e162",
     "semantic_hash": "7fc5da1d61bfadb5dc6299114929e162"
+  },
+  ".impeccable/hook.cache.json": {
+    "mtime": 1787483213.6875815,
+    "ast_hash": "47bbf502be58d93268c7e55632009bd5",
+    "semantic_hash": ""
+  },
+  "frontend/src/components/AIAssistant.tsx": {
+    "mtime": 1788005784.2493715,
+    "ast_hash": "8ec1071b32897fc0d974599c5ff3e998",
+    "semantic_hash": ""
+  },
+  "docs/C2026C00301.pdf": {
+    "mtime": 1788067084.3160355,
+    "ast_hash": "2ac31dcfa68dcc80e86a16e4b0cb7ad4",
+    "semantic_hash": ""
+  },
+  "docs/strengthened-aged-care-quality-standards-august-2025_copy.pdf": {
+    "mtime": 1788067079.499468,
+    "ast_hash": "e1477774a825551d9509d1d387cac276",
+    "semantic_hash": ""
   }
 }

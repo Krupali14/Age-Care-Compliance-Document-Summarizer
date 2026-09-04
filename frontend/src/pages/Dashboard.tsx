@@ -9,6 +9,7 @@ const STATUS_STYLES: Record<string, string> = {
   processing: "bg-amber-50 text-amber",
   done: "bg-sage-50 text-sage",
   failed: "bg-coral-50 text-coral",
+  unsupported: "bg-amber-50 text-amber",
 };
 
 const STATUS_LABELS: Record<string, string> = {
@@ -16,6 +17,7 @@ const STATUS_LABELS: Record<string, string> = {
   processing: "Reading",
   done: "Ready",
   failed: "Failed",
+  unsupported: "Not supported",
 };
 
 function FileIcon() {
