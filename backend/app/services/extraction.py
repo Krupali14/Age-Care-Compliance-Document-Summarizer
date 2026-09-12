@@ -74,6 +74,16 @@ class SectionExtraction(BaseModel):
 class IndexedSectionExtraction(SectionExtraction):
     index: int
     heading: str
+    # Re-declared without defaults on purpose. An optional list is a list the model
+    # is allowed to omit, and in a batch of eight sections it omits all four of them
+    # and returns summaries alone — an obligation-dense standards document came back
+    # with zero obligations while the same sections extracted one at a time yielded
+    # three apiece. Required fields force the key into every object, so "nothing
+    # here" has to be an explicit empty list rather than a silent omission.
+    obligations: list[ExtractedObligation]
+    risks: list[ExtractedRisk]
+    deadlines: list[ExtractedDeadline]
+    action_items: list[ExtractedActionItem]
 
 
 class BatchExtraction(BaseModel):
@@ -269,7 +279,10 @@ def _render(indexed: list[tuple[int, ParsedSection]]) -> str:
 def extract_batch(indexed: list[tuple[int, ParsedSection]]) -> dict[int, SectionExtraction]:
     """Extract several sections in one LLM call, keyed by the caller's index."""
     llm = get_llm()
-    structured_llm = llm.with_structured_output(BatchExtraction)
+    # json_schema (OpenAI strict structured outputs) enforces the required fields
+    # above; the default function_calling mode treats the schema as a hint and lets
+    # the model drop them.
+    structured_llm = llm.with_structured_output(BatchExtraction, method="json_schema")
     prompt = PROMPT_TEMPLATE.format(
         sections=_render(indexed),
         deadline_rules=DEADLINE_RULES.format(today=date.today().isoformat()),

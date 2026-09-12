@@ -1,6 +1,6 @@
-import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
+import { useEffect, useState } from "react";
+import { useNavigate, Link, Navigate } from "react-router-dom";
+import { SESSION_ENDED_KEY, useAuth } from "../context/AuthContext";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -8,7 +8,16 @@ export default function Login() {
   const [mode, setMode] = useState<"login" | "register">("login");
   const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
-  const { login, register } = useAuth();
+  // Read in the initializer, cleared in an effect — never both in the initializer.
+  // StrictMode invokes an initializer twice in development: the first call removed
+  // the flag and the second, whose value React keeps, then read null, so the notice
+  // never rendered. The effect runs after the value is committed, so clearing there
+  // still stops the notice reappearing on later visits to /login.
+  const [sessionEnded] = useState(() => sessionStorage.getItem(SESSION_ENDED_KEY));
+  useEffect(() => {
+    if (sessionEnded) sessionStorage.removeItem(SESSION_ENDED_KEY);
+  }, [sessionEnded]);
+  const { token, login, register } = useAuth();
   const navigate = useNavigate();
 
   async function handleSubmit(e: React.FormEvent) {
@@ -28,6 +37,11 @@ export default function Login() {
     }
   }
 
+  // Already signed in — /login is reachable from the landing page's own buttons and
+  // from the browser's history, and it was showing a sign-in form to a user whose
+  // session was live, offering to authenticate them over the top of it.
+  if (token) return <Navigate to="/dashboard" replace />;
+
   return (
     <div className="flex min-h-screen items-center justify-center bg-parchment px-6">
       <div className="w-full max-w-sm animate-fade-up">
@@ -35,6 +49,12 @@ export default function Login() {
           <span className="flex h-7 w-7 items-center justify-center rounded-md bg-ink text-xs font-mono text-parchment">§</span>
           Compliance Summariser
         </Link>
+
+        {sessionEnded && (
+          <p role="status" className="mt-6 rounded-md bg-amber-50 px-3 py-2 text-sm text-amber">
+            {sessionEnded}
+          </p>
+        )}
 
         <div className="mt-8 rounded-xl border border-ink/10 bg-white p-8 shadow-card">
           <h1 className="font-display text-2xl font-semibold">
@@ -78,7 +98,7 @@ export default function Login() {
             </div>
 
             {error && (
-              <p className="rounded-md bg-coral-50 px-3 py-2 text-sm text-coral">{error}</p>
+              <p role="alert" className="rounded-md bg-coral-50 px-3 py-2 text-sm text-coral">{error}</p>
             )}
 
             <button
@@ -92,7 +112,7 @@ export default function Login() {
         </div>
 
         <button
-          onClick={() => setMode(mode === "login" ? "register" : "login")}
+          onClick={() => { setError(null); setMode(mode === "login" ? "register" : "login"); }}
           className="mt-5 w-full text-center text-sm font-medium text-teal hover:text-teal-600"
         >
           {mode === "login" ? "Need an account? Register" : "Already have an account? Sign in"}

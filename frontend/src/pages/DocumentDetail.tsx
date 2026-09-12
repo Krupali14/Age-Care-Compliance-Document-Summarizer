@@ -67,17 +67,32 @@ export default function DocumentDetail() {
   const docId = Number(id);
   const isDesktop = useIsDesktop();
 
+  // Opening a document straight after uploading it is the obvious thing to do, and
+  // without this the page froze on "still being processed" with every tab at zero
+  // until the user thought to reload — extraction had long since finished on the
+  // server. Matches the dashboard's own polling interval, and stops once the
+  // document reaches a terminal status so a finished page is not re-fetching for
+  // as long as it stays open.
+  const POLL_MS = 4000;
+  const pollWhileProcessing = (status: string | undefined) =>
+    status === "pending" || status === "processing" ? POLL_MS : (false as const);
+
   const { data: document, isError: documentMissing } = useQuery({
     queryKey: ["document", docId],
     queryFn: () => getDocument(docId),
     // A document that 404s will 404 again; retrying only prolongs "Loading…".
     retry: false,
+    refetchInterval: (query) => pollWhileProcessing(query.state.data?.status),
   });
-  const { data: summaries } = useQuery({ queryKey: ["summaries", docId], queryFn: () => getSummaries(docId), enabled: !!document });
-  const { data: obligations } = useQuery({ queryKey: ["obligations", docId], queryFn: () => getObligations(docId), enabled: !!document });
-  const { data: risks } = useQuery({ queryKey: ["risks", docId], queryFn: () => getRisks(docId), enabled: !!document });
-  const { data: deadlines } = useQuery({ queryKey: ["deadlines", docId], queryFn: () => getDeadlines(docId), enabled: !!document });
-  const { data: actions } = useQuery({ queryKey: ["actions", docId], queryFn: () => getActionItems(docId), enabled: !!document });
+
+  const stillProcessing = pollWhileProcessing(document?.status);
+  const extraction = { enabled: !!document, refetchInterval: stillProcessing };
+
+  const { data: summaries } = useQuery({ queryKey: ["summaries", docId], queryFn: () => getSummaries(docId), ...extraction });
+  const { data: obligations } = useQuery({ queryKey: ["obligations", docId], queryFn: () => getObligations(docId), ...extraction });
+  const { data: risks } = useQuery({ queryKey: ["risks", docId], queryFn: () => getRisks(docId), ...extraction });
+  const { data: deadlines } = useQuery({ queryKey: ["deadlines", docId], queryFn: () => getDeadlines(docId), ...extraction });
+  const { data: actions } = useQuery({ queryKey: ["actions", docId], queryFn: () => getActionItems(docId), ...extraction });
 
   const TABS = [
     { key: "Summary", count: undefined },
@@ -131,6 +146,22 @@ export default function DocumentDetail() {
   const canAssist = !!document && document.sections.length > 0;
   const showSplit = isDesktop && aiOpen && !focusMode && canAssist;
 
+  // The desktop panel sits beside the page, but on mobile the assistant is a sheet
+  // over it: it answered to no key and left the page behind it scrolling, which is
+  // the behaviour ConfirmModal already gets right.
+  const drawerOpen = !isDesktop && aiOpen && canAssist;
+  useEffect(() => {
+    if (!drawerOpen) return;
+    const onKeyDown = (e: KeyboardEvent) => e.key === "Escape" && setAiOpen(false);
+    const previousOverflow = window.document.body.style.overflow;
+    window.document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", onKeyDown);
+    return () => {
+      window.document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [drawerOpen]);
+
   const documentContent = documentMissing ? (
     <NotFound
       title="Document not found"
@@ -158,6 +189,7 @@ export default function DocumentDetail() {
             <button
               onClick={() => setFocusMode(true)}
               title="Focus mode"
+              aria-label="Enter focus mode"
               className="rounded-md border border-ink/15 p-1.5 text-ink transition hover:bg-white"
             >
               <svg viewBox="0 0 24 24" fill="none" className="h-4 w-4"><path d="M8 3H5a2 2 0 0 0-2 2v3M16 3h3a2 2 0 0 1 2 2v3M8 21H5a2 2 0 0 1-2-2v-3M16 21h3a2 2 0 0 0 2-2v-3" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" /></svg>
@@ -183,7 +215,7 @@ export default function DocumentDetail() {
         </div>
       )} */}
 
-      {statusMessage && <p className="mt-3 rounded-md bg-amber-50 px-4 py-2 text-sm text-amber">{statusMessage}</p>}
+      {statusMessage && <p role="status" aria-live="polite" className="mt-3 rounded-md bg-amber-50 px-4 py-2 text-sm text-amber">{statusMessage}</p>}
       {document.status === "unsupported" && (
         <div className="mt-3 flex items-start gap-2.5 rounded-md border border-amber/30 bg-amber-50 px-4 py-3 text-sm text-amber">
           <span className="mt-0.5 shrink-0">⚠</span>
@@ -203,18 +235,25 @@ export default function DocumentDetail() {
 
       {document.status !== "unsupported" && (
       <>
-      <div className="mt-4 flex gap-1 overflow-x-auto border-b border-ink/10">
+      {/* Real buttons were already keyboard-operable, but announced as six unrelated
+          controls with no indication of which view was showing. */}
+      <div role="tablist" aria-label="Document views" className="mt-4 flex gap-1 overflow-x-auto border-b border-ink/10">
         {TABS.map((t) => (
           <button
             key={t.key}
+            role="tab"
+            id={`tab-${t.key}`}
+            aria-selected={tab === t.key}
+            aria-controls="tab-panel"
             onClick={() => setTab(t.key)}
             className={`relative flex items-center gap-1.5 whitespace-nowrap px-3.5 py-2.5 text-sm font-medium transition ${
               tab === t.key ? "text-ink" : "text-slate-400 hover:text-ink"
             }`}
           >
             {t.key}
+            {t.count !== undefined && <span className="sr-only">{`, ${t.count} items`}</span>}
             {t.count !== undefined && (
-              <span className={`rounded-full px-1.5 py-0.5 font-mono text-[10px] ${tab === t.key ? "bg-teal-50 text-teal-600" : "bg-parchment-200 text-slate-400"}`}>
+              <span aria-hidden="true" className={`rounded-full px-1.5 py-0.5 font-mono text-[10px] ${tab === t.key ? "bg-teal-50 text-teal-600" : "bg-parchment-200 text-slate-400"}`}>
                 {String(t.count).padStart(2, "0")}
               </span>
             )}
@@ -223,7 +262,7 @@ export default function DocumentDetail() {
         ))}
       </div>
 
-      <div className="mt-4 overflow-hidden rounded-xl border border-ink/10 bg-white shadow-card">
+      <div id="tab-panel" role="tabpanel" aria-labelledby={`tab-${tab}`} tabIndex={-1} className="mt-4 overflow-hidden rounded-xl border border-ink/10 bg-white shadow-card">
         {tab === "Summary" && (
           <div className="space-y-4 p-6">
             {(summaries ?? []).map((s: { id: number; text: string }) => (
@@ -282,9 +321,28 @@ export default function DocumentDetail() {
         </div>
 
         {showSplit && (
+          // A bare div with a mousedown handler is a control only a mouse can reach.
+          // separator + arrow keys costs four lines and makes the split adjustable
+          // by everyone.
           <div
+            role="separator"
+            aria-orientation="vertical"
+            aria-label="Resize document and assistant panels"
+            aria-valuenow={Math.round(docWidthPct)}
+            aria-valuemin={50}
+            aria-valuemax={80}
+            tabIndex={0}
             onMouseDown={startDrag}
-            className="group relative hidden w-1 shrink-0 cursor-col-resize lg:block"
+            onKeyDown={(e) => {
+              const step = e.shiftKey ? 10 : 2;
+              if (e.key === "ArrowLeft") setDocWidthPct((w) => Math.max(50, w - step));
+              else if (e.key === "ArrowRight") setDocWidthPct((w) => Math.min(80, w + step));
+              else if (e.key === "Home") setDocWidthPct(50);
+              else if (e.key === "End") setDocWidthPct(80);
+              else return;
+              e.preventDefault();
+            }}
+            className="group relative hidden w-1 shrink-0 cursor-col-resize focus-visible:outline focus-visible:outline-2 focus-visible:outline-teal lg:block"
           >
             <div className="absolute inset-y-0 left-1/2 w-px -translate-x-1/2 bg-ink/10 transition group-hover:w-1 group-hover:bg-teal" />
           </div>
@@ -323,7 +381,13 @@ export default function DocumentDetail() {
           {aiOpen && (
             <>
               <div className="fixed inset-0 z-40 bg-ink/40" onClick={() => setAiOpen(false)} />
-              <div className="fixed inset-x-0 bottom-0 z-50 h-[75vh] animate-fade-up overflow-hidden rounded-t-2xl shadow-stack" style={{ animationDuration: "0.25s" }}>
+              <div
+                role="dialog"
+                aria-modal="true"
+                aria-label="AI assistant"
+                className="fixed inset-x-0 bottom-0 z-50 h-[75vh] animate-fade-up overflow-hidden rounded-t-2xl shadow-stack"
+                style={{ animationDuration: "0.25s" }}
+              >
                 <AIAssistant docId={docId} onSourceClick={(id) => { jumpToSection(id); setAiOpen(false); }} onCollapse={() => setAiOpen(false)} />
               </div>
             </>

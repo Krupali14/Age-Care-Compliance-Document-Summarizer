@@ -1,4 +1,4 @@
-.PHONY: up down build logs migrate seed clean restart setup
+.PHONY: up down build logs migrate seed clean restart setup test e2e e2e-stack
 
 ifeq ($(OS),Windows_NT)
 # Windows: GNU make would default to cmd.exe; force PowerShell so no sed/chmod needed.
@@ -47,3 +47,16 @@ clean:
 	docker compose down -v --rmi local --remove-orphans
 
 restart: down up
+
+# Backend unit and integration tests.
+test:
+	docker compose exec backend python -m pytest tests -q
+
+# The end-to-end suite drives the real stack, and signs up a fresh account for each
+# test from a single address — which is exactly what the auth rate limits exist to
+# stop. Raise them for the duration rather than weakening the production defaults.
+e2e-stack:
+	LOGIN_MAX_ATTEMPTS=1000 REGISTER_MAX_ATTEMPTS=1000 docker compose up -d
+
+e2e: e2e-stack
+	cd frontend && npm run e2e

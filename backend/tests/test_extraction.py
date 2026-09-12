@@ -11,6 +11,7 @@ def test_extract_section_calls_llm_with_structured_output():
     fake_extraction = BatchExtraction(
         sections=[IndexedSectionExtraction(
             index=0, heading="Obligations", summary="- **Staff** must report incidents.",
+            obligations=[], risks=[], deadlines=[], action_items=[],
         )]
     )
     fake_structured_llm = MagicMock()
@@ -84,12 +85,16 @@ def test_extract_batch_normalises_deadlines_and_maps_by_index():
     batch_result = BatchExtraction(sections=[
         IndexedSectionExtraction(
             index=1, heading="B", summary="- b",
+            obligations=[], risks=[], action_items=[],
             deadlines=[
                 ExtractedDeadline(description="Old commencement", due_date="2019-07-01"),
                 ExtractedDeadline(description="Report", due_date="within 30 days"),
             ],
         ),
-        IndexedSectionExtraction(index=99, heading="Z", summary="- hallucinated index"),
+        IndexedSectionExtraction(
+            index=99, heading="Z", summary="- hallucinated index",
+            obligations=[], risks=[], deadlines=[], action_items=[],
+        ),
     ])
     fake_structured_llm = MagicMock()
     fake_structured_llm.invoke.return_value = batch_result
@@ -134,9 +139,15 @@ def test_extract_batch_discards_results_attributed_to_the_wrong_section():
     ]
     batch_result = BatchExtraction(sections=[
         # Right index, wrong section's heading — must not be filed under index 0.
-        IndexedSectionExtraction(index=0, heading="Staff qualifications", summary="- wrong"),
+        IndexedSectionExtraction(
+            index=0, heading="Staff qualifications", summary="- wrong",
+            obligations=[], risks=[], deadlines=[], action_items=[],
+        ),
         # Same content, re-cased and re-spaced — still the right section.
-        IndexedSectionExtraction(index=1, heading="staff  qualifications", summary="- right"),
+        IndexedSectionExtraction(
+            index=1, heading="staff  qualifications", summary="- right",
+            obligations=[], risks=[], deadlines=[], action_items=[],
+        ),
     ])
     fake_structured_llm = MagicMock()
     fake_structured_llm.invoke.return_value = batch_result

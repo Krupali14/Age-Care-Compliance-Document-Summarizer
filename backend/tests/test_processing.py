@@ -60,7 +60,14 @@ def test_process_document_persists_extraction(monkeypatch):
     assert db.query(ActionItem).filter_by(document_id=doc.id).count() == 1
 
 
-def test_process_document_survives_section_failure():
+def test_process_document_survives_one_section_failing():
+    """One bad batch must not cost the document the rest of its content.
+
+    This test used to drive *every* call to failure and still assert "done" — which
+    described the bug rather than the contract: a document nothing was read from was
+    shown as Ready over six empty tabs. Total failure is covered separately, in
+    test_a_document_that_extracts_nothing_is_failed_not_done.
+    """
     from sqlalchemy import create_engine
     engine = create_engine("sqlite:///:memory:")
     db = _make_db(engine)
@@ -72,19 +79,36 @@ def test_process_document_survives_section_failure():
     db.add(doc)
     db.commit()
 
-    fake_sections = [ParsedSection(heading="Bad", order_idx=0, page_ref=None, raw_text="A section with enough text in it to be extracted.")]
+    fake_sections = [
+        ParsedSection(heading="Good", order_idx=0, page_ref=None,
+                      raw_text="A section with enough text in it to be extracted."),
+        ParsedSection(heading="Bad", order_idx=1, page_ref=None,
+                      raw_text="Another section with enough text in it to be extracted."),
+    ]
+
+    # The first section extracts; everything after it fails, retries included.
+    calls = {"n": 0}
+
+    def flaky(batch):
+        calls["n"] += 1
+        if calls["n"] == 1:
+            return {batch[0][0]: SectionExtraction(
+                summary="- something", obligations=[], risks=[], deadlines=[], action_items=[],
+            )}
+        raise RuntimeError("LLM error")
 
     with patch("app.services.processing.SessionLocal", return_value=db), \
          patch("app.services.processing.parse_document", return_value=fake_sections), \
          patch("app.services.processing.check_relevance", return_value=RelevanceCheck(is_relevant=True, reason="ok")), \
-         patch("app.services.processing.extract_batch", side_effect=RuntimeError("LLM error")):
+         patch("app.services.processing.extract_batch", side_effect=flaky):
         from app.services.processing import process_document
         process_document(doc.id, "/tmp/doc.pdf")
 
     db.refresh(doc)
+    # Partial content is still content — the document stays usable.
     assert doc.status == "done"
-    assert db.query(Section).filter_by(document_id=doc.id).count() == 1
-    assert db.query(Summary).filter_by(document_id=doc.id).count() == 0
+    assert db.query(Section).filter_by(document_id=doc.id).count() == 2
+    assert db.query(Summary).filter_by(document_id=doc.id).count() == 1
 
 
 def test_process_document_marks_failed_on_parse_error():
@@ -272,3 +296,48 @@ def test_process_document_skips_table_of_contents_fragments():
     assert sent == [2]
     # ...but every parsed section is still stored, so the document reads complete.
     assert db.query(Section).filter_by(document_id=doc.id).count() == 3
+
+
+def test_a_document_that_extracts_nothing_is_failed_not_done(db_session, monkeypatch, tmp_path):
+    """Observed on a real run: "75 of 75 extractable sections have no result", yet
+    the document was marked done — a Ready badge over six empty tabs, with nothing
+    to tell the user the AI service had been unreachable the whole time."""
+    from unittest.mock import patch
+
+    from app.models import Document, Summary, User
+    from app.services.docling_parser import ParsedSection
+    from app.services.extraction import RelevanceCheck
+
+    user = User(email="nothing@b.com", hashed_password="x")
+    db_session.add(user)
+    db_session.flush()
+    doc = Document(user_id=user.id, filename="d.pdf", file_type="pdf", status="pending")
+    db_session.add(doc)
+    db_session.commit()
+
+    sections = [
+        ParsedSection(heading=f"Section {i}", order_idx=i, page_ref=None,
+                      raw_text="The provider must do the thing described in this clause.")
+        for i in range(3)
+    ]
+
+    with (
+        patch("app.services.processing.SessionLocal", return_value=db_session),
+        patch("app.services.processing.parse_document", return_value=sections),
+        patch("app.services.processing.check_relevance",
+              return_value=RelevanceCheck(is_relevant=True, reason="ok")),
+        # Every call fails, as it would with the provider down or the account
+        # rate-limited for long enough to burn every retry.
+        patch("app.services.processing.extract_batch", side_effect=RuntimeError("provider down")),
+    ):
+        from app.services.processing import process_document
+
+        process_document(doc.id, str(tmp_path / "d.pdf"))
+
+    db_session.refresh(doc)
+    assert doc.status == "failed"
+    assert "again" in doc.error_message
+    # The sections were still stored, so the document is readable even though
+    # nothing was extracted from it.
+    assert len(doc.sections) == 3
+    assert db_session.query(Summary).filter_by(document_id=doc.id).count() == 0

@@ -24,6 +24,13 @@ services:
       JWT_EXPIRE_MINUTES: ${JWT_EXPIRE_MINUTES:-480}
       EXTRACTION_RPS: ${EXTRACTION_RPS:-1.3}
       EXTRACTION_CONCURRENCY: ${EXTRACTION_CONCURRENCY:-16}
+      # Auth abuse limits. The defaults are the production values; the end-to-end
+      # suite signs up a fresh account per test from a single address, so it runs
+      # the stack with these raised (see `make e2e`).
+      LOGIN_MAX_ATTEMPTS: ${LOGIN_MAX_ATTEMPTS:-10}
+      LOGIN_WINDOW_SECONDS: ${LOGIN_WINDOW_SECONDS:-900}
+      REGISTER_MAX_ATTEMPTS: ${REGISTER_MAX_ATTEMPTS:-5}
+      REGISTER_WINDOW_SECONDS: ${REGISTER_WINDOW_SECONDS:-3600}
     ports:
       - "8002:8002"
     volumes:

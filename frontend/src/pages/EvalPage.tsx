@@ -107,7 +107,7 @@ export default function EvalPage() {
             <div key={r.id} className="rounded-xl border border-ink/10 bg-white p-6 shadow-card">
               <div className="flex flex-wrap items-center justify-between gap-2">
                 <p className="font-mono text-xs text-slate-400">
-                  {r.ground_truth_ref === AUTO_REF ? "Automatic self-check" : r.ground_truth_ref}
+                  {r.ground_truth_ref === AUTO_REF ? "Automatic self-check" : r.ground_truth_ref}{" "}
                   {i === 0 && (
                     <span className="ml-2 rounded-full bg-teal-50 px-2 py-0.5 text-teal-600">latest</span>
                   )}

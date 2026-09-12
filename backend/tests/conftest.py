@@ -8,6 +8,17 @@ from app.database import Base, get_db
 from app.main import app
 
 
+@pytest.fixture(autouse=True)
+def _reset_rate_limits():
+    """Auth rate limits are process-global, so one test's logins would otherwise
+    count against the next test's."""
+    from app.rate_limit import clear
+
+    clear()
+    yield
+    clear()
+
+
 @pytest.fixture()
 def session_local():
     """Sessionmaker bound to a single in-memory SQLite engine, shared by every

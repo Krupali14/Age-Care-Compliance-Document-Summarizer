@@ -4,6 +4,10 @@ import { useNavigate } from "react-router-dom";
 import { deleteDocument, listDocuments, uploadDocument, type DocumentSummary } from "../api/documents";
 import ConfirmModal from "../components/ConfirmModal";
 
+// A status the frontend has not been taught renders as a plain neutral pill with
+// its raw name, rather than an unstyled, unlabelled blank.
+const STATUS_FALLBACK_STYLE = "bg-slate-100 text-slate-500";
+
 const STATUS_STYLES: Record<string, string> = {
   pending: "bg-slate-100 text-slate-500",
   processing: "bg-amber-50 text-amber",
@@ -37,6 +41,7 @@ export default function Dashboard() {
   const [deleteTarget, setDeleteTarget] = useState<DocumentSummary | null>(null);
   const [deleteError, setDeleteError] = useState<string | null>(null);
   const [dragOver, setDragOver] = useState(false);
+  const [uploading, setUploading] = useState(false);
 
   const { data: documents, isLoading } = useQuery({
     queryKey: ["documents"],
@@ -49,8 +54,11 @@ export default function Dashboard() {
   });
 
   async function handleUpload(file: File | undefined) {
-    if (!file) return;
+    if (!file || uploading) return;
     setUploadError(null);
+    // A large file over a slow link otherwise leaves the button looking inert, with
+    // nothing to stop the user starting the same upload again.
+    setUploading(true);
     try {
       await uploadDocument(file);
       queryClient.invalidateQueries({ queryKey: ["documents"] });
@@ -59,6 +67,7 @@ export default function Dashboard() {
       // limit — and the user can only act on it if they are told which.
       setUploadError(err instanceof Error && err.message ? err.message : "Upload failed. Try again.");
     } finally {
+      setUploading(false);
       if (fileInput.current) fileInput.current.value = "";
     }
   }
@@ -83,13 +92,34 @@ export default function Dashboard() {
           <h1 className="font-display text-2xl font-semibold text-ink">Documents</h1>
           <p className="mt-1 text-sm text-slate-500">Everything your team has uploaded, structured and ready to review.</p>
         </div>
-        <label className="cursor-pointer rounded-md bg-ink px-4 py-2.5 text-sm font-semibold text-parchment shadow-card transition hover:-translate-y-0.5 hover:shadow-card-hover">
-          Upload document
-          <input ref={fileInput} type="file" accept=".pdf,.docx" className="hidden" onChange={(e) => handleUpload(e.target.files?.[0])} />
-        </label>
+        {/* A <label> is not focusable and a display:none input is out of the tab
+            order, so the previous markup left the application's primary action with
+            no keyboard path at all. A real button that opens the input works for
+            everyone. */}
+        <button
+          type="button"
+          onClick={() => fileInput.current?.click()}
+          disabled={uploading}
+          className="rounded-md bg-ink px-4 py-2.5 text-sm font-semibold text-parchment shadow-card transition hover:-translate-y-0.5 hover:shadow-card-hover disabled:translate-y-0 disabled:opacity-60"
+        >
+          {uploading ? "Uploading…" : "Upload document"}
+        </button>
+        <input
+          ref={fileInput}
+          type="file"
+          accept=".pdf,.docx"
+          className="sr-only"
+          tabIndex={-1}
+          onChange={(e) => handleUpload(e.target.files?.[0])}
+        />
       </div>
-      {uploadError && <p className="mt-3 rounded-md bg-coral-50 px-3 py-2 text-sm text-coral">{uploadError}</p>}
-      {deleteError && <p className="mt-3 rounded-md bg-coral-50 px-3 py-2 text-sm text-coral">{deleteError}</p>}
+      {/* Errors here are the only feedback an upload or delete gives, so they have
+          to reach a screen reader as well as the screen. */}
+      <div role="status" aria-live="polite">
+        {uploading && <p className="sr-only">Uploading document…</p>}
+        {uploadError && <p className="mt-3 rounded-md bg-coral-50 px-3 py-2 text-sm text-coral">{uploadError}</p>}
+        {deleteError && <p className="mt-3 rounded-md bg-coral-50 px-3 py-2 text-sm text-coral">{deleteError}</p>}
+      </div>
 
       <div
         onDragOver={(e) => { e.preventDefault(); setDragOver(true); }}
@@ -97,7 +127,13 @@ export default function Dashboard() {
         onDrop={(e) => {
           e.preventDefault();
           setDragOver(false);
-          handleUpload(e.dataTransfer.files?.[0]);
+          const files = e.dataTransfer.files;
+          // Only one document is processed at a time; dropping a folder's worth used
+          // to take the first and discard the rest without a word.
+          if (files.length > 1) {
+            setUploadError(`Only one document can be uploaded at a time — using "${files[0].name}".`);
+          }
+          handleUpload(files?.[0]);
         }}
         className={`mt-6 rounded-xl border-2 border-dashed p-8 text-center transition ${
           dragOver ? "border-teal bg-teal-50" : "border-ink/10 bg-white/50"
@@ -119,11 +155,23 @@ export default function Dashboard() {
 
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {documents?.map((doc, i) => (
+            // A div with an onClick is invisible to the keyboard and to assistive
+            // technology, which left every document — and so the whole application
+            // past this page — unreachable without a mouse.
             <div
               key={doc.id}
+              role="link"
+              tabIndex={0}
+              aria-label={`${doc.filename} — ${STATUS_LABELS[doc.status] ?? doc.status}`}
               style={{ animationDelay: `${i * 40}ms` }}
-              className="group relative animate-fade-up cursor-pointer overflow-hidden rounded-xl border border-ink/10 bg-white p-5 shadow-card transition hover:-translate-y-1 hover:shadow-card-hover"
+              className="group relative animate-fade-up cursor-pointer overflow-hidden rounded-xl border border-ink/10 bg-white p-5 shadow-card transition hover:-translate-y-1 hover:shadow-card-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal"
               onClick={() => navigate(`/dashboard/documents/${doc.id}`)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  navigate(`/dashboard/documents/${doc.id}`);
+                }
+              }}
             >
               {doc.status === "processing" && (
                 <div className="absolute inset-x-0 top-0 h-0.5 overflow-hidden bg-amber-50">
@@ -139,7 +187,7 @@ export default function Dashboard() {
                     setDeleteTarget(doc);
                   }}
                   aria-label={`Delete ${doc.filename}`}
-                  className="rounded p-1 text-slate-400 opacity-0 transition hover:bg-coral-50 hover:text-coral group-hover:opacity-100"
+                  className="rounded p-1 text-slate-400 opacity-0 transition hover:bg-coral-50 hover:text-coral focus-visible:opacity-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-coral group-hover:opacity-100"
                 >
                   <svg viewBox="0 0 24 24" fill="none" className="h-4 w-4"><path d="M6 7h12M9 7V5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2m2 0-1 13a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1L6 7" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" /></svg>
                 </button>
@@ -147,9 +195,9 @@ export default function Dashboard() {
 
               <p className="mt-3 truncate font-mono text-sm text-ink" title={doc.filename}>{doc.filename}</p>
 
-              <span className={`mt-3 inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium ${STATUS_STYLES[doc.status]}`}>
+              <span className={`mt-3 inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium ${STATUS_STYLES[doc.status] ?? STATUS_FALLBACK_STYLE}`}>
                 {doc.status === "processing" && <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-amber" />}
-                {STATUS_LABELS[doc.status]}
+                {STATUS_LABELS[doc.status] ?? doc.status}
               </span>
             </div>
           ))}

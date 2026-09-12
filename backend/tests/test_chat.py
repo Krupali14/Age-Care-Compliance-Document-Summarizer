@@ -120,3 +120,34 @@ def test_chat_refuses_a_document_with_no_sections(client, db_session):
     db_session.add(doc)
     db_session.commit()
     assert client.post(f"/api/chat/{doc.id}", headers=headers, json={"question": "hi?"}).status_code == 409
+
+
+def test_chat_retrieves_extracted_findings_for_a_category_question(client, db_session):
+    """"What deadlines are mentioned?" used to retrieve nothing: the provisions
+    never use the word "deadline", so term matching over section text alone missed
+    the deadlines extraction had already filed, and the model answered "I don't
+    know" while the answer sat in the database."""
+    from unittest.mock import MagicMock, patch
+
+    from app.models import Deadline, Section
+
+    headers = _chat_auth(client, "findings@b.com")
+    doc = _doc_with_sections(db_session, "findings@b.com")
+    section = db_session.query(Section).filter_by(document_id=doc.id, heading="Reporting").one()
+    db_session.add(Deadline(
+        document_id=doc.id, section_id=section.id,
+        description="Lodge the SIRS notification", due_date="within 24 hours",
+        responsible_role="Clinical Manager",
+    ))
+    db_session.commit()
+
+    fake = MagicMock()
+    fake.invoke.return_value = MagicMock(content="Within 24 hours.")
+    with patch("app.routers.chat.get_llm", return_value=fake):
+        resp = client.post(f"/api/chat/{doc.id}", headers=headers,
+                           json={"question": "What deadlines are mentioned?"})
+
+    assert resp.status_code == 200
+    prompt = fake.invoke.call_args[0][0]
+    assert "Lodge the SIRS notification" in prompt
+    assert "within 24 hours" in prompt

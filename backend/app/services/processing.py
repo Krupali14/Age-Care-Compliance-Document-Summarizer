@@ -141,6 +141,26 @@ def process_document(document_id: int, file_path: str) -> None:
             "have no result", document.id, len(still_missing), len(extractable),
         )
 
+    # Nothing at all came back from a document that had sections worth extracting.
+    # That is not a document with no obligations in it — it is a document nothing was
+    # read from: the provider was unreachable, or the account's rate limit was
+    # exhausted for long enough to burn every retry. Marking it "done" showed the
+    # user a Ready badge over six empty tabs with no explanation, and no reason to
+    # think re-uploading would help. Observed on a real run: "75 of 75 extractable
+    # sections have no result", status done, not one summary row.
+    if extractable and not extractions:
+        logger.error(
+            "Extraction produced nothing for document id=%s; marking it failed", document.id
+        )
+        document.status = "failed"
+        document.error_message = (
+            "The document was read, but nothing could be extracted from it. The "
+            "AI service may be unavailable or rate limited. Try uploading it again "
+            "in a few minutes."
+        )
+        db.commit()
+        return
+
     summary_parts = []
     # Walking rows in order keeps summaries in document order.
     for idx, (section, parsed) in enumerate(rows):

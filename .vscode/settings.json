@@ -1,0 +1,16 @@
+{
+  // The workspace TypeScript version, so the editor and `npm run build` agree.
+  "typescript.tsdk": "frontend/node_modules/typescript/lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+
+  // The backend runs on Python 3.11 inside Docker; point Pylance at the sources so
+  // `from app...` imports resolve in the editor.
+  "python.analysis.extraPaths": ["backend"],
+  "python.analysis.typeCheckingMode": "basic",
+
+  "editor.formatOnSave": false,
+  "files.exclude": {
+    "**/__pycache__": true,
+    "**/.pytest_cache": true
+  }
+}

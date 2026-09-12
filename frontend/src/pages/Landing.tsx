@@ -128,7 +128,7 @@ export default function Landing() {
 
       <section className="border-y border-ink/10 bg-white">
         <div className="mx-auto max-w-6xl px-6 py-20">
-          <p className="font-mono text-xs uppercase tracking-[0.2em] text-teal">How it works</p>
+          <h2 className="font-mono text-xs font-normal uppercase tracking-[0.2em] text-teal">How it works</h2>
           <div className="mt-8 grid gap-10 sm:grid-cols-3">
             {steps.map((s, i) => (
               <div key={s.n} className="relative">
@@ -144,7 +144,8 @@ export default function Landing() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 py-20">
+      <section className="mx-auto max-w-6xl px-6 py-20" aria-labelledby="features-heading">
+        <h2 id="features-heading" className="sr-only">What it extracts</h2>
         <div className="grid gap-6 sm:grid-cols-3">
           {features.map((f) => (
             <div

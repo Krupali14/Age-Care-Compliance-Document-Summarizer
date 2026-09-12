@@ -1,0 +1,47 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 5 0 R >> >> /Contents 4 0 R >>
+endobj
+4 0 obj
+<< /Length 865 >>
+stream
+BT /F1 11 Tf 54 760 Td 14 TL
+(INVOICE  #INV-2026-0042) Tj T*
+(Northbridge Office Supplies Pty Ltd   ABN 12 345 678 901) Tj T*
+(Bill to: Riverbend Aged Care, 14 Mill Road, Bendigo VIC 3550) Tj T*
+(Date of issue: 3 September 2026        Payment terms: 30 days) Tj T*
+() Tj T*
+(Qty  Description                              Unit      Amount) Tj T*
+(  6  Ergonomic desk chair, charcoal          389.00    2,334.00) Tj T*
+( 12  A4 copy paper, 80gsm, box of 5 reams      42.50      510.00) Tj T*
+(  2  Laser printer toner cartridge, black     168.00      336.00) Tj T*
+(  1  Delivery and assembly                    145.00      145.00) Tj T*
+() Tj T*
+(Subtotal 3,325.00    GST 332.50    Total due AUD 3,657.50) Tj T*
+(Remit to: BSB 063-000  Account 1234 5678   Ref INV-2026-0042) Tj T*
+(Thank you for your business. Queries: accounts@northbridgesupplies.example) Tj T*
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Courier >>
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000241 00000 n 
+0000001157 00000 n 
+trailer
+<< /Size 6 /Root 1 0 R >>
+startxref
+1225
+%%EOF

@@ -11,7 +11,10 @@ __pycache__/
 venv/
 
 *.log
-.vscode/
+.vscode/*
+# …but the shared editor recommendations are part of the project.
+!.vscode/extensions.json
+!.vscode/settings.json
 .idea/
 
 .superpowers/
@@ -19,3 +22,17 @@ venv/
 graphify-out/
 .claude/
 .impeccable/
+
+# QA working file — never committed
+bug-refinments.md
+
+# Playwright run artifacts
+frontend/test-results/
+frontend/playwright-report/
+frontend/e2e/.auth/
+
+# QA scratch screenshots
+*-chat.png
+chat-*.png
+login.png
+deadlines-after-fix.png

@@ -24,6 +24,25 @@ CHUNK_BYTES = 1024 * 1024
 # content is checked here, while there is still a request to answer.
 _SIGNATURES = {".pdf": b"%PDF-", ".docx": b"PK\x03\x04"}
 
+# Filesystems cap a single path component at 255 **bytes**, and the stored name
+# carries an "{id}_" prefix on top of whatever was uploaded. A 254-character name
+# therefore raised OSError deep inside the write and escaped as a 500; so would a
+# 90-character name written in a script whose characters are three bytes each.
+# Trimming to a byte budget keeps both cases a normal upload.
+MAX_FILENAME_BYTES = 180
+
+
+def _fit_filename(name: str) -> str:
+    """`name`, trimmed so it fits the byte budget, keeping its extension."""
+    if len(name.encode("utf-8")) <= MAX_FILENAME_BYTES:
+        return name
+    suffix = Path(name).suffix
+    budget = MAX_FILENAME_BYTES - len(suffix.encode("utf-8"))
+    # Slicing encoded bytes can cut a multi-byte character in half; "ignore" drops
+    # the partial one rather than raising.
+    stem = Path(name).stem.encode("utf-8")[: max(budget, 1)].decode("utf-8", "ignore")
+    return f"{stem}{suffix}"
+
 
 @router.post("/upload", status_code=status.HTTP_201_CREATED, response_model=UploadResponse)
 def upload_document(
@@ -34,7 +53,7 @@ def upload_document(
 ):
     # ponytail: strip directory components so a crafted filename (e.g. "../../etc/x.pdf")
     # can't escape UPLOAD_DIR — Path.name discards any path segments, keeping only the basename.
-    safe_filename = Path(file.filename).name
+    safe_filename = _fit_filename(Path(file.filename).name)
     ext = Path(safe_filename).suffix.lower()
     if ext not in ALLOWED_TYPES:
         raise HTTPException(status_code=400, detail="Only PDF and DOCX files are supported")
@@ -74,7 +93,11 @@ def upload_document(
                 f.write(chunk)
         if written == 0:
             raise HTTPException(status_code=400, detail="This file is empty")
-    except HTTPException:
+    except Exception:
+        # Every failure, not only the ones raised above. An OSError here — a name the
+        # filesystem refuses, a full disk, a permissions problem — used to escape as
+        # a 500 *and* leave the Document row behind with no file to process, so the
+        # dashboard showed a document that could never finish.
         dest.unlink(missing_ok=True)
         db.delete(document)
         db.commit()

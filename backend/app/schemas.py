@@ -6,6 +6,10 @@ from pydantic import BaseModel, field_validator
 # without pretending to arbitrate what the RFC allows.
 _EMAIL = re.compile(r"^[^@\s]+@[^@\s]+\.[^@\s]+$")
 
+# Longer than any deliverable address (RFC 5321 caps a path at 254) and short
+# enough that an unbounded string never reaches the database.
+MAX_EMAIL_LENGTH = 254
+
 MIN_PASSWORD_LENGTH = 8
 # bcrypt hashes only the first 72 bytes and silently ignores the rest, so a longer
 # password would appear to be accepted while its tail did nothing. Rejecting it is
@@ -23,6 +27,8 @@ class RegisterRequest(BaseModel):
         value = value.strip()
         if not _EMAIL.match(value):
             raise ValueError("Enter a valid email address")
+        if len(value) > MAX_EMAIL_LENGTH:
+            raise ValueError(f"Email must be at most {MAX_EMAIL_LENGTH} characters")
         return value.lower()
 
     @field_validator("password")

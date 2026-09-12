@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import ReactMarkdown from "react-markdown";
 import { askQuestion, type ChatSource } from "../api/chat";
 
 interface Message {
@@ -7,12 +8,20 @@ interface Message {
   sources?: ChatSource[];
 }
 
+// Openers only. They used to sit in a permanent strip pinned above the composer,
+// where they stayed on screen for the whole conversation and pushed every answer
+// into a narrow band — a fixed panel between the transcript and the input. They
+// belong to the empty state, which is the only moment they help; starting a
+// conversation reclaims the space, and "New conversation" brings them back.
+// Mirrors ChatRequest.MAX_QUESTION_CHARS on the server, so an over-long question is
+// stopped at the keyboard rather than coming back as a 422.
+const MAX_QUESTION_CHARS = 2000;
+
 const SUGGESTED_QUESTIONS = [
   "What are the key compliance obligations?",
   "What are the major risks?",
   "What deadlines are mentioned?",
   "What actions are required?",
-  "Summarize the incident.",
 ];
 
 function SparkIcon({ className }: { className?: string }) {
@@ -35,6 +44,16 @@ export default function AIAssistant({
   const [question, setQuestion] = useState("");
   const [messages, setMessages] = useState<Message[]>([]);
   const [loading, setLoading] = useState(false);
+  const transcriptRef = useRef<HTMLDivElement>(null);
+
+  // Without this the panel keeps whatever scroll position it had, so the second
+  // answer of a conversation renders ~900px below the fold and the screen appears
+  // not to have changed at all. Runs on the typing indicator too, so the user sees
+  // the question land immediately rather than only when the answer arrives.
+  useEffect(() => {
+    const el = transcriptRef.current;
+    if (el) el.scrollTo({ top: el.scrollHeight, behavior: "smooth" });
+  }, [messages, loading]);
 
   async function send(q: string) {
     if (!q.trim() || loading) return;
@@ -44,8 +63,8 @@ export default function AIAssistant({
     try {
       const res = await askQuestion(docId, q);
       setMessages((m) => [...m, { role: "assistant", text: res.answer, sources: res.sources }]);
-    } catch {
-      setMessages((m) => [...m, { role: "assistant", text: "Something went wrong answering that question. Try again." }]);
+    } catch (err) {
+      setMessages((m) => [...m, { role: "assistant", text: err instanceof Error && err.message ? err.message : "Something went wrong answering that question. Try again." }]);
     } finally {
       setLoading(false);
     }
@@ -68,6 +87,7 @@ export default function AIAssistant({
             <button
               onClick={() => setMessages([])}
               title="New conversation"
+              aria-label="Start a new conversation"
               className="rounded-md p-1.5 text-slate-400 transition hover:bg-parchment-200 hover:text-ink"
             >
               <svg viewBox="0 0 24 24" fill="none" className="h-4 w-4"><path d="M3 12a9 9 0 1 1 3 6.7M3 21v-5h5" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" /></svg>
@@ -77,6 +97,7 @@ export default function AIAssistant({
             <button
               onClick={onCollapse}
               title="Collapse panel"
+              aria-label="Collapse the assistant panel"
               className="rounded-md p-1.5 text-slate-400 transition hover:bg-parchment-200 hover:text-ink"
             >
               <svg viewBox="0 0 24 24" fill="none" className="h-4 w-4"><path d="M15 6l-6 6 6 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>
@@ -85,17 +106,37 @@ export default function AIAssistant({
         </div>
       </div>
 
-      <div className="flex-1 space-y-4 overflow-y-auto px-4 py-4">
+      <div
+        ref={transcriptRef}
+        role="log"
+        aria-live="polite"
+        aria-label="Conversation"
+        className="flex-1 space-y-4 overflow-y-auto px-4 py-4"
+      >
         {messages.length === 0 && (
-          <div className="flex h-full flex-col">
-            <div className="flex flex-col items-center pt-6 text-center">
-              <span className="flex h-11 w-11 items-center justify-center rounded-full bg-teal-50 text-teal-600">
-                <SparkIcon className="h-5 w-5" />
-              </span>
-              <p className="mt-3 text-sm font-medium text-ink">Ask about this document</p>
-              <p className="mt-1 max-w-[220px] text-xs leading-relaxed text-slate-400">
-                Every answer cites the exact section it came from.
-              </p>
+          <div className="flex h-full flex-col items-center justify-center px-1 text-center">
+            <span className="flex h-11 w-11 items-center justify-center rounded-full bg-teal-50 text-teal-600">
+              <SparkIcon className="h-5 w-5" />
+            </span>
+            <p className="mt-3 text-sm font-medium text-ink">Ask about this document</p>
+            <p className="mt-1 max-w-[220px] text-xs leading-relaxed text-slate-400">
+              Every answer cites the exact section it came from.
+            </p>
+
+            <div className="mt-6 w-full max-w-[280px] space-y-1.5">
+              {SUGGESTED_QUESTIONS.map((q) => (
+                <button
+                  key={q}
+                  onClick={() => send(q)}
+                  disabled={loading}
+                  className="group flex w-full items-center justify-between gap-2 rounded-lg border border-ink/10 bg-white px-3 py-2 text-left text-xs font-medium text-slate-500 shadow-sm transition hover:border-teal/40 hover:text-teal-600 disabled:opacity-40"
+                >
+                  {q}
+                  <svg viewBox="0 0 24 24" fill="none" className="h-3 w-3 shrink-0 text-slate-300 transition group-hover:translate-x-0.5 group-hover:text-teal">
+                    <path d="M4 12h16M14 6l6 6-6 6" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </button>
+              ))}
             </div>
           </div>
         )}
@@ -109,8 +150,8 @@ export default function AIAssistant({
                     <SparkIcon className="h-3 w-3" />
                   </span>
                   <div className="min-w-0">
-                    <div className="rounded-xl rounded-tl-sm border border-ink/10 bg-white px-3.5 py-2.5 text-sm leading-relaxed text-ink shadow-sm">
-                      {m.text}
+                    <div data-answer className="rounded-xl rounded-tl-sm border border-ink/10 bg-white px-3.5 py-2.5 text-sm leading-relaxed text-ink shadow-sm [&>*+*]:mt-2 [&_li]:ml-4 [&_ol]:list-decimal [&_strong]:font-semibold [&_ul]:list-disc">
+                      <ReactMarkdown>{m.text}</ReactMarkdown>
                     </div>
                     {m.sources && m.sources.length > 0 && (
                       <div className="mt-2 flex flex-wrap gap-1.5">
@@ -118,9 +159,11 @@ export default function AIAssistant({
                           <button
                             key={s.id}
                             onClick={() => onSourceClick(s.id)}
-                            className="inline-flex items-center gap-1 rounded-full border border-teal/20 bg-teal-50 px-2.5 py-1 font-mono text-[11px] text-teal-600 transition hover:border-teal hover:bg-teal hover:text-white"
+                            title={s.heading}
+                            className="inline-flex max-w-full items-center gap-1 rounded-full border border-teal/20 bg-teal-50 px-2.5 py-1 text-[11px] text-teal-600 transition hover:border-teal hover:bg-teal hover:text-white"
                           >
-                            § {s.heading}
+                            <span className="font-mono">§</span>
+                            <span className="truncate">{s.heading}</span>
                           </button>
                         ))}
                       </div>
@@ -141,7 +184,7 @@ export default function AIAssistant({
             <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-teal-50 text-teal-600">
               <SparkIcon className="h-3 w-3" />
             </span>
-            <div className="flex items-center gap-1 rounded-xl rounded-tl-sm border border-ink/10 bg-white px-3.5 py-2.5 shadow-sm">
+            <div data-thinking className="flex items-center gap-1 rounded-xl rounded-tl-sm border border-ink/10 bg-white px-3.5 py-2.5 shadow-sm">
               <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-teal" />
               <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-teal [animation-delay:150ms]" />
               <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-teal [animation-delay:300ms]" />
@@ -150,33 +193,33 @@ export default function AIAssistant({
         )}
       </div>
 
-      <div className="shrink-0 border-t border-ink/10 bg-white px-3 pt-2.5">
-        <div className="flex flex-wrap gap-1.5 pb-2.5">
-          {SUGGESTED_QUESTIONS.map((q) => (
-            <button
-              key={q}
-              onClick={() => send(q)}
-              disabled={loading}
-              className="rounded-full border border-ink/10 bg-parchment-100 px-3 py-1.5 text-xs font-medium text-slate-500 transition hover:border-teal/30 hover:bg-teal-50 hover:text-teal-600 disabled:opacity-40"
-            >
-              {q}
-            </button>
-          ))}
-        </div>
-      </div>
-
       <div className="shrink-0 border-t border-ink/10 bg-white p-3">
         <div className="flex items-center gap-2 rounded-lg border border-ink/15 bg-parchment-100 px-1.5 py-1.5 transition focus-within:border-teal focus-within:bg-white">
           <input
             value={question}
             onChange={(e) => setQuestion(e.target.value)}
-            onKeyDown={(e) => e.key === "Enter" && send(question)}
-            placeholder="Ask a question…"
-            className="flex-1 bg-transparent px-2 py-1 text-sm text-ink placeholder:text-slate-400 focus:outline-none"
+            // Read the value off the input, not out of `question`: React 18 commits
+            // a state update after the event that caused it, so a keystroke landing
+            // in the same tick as the change — a paste followed straight by Enter,
+            // an autofill, an IME commit — ran send() with the *previous* render's
+            // value, which was usually empty. The question stayed in the box and
+            // nothing was sent.
+            onKeyDown={(e) => {
+              if (e.key === "Enter") send(e.currentTarget.value);
+            }}
+            aria-label="Ask a question about this document"
+            maxLength={MAX_QUESTION_CHARS}
+            // send() drops anything typed while a reply is in flight. Silently, and
+            // with the question left sitting in the box, that reads as the Enter key
+            // being broken — so say so instead of ignoring it.
+            disabled={loading}
+            placeholder={loading ? "Waiting for the answer…" : "Ask a question…"}
+            className="flex-1 bg-transparent px-2 py-1 text-sm text-ink placeholder:text-slate-400 focus:outline-none disabled:cursor-not-allowed"
           />
           <button
             onClick={() => send(question)}
             disabled={loading || !question.trim()}
+            aria-label="Send question"
             className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-teal text-white transition hover:bg-teal-600 disabled:opacity-30"
           >
             <svg viewBox="0 0 24 24" fill="none" className="h-3.5 w-3.5"><path d="M4 12h16M14 6l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>

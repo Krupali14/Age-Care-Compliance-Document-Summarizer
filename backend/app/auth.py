@@ -22,9 +22,14 @@ def verify_password(password: str, hashed: str) -> bool:
     return pwd_context.verify(password, hashed)
 
 
-def create_access_token(user_id: int) -> str:
+def create_access_token(user_id: int, email: str | None = None) -> str:
     expire = datetime.utcnow() + timedelta(minutes=settings.jwt_expire_minutes)
-    payload = {"sub": str(user_id), "exp": expire}
+    # The email rides along purely so the UI can say who is signed in without a
+    # round-trip. Authorisation still reads `sub` and re-loads the user from the
+    # database, so a tampered claim buys nothing.
+    payload: dict[str, object] = {"sub": str(user_id), "exp": expire}
+    if email:
+        payload["email"] = email
     return jwt.encode(payload, settings.jwt_secret, algorithm=settings.jwt_algorithm)
 
 
