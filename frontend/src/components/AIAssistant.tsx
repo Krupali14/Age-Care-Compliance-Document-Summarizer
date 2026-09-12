@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import { askQuestion, type ChatSource } from "../api/chat";
+import { followUpQuestions, openingQuestions, type DocumentContext } from "../lib/suggestions";
 
 interface Message {
   role: "user" | "assistant";
@@ -8,21 +9,9 @@ interface Message {
   sources?: ChatSource[];
 }
 
-// Openers only. They used to sit in a permanent strip pinned above the composer,
-// where they stayed on screen for the whole conversation and pushed every answer
-// into a narrow band — a fixed panel between the transcript and the input. They
-// belong to the empty state, which is the only moment they help; starting a
-// conversation reclaims the space, and "New conversation" brings them back.
 // Mirrors ChatRequest.MAX_QUESTION_CHARS on the server, so an over-long question is
 // stopped at the keyboard rather than coming back as a 422.
 const MAX_QUESTION_CHARS = 2000;
-
-const SUGGESTED_QUESTIONS = [
-  "What are the key compliance obligations?",
-  "What are the major risks?",
-  "What deadlines are mentioned?",
-  "What actions are required?",
-];
 
 function SparkIcon({ className }: { className?: string }) {
   return (
@@ -34,10 +23,14 @@ function SparkIcon({ className }: { className?: string }) {
 
 export default function AIAssistant({
   docId,
+  context,
   onSourceClick,
   onCollapse,
 }: {
   docId: number;
+  /** What extraction found, so suggestions match this document rather than being
+   *  the same four strings everywhere. */
+  context: DocumentContext;
   onSourceClick: (sectionId: number) => void;
   onCollapse?: () => void;
 }) {
@@ -45,6 +38,17 @@ export default function AIAssistant({
   const [messages, setMessages] = useState<Message[]>([]);
   const [loading, setLoading] = useState(false);
   const transcriptRef = useRef<HTMLDivElement>(null);
+
+  const asked = messages.filter((m) => m.role === "user").map((m) => m.text);
+  const lastAnswer = [...messages].reverse().find((m) => m.role === "assistant");
+  // Follow-ups lead with the sections the last answer actually cited, which is what
+  // makes them move with the conversation instead of repeating a fixed list.
+  const suggestionContext = {
+    ...context,
+    citedHeadings: (lastAnswer?.sources ?? []).map((source) => source.heading),
+  };
+  const openers = openingQuestions(context);
+  const followUps = loading ? [] : followUpQuestions(suggestionContext, asked);
 
   // Without this the panel keeps whatever scroll position it had, so the second
   // answer of a conversation renders ~900px below the fold and the screen appears
@@ -124,7 +128,7 @@ export default function AIAssistant({
             </p>
 
             <div className="mt-6 w-full max-w-[280px] space-y-1.5">
-              {SUGGESTED_QUESTIONS.map((q) => (
+              {openers.map((q) => (
                 <button
                   key={q}
                   onClick={() => send(q)}
@@ -178,6 +182,29 @@ export default function AIAssistant({
             </div>
           </div>
         ))}
+
+        {/* In the scroll flow, under the newest answer — not in fixed chrome above
+            the composer, which is what cost the answer area its height for the
+            whole conversation. These scroll away like any other message, and they
+            change as the conversation does. */}
+        {!loading && followUps.length > 0 && messages.length > 0 && (
+          <div className="animate-fade-up pl-8" style={{ animationDuration: "0.3s" }}>
+            <p className="mb-1.5 text-[10px] font-medium uppercase tracking-wider text-slate-400">
+              Ask next
+            </p>
+            <div className="flex flex-wrap gap-1.5">
+              {followUps.map((q) => (
+                <button
+                  key={q}
+                  onClick={() => send(q)}
+                  className="rounded-full border border-ink/10 bg-white/70 px-3 py-1.5 text-left text-xs text-slate-500 transition hover:border-teal/40 hover:bg-white hover:text-teal-600"
+                >
+                  {q}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
 
         {loading && (
           <div className="flex items-center gap-2">

@@ -4,6 +4,17 @@ import { SAMPLES, signUp, uniqueEmail, uploadAndWait } from "./helpers";
 
 const POLICY = path.join(SAMPLES, "Sunrise-Grove-Incident-Management-Policy.pdf");
 
+/** The "Ask next" chips currently on offer, excluding the § citation chips. */
+async function followUpTexts(page: import("@playwright/test").Page): Promise<string[]> {
+  return page.evaluate(() => {
+    const log = document.querySelector("[role=log]");
+    if (!log) return [];
+    return [...log.querySelectorAll("button")]
+      .map((b) => b.textContent?.trim() ?? "")
+      .filter((t) => t && !t.startsWith("§"));
+  });
+}
+
 test.describe("AI assistant", () => {
   test.beforeEach(async ({ page }) => {
     await signUp(page, uniqueEmail("chat"));
@@ -46,19 +57,55 @@ test.describe("AI assistant", () => {
     expect(distance).toBeLessThan(40);
   });
 
-  test("suggestions open the conversation and then get out of the way", async ({ page }) => {
-    // Regression: the suggestions sat in a strip pinned above the composer for the
-    // whole conversation, squeezing every answer into a narrow band.
-    const suggestion = page.getByRole("button", { name: "What are the key compliance obligations?" });
-    await expect(suggestion).toBeVisible();
+  test("suggestions stay available and follow the conversation", async ({ page }) => {
+    // Regression, twice over. The suggestions first sat in a strip pinned above the
+    // composer, which cost the answer area its height for the whole conversation.
+    // Removing that strip then removed the feature: once a conversation started
+    // there was nothing to click at all. They now live in the scroll flow beneath
+    // the newest answer, and they change as the conversation moves.
+    const opener = page.getByRole("button", { name: "What are the key compliance obligations?" });
+    await expect(opener).toBeVisible();
 
-    await suggestion.click();
+    await opener.click();
     await expect(page.locator("[data-answer]")).toHaveCount(1, { timeout: 120_000 });
-    await expect(suggestion).toHaveCount(0);
 
-    // Clearing the conversation brings them back.
-    await page.getByRole("button", { name: "New conversation" }).click();
+    // Still suggestions on offer — but not the one just asked.
+    const askNext = page.getByText("Ask next");
+    await expect(askNext).toBeVisible();
+    await expect(opener).toHaveCount(0);
+
+    // They live inside the transcript, so they scroll with it rather than taking
+    // fixed space from the answer.
+    expect(await askNext.evaluate((el) => !!el.closest("[role=log]"))).toBe(true);
+
+    const firstSet = await followUpTexts(page);
+    expect(firstSet.length).toBeGreaterThan(0);
+
+    await page.getByRole("button", { name: firstSet[0] }).click();
+    await expect(page.locator("[data-answer]")).toHaveCount(2, { timeout: 120_000 });
+
+    const secondSet = await followUpTexts(page);
+    expect(secondSet).not.toContain(firstSet[0]);   // asked, so dropped
+    expect(secondSet).not.toEqual(firstSet);        // and the rest moved on
+
+    // Clearing the conversation returns to the openers.
+    await page.getByRole("button", { name: "Start a new conversation" }).click();
     await expect(page.getByRole("button", { name: "What are the key compliance obligations?" })).toBeVisible();
+  });
+
+  test("suggestions match what the document actually contains", async ({ page }) => {
+    // The old list was four hardcoded strings, so a document with no deadlines in
+    // it was still offered "What deadlines are mentioned?".
+    const counts = await page.evaluate(() =>
+      [...document.querySelectorAll("[role=tab]")].map((t) => t.getAttribute("aria-label") ?? t.textContent ?? ""),
+    );
+    const hasRisks = !/Risks, 0 items/.test(counts.join(" "));
+
+    const openers = await page.locator("[role=log] button").allInnerTexts();
+    expect(openers.some((q) => /obligations/i.test(q))).toBe(true);
+    if (!hasRisks) {
+      expect(openers.some((q) => /risks/i.test(q))).toBe(false);
+    }
   });
 
   test("the composer refuses an empty question and caps a huge one", async ({ page }) => {

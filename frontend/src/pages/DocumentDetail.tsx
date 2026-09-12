@@ -351,7 +351,7 @@ export default function DocumentDetail() {
         {showSplit && (
           <div style={{ width: `${100 - docWidthPct}%` }} className="hidden shrink-0 lg:block">
             <div className="sticky top-[4.5rem] h-[calc(100vh-6.5rem)] overflow-hidden rounded-xl border border-ink/10 shadow-card-hover">
-              <AIAssistant docId={docId} onSourceClick={jumpToSection} onCollapse={() => setAiOpen(false)} />
+              <AIAssistant docId={docId} context={{ obligations: obligations?.length ?? 0, risks: risks?.length ?? 0, deadlines: deadlines?.length ?? 0, actions: actions?.length ?? 0 }} onSourceClick={jumpToSection} onCollapse={() => setAiOpen(false)} />
             </div>
           </div>
         )}
@@ -388,7 +388,7 @@ export default function DocumentDetail() {
                 className="fixed inset-x-0 bottom-0 z-50 h-[75vh] animate-fade-up overflow-hidden rounded-t-2xl shadow-stack"
                 style={{ animationDuration: "0.25s" }}
               >
-                <AIAssistant docId={docId} onSourceClick={(id) => { jumpToSection(id); setAiOpen(false); }} onCollapse={() => setAiOpen(false)} />
+                <AIAssistant docId={docId} context={{ obligations: obligations?.length ?? 0, risks: risks?.length ?? 0, deadlines: deadlines?.length ?? 0, actions: actions?.length ?? 0 }} onSourceClick={(id) => { jumpToSection(id); setAiOpen(false); }} onCollapse={() => setAiOpen(false)} />
               </div>
             </>
           )}

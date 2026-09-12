@@ -76,10 +76,24 @@ Everything goes through it, and it does four things:
 ### `AIAssistant`
 The chat panel (desktop, beside the document) and bottom sheet (phone).
 
-- **Suggestions live in the empty state only.** They used to sit in a strip pinned
-  above the composer for the whole conversation, squeezing every answer into a
-  narrow band. Starting a conversation reclaims the space; "New conversation" brings
-  them back.
+- **Suggestions live in the scroll flow, and follow the conversation.** Two
+  mistakes were made here in sequence, and the second is the more interesting one.
+  They first sat in a strip pinned above the composer — *fixed chrome*, which costs
+  the answer area its height for the whole conversation whether or not you want it.
+  Removing that strip fixed the obstruction but deleted the feature: once a
+  conversation started there was nothing to click.
+
+  The distinction that matters is **fixed chrome vs. scroll flow**, not *present vs.
+  absent*. They now render beneath the newest answer, inside the transcript, under
+  an "Ask next" label. They scroll away like any other message and cost the answer
+  nothing.
+
+  They are also derived from the document rather than hardcoded — see
+  `src/lib/suggestions.ts`. Openers are filtered by what extraction actually found,
+  so a document with no deadlines is never offered "What deadlines are mentioned?".
+  Follow-ups lead with the sections the **last answer cited** ("What does
+  \"14.1 Contractual requirements\" require?"), fall back to categories the
+  document has, and drop anything already asked.
 - **The transcript auto-scrolls** on every message *and* on the typing indicator, so
   the question lands visibly rather than only when the answer arrives. Without it the
   second answer rendered ~900 px below the fold and the screen looked unchanged.
