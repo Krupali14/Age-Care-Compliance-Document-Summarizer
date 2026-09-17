@@ -7,6 +7,7 @@ import {
 } from "../api/extractions";
 import CategoryTable from "../components/CategoryTable";
 import DeadlineTable from "../components/DeadlineTable";
+import ComplianceCheckPanel from "../components/ComplianceCheckPanel";
 import AIAssistant from "../components/AIAssistant";
 import NotFound from "./NotFound";
 
@@ -101,6 +102,7 @@ export default function DocumentDetail() {
     { key: "Risks", count: risks?.length },
     { key: "Deadlines", count: deadlines?.length },
     { key: "Actions", count: actions?.length },
+    { key: "Compliance Check", count: undefined },
     { key: "Sections", count: document?.sections.length },
   ] as const;
 
@@ -288,6 +290,9 @@ export default function DocumentDetail() {
             sections={document.sections}
             onSectionClick={jumpToSection}
           />
+        )}
+        {tab === "Compliance Check" && (
+          <ComplianceCheckPanel docId={docId} sections={document.sections} onSectionClick={jumpToSection} />
         )}
         {tab === "Sections" && (
           <div className="divide-y divide-ink/5 bg-parchment-100">
