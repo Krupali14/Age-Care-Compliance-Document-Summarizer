@@ -101,6 +101,8 @@ onwards:
 due_date to that date in YYYY-MM-DD form.
 - Otherwise set due_date to the timeframe as stated relative to its trigger, e.g. \
 "within 30 days of the incident", "1 month after commencement", "2 months".
+- Keep the unit the document uses, including hour-scale ones: "within 4 hours", \
+"within 24 hours of the incident", "within 30 days and 4 hours of the incident".
 - Never output a date that has already passed. Commencement dates, past amendments, \
 historical reporting periods and superseded dates are not deadlines — omit them.
 - A section that only records past dates has no deadlines; return an empty list for it."""

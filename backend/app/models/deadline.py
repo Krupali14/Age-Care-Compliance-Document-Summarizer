@@ -12,3 +12,6 @@ class Deadline(Base):
     description = Column(Text, nullable=False)
     due_date = Column(String, nullable=True)
     responsible_role = Column(String, nullable=True)
+    # Progress the organisation records against this deadline:
+    # not_started | in_progress | completed. See app/services/deadlines.STATUSES.
+    status = Column(String, nullable=False, default="not_started", server_default="not_started")

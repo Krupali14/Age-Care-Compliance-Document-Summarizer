@@ -6,6 +6,7 @@ import {
   getDocument, getSummaries, getObligations, getRisks, getDeadlines, getActionItems,
 } from "../api/extractions";
 import CategoryTable from "../components/CategoryTable";
+import DeadlineTable from "../components/DeadlineTable";
 import AIAssistant from "../components/AIAssistant";
 import NotFound from "./NotFound";
 
@@ -274,8 +275,9 @@ export default function DocumentDetail() {
         {tab === "Obligations" && <CategoryTable rows={obligations ?? []} sections={document.sections} onSectionClick={jumpToSection} />}
         {tab === "Risks" && <CategoryTable rows={risks ?? []} sections={document.sections} onSectionClick={jumpToSection} />}
         {tab === "Deadlines" && (
-          <CategoryTable
-            rows={(deadlines ?? []).map((d: { id: number; description: string; section_id: number; responsible_role: string | null; due_date: string | null }) => ({ id: d.id, text: d.description, section_id: d.section_id, responsible_role: d.responsible_role, extra: d.due_date }))}
+          <DeadlineTable
+            docId={docId}
+            rows={deadlines ?? []}
             sections={document.sections}
             onSectionClick={jumpToSection}
           />
