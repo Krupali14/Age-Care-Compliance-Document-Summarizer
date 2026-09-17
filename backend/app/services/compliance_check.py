@@ -11,7 +11,7 @@ from dataclasses import dataclass
 from datetime import datetime, time
 from typing import Literal
 
-from pydantic import BaseModel
+from pydantic import BaseModel, field_validator
 
 from app.database import SessionLocal
 from app.models import CheckFinding, ComplianceCheck, Deadline, Obligation
@@ -178,6 +178,18 @@ class CheckVerdict(BaseModel):
     verdict: Literal["done", "not_done", "partly", "unclear"]
     evidence: str | None = None
     note: str
+
+    @field_validator("evidence", mode="before")
+    @classmethod
+    def _coerce_evidence(cls, value: object) -> object:
+        """The model sometimes writes the word "null" (or "none", "n/a") instead of
+        the JSON value the schema asks for — the schema accepts any string, so
+        nothing rejects it. Left alone, a finding with no evidence renders a
+        blockquote reading "null" as though it were a quoted sentence from the
+        case study."""
+        if isinstance(value, str) and value.strip().lower() in ("", "null", "none", "n/a"):
+            return None
+        return value
 
 
 class CheckBatch(BaseModel):

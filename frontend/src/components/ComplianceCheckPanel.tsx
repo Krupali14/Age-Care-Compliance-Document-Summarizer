@@ -41,7 +41,9 @@ function FindingRow({
     <div className="border-b border-ink/5 px-5 py-4">
       <p className="text-sm text-ink">{finding.requirement}</p>
       {finding.note && <p className="mt-1 text-sm text-slate-500">{finding.note}</p>}
-      {finding.evidence && (
+      {/* Belt and braces: the backend now normalises the literal word "null" to
+          None, but a row stored before that fix can still carry it. */}
+      {finding.evidence && finding.evidence.trim().toLowerCase() !== "null" && (
         <blockquote className="mt-2 border-l-2 border-teal/40 pl-3 text-sm italic text-slate-500">
           {finding.evidence}
         </blockquote>

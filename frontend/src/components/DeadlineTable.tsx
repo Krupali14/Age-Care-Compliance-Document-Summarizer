@@ -179,7 +179,7 @@ export default function DeadlineTable({
                   <select
                     id={`deadline-status-${row.id}`}
                     value={row.status}
-                    disabled={setStatus.isPending}
+                    disabled={setStatus.isPending && setStatus.variables?.id === row.id}
                     onChange={(e) => setStatus.mutate({ id: row.id, status: e.target.value })}
                     className="rounded-lg border border-ink/10 bg-white px-2 py-1 text-xs text-slate-500"
                   >

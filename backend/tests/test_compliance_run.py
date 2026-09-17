@@ -33,6 +33,17 @@ def _seed(db):
     return doc, check
 
 
+def test_check_verdict_coerces_the_word_null_to_none():
+    from app.services.compliance_check import CheckVerdict
+
+    for raw in ("null", "  ", "None", "N/A"):
+        verdict = CheckVerdict(index=0, verdict="unclear", evidence=raw, note="x")
+        assert verdict.evidence is None
+
+    real = CheckVerdict(index=0, verdict="done", evidence="The family was notified at 3:30pm.", note="x")
+    assert real.evidence == "The family was notified at 3:30pm."
+
+
 def test_select_evidence_passes_a_short_case_study_whole():
     from app.services.compliance_check import select_evidence
 
