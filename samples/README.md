@@ -10,6 +10,8 @@ Six fictional aged-care compliance documents for demonstrating the summariser.
 | Complaints, Feedback and Open Disclosure Policy | Harbourview Residential Care | 25 |
 | Restrictive Practices and Behaviour Support Policy | Marloo Gardens Aged Care | 25 |
 | Food, Nutrition and Dining Experience Policy | Thornbury Aged Care Services | 25 |
+| Incident Escalation Protocol | Kanangra Court Aged Care | 1 |
+| Case study: medication error, Resident K | Kanangra Court Aged Care | 1 |
 
 ## These are not real documents
 
@@ -33,3 +35,15 @@ Quality Standards) are real, which is what makes them realistic to demonstrate a
 
 Measured on the incident policy: 82 sections, 54 obligations, 15 deadlines, 5 risks, 6 action
 items, 19.4 seconds, no past-dated deadlines.
+
+## Hour-scale deadlines and the compliance check
+
+The Kanangra Court escalation protocol states deadlines in minutes and hours — 30
+minutes, 1 hour, 2 hours, 4 hours, 24 hours, and "30 days and 4 hours" — so the
+Deadlines tab shows due times rather than due dates, and the urgency buckets have
+something short-dated to sort.
+
+Its companion case study is the evidence document for the Compliance Check tab: it
+states the incident time (14 September 2026, 3:10pm), records some escalation steps
+as completed and leaves others outstanding, so a check against the protocol returns
+a mix of done, not done and unclear verdicts.
