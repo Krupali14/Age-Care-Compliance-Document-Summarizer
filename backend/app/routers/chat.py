@@ -1,7 +1,4 @@
 import logging
-import math
-import re
-from collections import Counter
 
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel, Field
@@ -12,6 +9,7 @@ from app.database import get_db
 from app.models import ActionItem, Deadline, Obligation, Risk, Section, User
 from app.routers.documents import _get_owned_document
 from app.services.llm import get_llm
+from app.services.retrieval import rank, terms
 
 logger = logging.getLogger(__name__)
 
@@ -26,23 +24,6 @@ MIN_SECTION_CHARS = 40
 TOP_K = 6
 MAX_CONTEXT_CHARS = 12000
 
-# BM25's usual constants: k1 controls how fast a repeated term stops adding score,
-# b how hard a long passage is penalised for its length.
-_K1 = 1.5
-_B = 0.75
-
-_WORD_RE = re.compile(r"[a-z0-9]+")
-
-# Question scaffolding carries no signal about which passage answers it — left in,
-# "what", "are" and "the" match every passage in the document equally.
-_STOPWORDS = frozenset(
-    "a an and any are as at be been by can do does for from has have how in is it its "
-    "me my of on or our shall should so that the their them there these this those to "
-    "under up was were what when where which who whom why will with within would you "
-    "your".split()
-)
-
-
 # Longer than any real question and far shorter than a pasted document. Without a
 # ceiling the whole body is forwarded to the model, so any signed-in user can turn
 # one request into an arbitrarily large bill.
@@ -51,51 +32,6 @@ MAX_QUESTION_CHARS = 2000
 
 class ChatRequest(BaseModel):
     question: str = Field(max_length=MAX_QUESTION_CHARS)
-
-
-def _terms(text: str) -> list[str]:
-    return [w for w in _WORD_RE.findall(text.lower()) if w not in _STOPWORDS and len(w) > 1]
-
-
-def _rank(question: str, passages: list[tuple[str, Section, str | None]]) -> list[int]:
-    """Passage indices, best match first, scored with BM25.
-
-    Ranking used to be a fuzzy string-similarity score, which measures how alike two
-    strings look rather than whether one answers the other. Similarity peaks when
-    the two strings are the same length, so a 40-character heading beat the
-    3000-character provision holding the answer: "What deadlines are mentioned?"
-    against a 1300-section Act retrieved three headings totalling 293 characters,
-    and the model — correctly — answered that it did not know.
-
-    BM25 scores what retrieval actually depends on: how rare a shared term is across
-    this document (a match on "deadline" means far more than a match on "care"), how
-    often it occurs in the passage, and the passage's length, discounted rather than
-    rewarded.
-    """
-    docs = [Counter(_terms(text)) for text, _section, _category in passages]
-    lengths = [sum(d.values()) or 1 for d in docs]
-    avg_len = sum(lengths) / len(lengths)
-    n = len(docs)
-
-    query = set(_terms(question))
-    document_freq = Counter(term for d in docs for term in query if term in d)
-    idf = {
-        term: math.log(1 + (n - df + 0.5) / (df + 0.5))
-        for term, df in document_freq.items()
-    }
-
-    def score(i: int) -> float:
-        doc, length = docs[i], lengths[i]
-        total = 0.0
-        for term, weight in idf.items():
-            tf = doc.get(term, 0)
-            if tf:
-                total += weight * (tf * (_K1 + 1)) / (tf + _K1 * (1 - _B + _B * length / avg_len))
-        return total
-
-    # A question sharing no term with any passage scores every passage zero; falling
-    # back to the longest ones at least hands the model substantive text to read.
-    return sorted(range(n), key=lambda i: (score(i), lengths[i]), reverse=True)
 
 
 # A question naming one of these categories is asking for what extraction already
@@ -153,9 +89,9 @@ def _passages(doc_id: int, sections: list[Section], db: Session) -> list[tuple[s
 def _select(question: str, passages: list[tuple[str, Section, str | None]], k: int = TOP_K):
     """The k best passages, within a character budget, and the sections to cite."""
     asked_for = {
-        kind for kind, words in CATEGORY_WORDS.items() if words & set(_terms(question))
+        kind for kind, words in CATEGORY_WORDS.items() if words & set(terms(question))
     }
-    ranked = _rank(question, passages)
+    ranked = rank(question, [text for text, _section, _kind in passages])
 
     chosen: list[tuple[str, Section]] = []
     taken: set[int] = set()
