@@ -15,6 +15,13 @@ def test_relative_timeframe_resolves_from_the_upload_time():
     assert parse_relative("as soon as practicable") is None
 
 
+def test_minute_scale_timeframes_resolve_from_the_upload_time():
+    # "within 30 minutes" on a 2pm upload is due at 2:30pm the same day.
+    assert parse_relative("within 30 minutes of the incident") == timedelta(minutes=30)
+    assert resolve_due_at("within 30 minutes of the incident", ANCHOR) == datetime(2026, 9, 17, 14, 30, 0)
+    assert parse_relative("within 1 hour and 30 minutes") == timedelta(hours=1, minutes=30)
+
+
 def test_calendar_dates_fall_due_at_the_end_of_their_day():
     assert resolve_due_at("2026-12-31", ANCHOR) == datetime(2026, 12, 31, 23, 59, 59)
     assert resolve_due_at("by 31 December 2026", ANCHOR) == datetime(2026, 12, 31, 23, 59, 59)

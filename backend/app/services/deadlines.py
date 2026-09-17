@@ -20,6 +20,8 @@ DEFAULT_STATUS = "not_started"
 BUCKETS = ("overdue", "within_24_hours", "within_7_days", "within_30_days", "later", "no_date")
 
 _UNITS = {
+    "minute": timedelta(minutes=1),
+    "min": timedelta(minutes=1),  # "30 mins"
     "hour": timedelta(hours=1),
     "hr": timedelta(hours=1),  # "48 hrs"
     "day": timedelta(days=1),
@@ -31,9 +33,11 @@ _UNITS = {
     "year": timedelta(days=365),
 }
 
-# "within 30 days", "24 hours after the incident", "2 business days", "1 month".
+# "within 30 days", "24 hours after the incident", "2 business days", "1 month",
+# "within 30 minutes of the incident".
 _RELATIVE = re.compile(
-    r"\b(\d+)\s*(?:business|working|calendar)?\s*(hours?|hrs?|days?|weeks?|fortnights?|months?|years?)\b",
+    r"\b(\d+)\s*(?:business|working|calendar)?\s*"
+    r"(minutes?|mins?|hours?|hrs?|days?|weeks?|fortnights?|months?|years?)\b",
     re.IGNORECASE,
 )
 
