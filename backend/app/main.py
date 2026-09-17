@@ -7,7 +7,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from app.database import SessionLocal
 from app.models import Document
-from app.routers import actions, auth, chat, deadlines, documents, eval, obligations, risks, summarize, upload
+from app.routers import actions, auth, chat, compliance, deadlines, documents, eval, obligations, risks, summarize, upload
 
 logger = logging.getLogger(__name__)
 
@@ -84,6 +84,7 @@ app.include_router(deadlines.router)
 app.include_router(actions.router)
 app.include_router(eval.router)
 app.include_router(chat.router)
+app.include_router(compliance.router)
 
 
 @app.get("/health")
