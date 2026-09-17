@@ -103,8 +103,9 @@ same way `process_document` is:
 7. Deadlines additionally get `due_at` and `bucket`.
 8. Persist findings; mark the check `done`.
 
-A batch whose response fails validation is retried once alone, then its requirements
-are stored as `unclear` with a note. A single bad call must not lose the report.
+A batch whose call fails or comes back unmatchable stores its requirements as
+`unclear` with a note saying no verdict was reached. A single bad call must not lose
+the report, and it must not be reported as non-compliance either.
 
 ## Shared code that moves
 
