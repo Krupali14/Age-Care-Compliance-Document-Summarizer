@@ -106,6 +106,68 @@ def test_run_check_records_unclear_when_the_model_call_fails():
     assert {f.verdict for f in db.query(CheckFinding).filter_by(check_id=check_id)} == {"unclear"}
 
 
+def test_select_evidence_bounds_a_long_case_study_with_no_paragraph_breaks():
+    from app.services.compliance_check import MAX_WHOLE_EVIDENCE_CHARS, select_evidence
+
+    needle = "The registered nurse notified the family at 3:30pm."
+    filler = " ".join(f"Routine observation entry number {i} recorded no change." for i in range(400))
+    text = f"{filler} {needle}"
+    assert len(text) > MAX_WHOLE_EVIDENCE_CHARS
+    assert "\n" not in text
+
+    selected = select_evidence("notified the family", text)
+    assert len(selected) <= MAX_WHOLE_EVIDENCE_CHARS
+    assert needle in selected
+
+
+def test_run_check_fails_the_check_when_something_breaks_mid_run():
+    from app.services.compliance_check import run_check
+
+    db = _db()
+    doc, check = _seed(db)
+    check_id = check.id
+
+    parsed = [ParsedSection(heading="Case study", order_idx=0, page_ref=None, raw_text="A resident fell on 14 September 2026.")]
+
+    with patch("app.services.compliance_check.SessionLocal", return_value=db), \
+         patch("app.services.compliance_check.parse_document", return_value=parsed), \
+         patch("app.services.compliance_check.load_requirements", side_effect=RuntimeError("db exploded")):
+        run_check(check_id, "/tmp/case.pdf")
+
+    stored = db.query(ComplianceCheck).filter_by(id=check_id).one()
+    assert stored.status == "failed"
+    assert stored.error_message
+
+
+def test_run_check_leaves_out_of_range_indices_unclear():
+    from app.services.compliance_check import CheckBatch, CheckVerdict, run_check
+
+    db = _db()
+    doc, check = _seed(db)
+    check_id = check.id
+
+    parsed = [ParsedSection(heading="Case study", order_idx=0, page_ref=None,
+                            raw_text="A resident fell on 14 September 2026 at 3pm.")]
+    # Only two requirements exist (index 0 and 1); index 7 cannot match either and
+    # must be dropped rather than filed against a real requirement.
+    verdicts = CheckBatch(verdicts=[
+        CheckVerdict(index=7, verdict="done", evidence=None, note="Bogus index."),
+    ])
+    fake_llm = MagicMock()
+    fake_llm.with_structured_output.return_value.invoke.return_value = verdicts
+
+    with patch("app.services.compliance_check.SessionLocal", return_value=db), \
+         patch("app.services.compliance_check.parse_document", return_value=parsed), \
+         patch("app.services.compliance_check.get_llm", return_value=fake_llm):
+        run_check(check_id, "/tmp/case.pdf")
+
+    stored = db.query(ComplianceCheck).filter_by(id=check_id).one()
+    assert stored.status == "done"
+    findings = list(db.query(CheckFinding).filter_by(check_id=check_id))
+    assert len(findings) == 2
+    assert {f.verdict for f in findings} == {"unclear"}
+
+
 def test_run_check_fails_the_check_when_the_case_study_cannot_be_parsed():
     from app.services.compliance_check import run_check
 

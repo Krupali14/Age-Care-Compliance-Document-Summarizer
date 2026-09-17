@@ -145,15 +145,32 @@ def load_requirements(document_id: int, db) -> list[Requirement]:
     return out
 
 
+# Fallback chunk size when a case study has no line breaks to split on at all
+# (OCR output, or text pasted as one block) — still small enough for rank() to
+# tell one chunk from another.
+_CHUNK_CHARS = 1500
+
+
 def select_evidence(query: str, evidence_text: str) -> str:
     """The part of the case study this batch should be judged against."""
     if len(evidence_text) <= MAX_WHOLE_EVIDENCE_CHARS:
         return evidence_text
     paragraphs = [p.strip() for p in evidence_text.split("\n\n") if p.strip()]
+    if len(paragraphs) < 2:
+        paragraphs = [p.strip() for p in evidence_text.split("\n") if p.strip()]
+    if len(paragraphs) < 2:
+        # A case study with no paragraph breaks still has to be bounded, or the
+        # cap above means nothing — chunk it so there is something to rank.
+        paragraphs = [
+            evidence_text[i : i + _CHUNK_CHARS] for i in range(0, len(evidence_text), _CHUNK_CHARS)
+        ]
     best = rank(query, paragraphs)[:EVIDENCE_TOP_K]
     # Kept in document order: a case study is a narrative, and passages shuffled
     # into relevance order read as a different sequence of events.
-    return "\n\n".join(paragraphs[i] for i in sorted(best))
+    selected = "\n\n".join(paragraphs[i] for i in sorted(best))
+    # The backstop: whatever shape the text was split into, the result sent to
+    # the prompt never exceeds the cap this function exists to enforce.
+    return selected[:MAX_WHOLE_EVIDENCE_CHARS]
 
 
 class CheckVerdict(BaseModel):
@@ -263,44 +280,55 @@ def run_check(check_id: int, file_path: str) -> None:
         db.commit()
         return
 
-    check.evidence_text = evidence_text
-    check.incident_at, check.incident_source = find_incident_datetime(
-        evidence_text, check.uploaded_at or datetime.utcnow()
-    )
-    db.commit()
-
-    requirements = load_requirements(check.document_id, db)
-    if not requirements:
-        check.status = "failed"
-        check.error_message = (
-            "This compliance document has no obligations or deadlines to check against yet."
+    # Everything past this point can fail in ways the two guards above can't
+    # anticipate (a database error on commit, a bad row, an unexpected value in
+    # resolution). Without one catch-all here, that failure escapes the background
+    # task and strands the check in "processing" forever — the UI polls that status,
+    # so the user is left watching a spinner with no way out.
+    try:
+        check.evidence_text = evidence_text
+        check.incident_at, check.incident_source = find_incident_datetime(
+            evidence_text, check.uploaded_at or datetime.utcnow()
         )
         db.commit()
-        return
 
-    now = datetime.utcnow()
-    for start in range(0, len(requirements), MAX_BATCH_REQUIREMENTS):
-        batch = requirements[start : start + MAX_BATCH_REQUIREMENTS]
-        verdicts = _verdicts_for(batch, evidence_text)
-        for i, req in enumerate(batch):
-            verdict = verdicts.get(i)
-            due_at = resolve_due_at(req.due_date, check.incident_at) if req.kind == "deadline" else None
-            db.add(CheckFinding(
-                check_id=check.id,
-                kind=req.kind,
-                source_id=req.source_id,
-                section_id=req.section_id,
-                requirement=req.text,
-                # A batch the model failed to answer leaves its requirements
-                # unjudged. That is "unclear", not "not_done" — the difference
-                # between "we have no answer" and "you did not do it".
-                verdict=verdict.verdict if verdict else "unclear",
-                evidence=verdict.evidence if verdict else None,
-                note=verdict.note if verdict else "The check could not reach a verdict for this requirement.",
-                due_at=due_at,
-                bucket=bucket_for(due_at, now) if req.kind == "deadline" else None,
-            ))
+        requirements = load_requirements(check.document_id, db)
+        if not requirements:
+            check.status = "failed"
+            check.error_message = (
+                "This compliance document has no obligations or deadlines to check against yet."
+            )
+            db.commit()
+            return
+
+        now = datetime.utcnow()
+        for start in range(0, len(requirements), MAX_BATCH_REQUIREMENTS):
+            batch = requirements[start : start + MAX_BATCH_REQUIREMENTS]
+            verdicts = _verdicts_for(batch, evidence_text)
+            for i, req in enumerate(batch):
+                verdict = verdicts.get(i)
+                due_at = resolve_due_at(req.due_date, check.incident_at) if req.kind == "deadline" else None
+                db.add(CheckFinding(
+                    check_id=check.id,
+                    kind=req.kind,
+                    source_id=req.source_id,
+                    section_id=req.section_id,
+                    requirement=req.text,
+                    # A batch the model failed to answer leaves its requirements
+                    # unjudged. That is "unclear", not "not_done" — the difference
+                    # between "we have no answer" and "you did not do it".
+                    verdict=verdict.verdict if verdict else "unclear",
+                    evidence=verdict.evidence if verdict else None,
+                    note=verdict.note if verdict else "The check could not reach a verdict for this requirement.",
+                    due_at=due_at,
+                    bucket=bucket_for(due_at, now) if req.kind == "deadline" else None,
+                ))
+            db.commit()
+
+        check.status = "done"
         db.commit()
-
-    check.status = "done"
-    db.commit()
+    except Exception:  # noqa: BLE001 - never let a background task crash the caller
+        logger.exception("Compliance check id=%s failed after parsing", check_id)
+        check.status = "failed"
+        check.error_message = "This check could not be completed. Try uploading the case study again."
+        db.commit()
