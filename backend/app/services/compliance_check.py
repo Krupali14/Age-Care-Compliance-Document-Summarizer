@@ -329,6 +329,16 @@ def run_check(check_id: int, file_path: str) -> None:
         db.commit()
     except Exception:  # noqa: BLE001 - never let a background task crash the caller
         logger.exception("Compliance check id=%s failed after parsing", check_id)
+        # The exception that lands here is often a failed commit or flush, which
+        # leaves the session inactive — writing the failure status without rolling
+        # back first raises PendingRollbackError on top of the original error,
+        # right back into the "stuck in processing" state this handler exists to
+        # prevent. The rollback itself can fail too (e.g. the connection is gone),
+        # and that must not become the thing that escapes instead.
+        try:
+            db.rollback()
+        except Exception:  # noqa: BLE001 - a dead connection can't be rolled back either
+            logger.debug("Rollback failed for compliance check id=%s", check_id, exc_info=True)
         check.status = "failed"
         check.error_message = "This check could not be completed. Try uploading the case study again."
         db.commit()

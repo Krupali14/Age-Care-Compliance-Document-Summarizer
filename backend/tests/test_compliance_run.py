@@ -121,22 +121,40 @@ def test_select_evidence_bounds_a_long_case_study_with_no_paragraph_breaks():
 
 
 def test_run_check_fails_the_check_when_something_breaks_mid_run():
-    from app.services.compliance_check import run_check
+    """A real, unmocked database failure inside the batch loop (a NOT NULL
+    violation, not a patched-in RuntimeError) must still be recoverable — the
+    session has to survive to record its own failure and remain usable after.
+
+    `_verdicts_for` is patched rather than the LLM: with a requirement whose
+    text is None, `_verdicts_for`'s own `" ".join(req.text ...)` raises first,
+    before the database is ever touched, which would pass even without the fix
+    this test exists to catch. Skipping straight to "no verdicts came back"
+    reaches the actual NOT NULL violation on `CheckFinding.requirement`.
+    """
+    from app.services.compliance_check import Requirement, run_check
 
     db = _db()
     doc, check = _seed(db)
     check_id = check.id
 
     parsed = [ParsedSection(heading="Case study", order_idx=0, page_ref=None, raw_text="A resident fell on 14 September 2026.")]
+    # A requirement with no text: CheckFinding.requirement is NOT NULL, so the
+    # commit inside the batch loop raises IntegrityError — a genuinely broken
+    # session, not a patched-in exception.
+    broken_requirement = [Requirement("obligation", 1, None, None, None)]
 
     with patch("app.services.compliance_check.SessionLocal", return_value=db), \
          patch("app.services.compliance_check.parse_document", return_value=parsed), \
-         patch("app.services.compliance_check.load_requirements", side_effect=RuntimeError("db exploded")):
+         patch("app.services.compliance_check._verdicts_for", return_value={}), \
+         patch("app.services.compliance_check.load_requirements", return_value=broken_requirement):
         run_check(check_id, "/tmp/case.pdf")
 
     stored = db.query(ComplianceCheck).filter_by(id=check_id).one()
     assert stored.status == "failed"
     assert stored.error_message
+    # The session itself must still be usable — this is what a missing
+    # rollback before the recovery commit would have broken.
+    assert db.query(ComplianceCheck).count() == 1
 
 
 def test_run_check_leaves_out_of_range_indices_unclear():
