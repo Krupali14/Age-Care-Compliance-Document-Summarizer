@@ -37,3 +37,13 @@ def test_a_time_in_the_same_sentence_as_the_date_is_preferred_over_first_time():
 def test_the_first_time_is_used_if_no_trigger_word_or_date_sentence_time():
     text = "08:00 - shift started. The medication error occurred on 14 September 2026."
     assert find_incident_datetime(text, FALLBACK) == (datetime(2026, 9, 14, 8, 0), "stated")
+
+
+def test_dot_form_time_is_not_split_across_sentence_boundary():
+    text = "The fall occurred at 3.10pm on 14 September 2026."
+    assert find_incident_datetime(text, FALLBACK) == (datetime(2026, 9, 14, 15, 10), "stated")
+
+
+def test_trigger_word_time_beats_date_sentence_time_when_both_are_present():
+    text = "The error was discovered at 3.10pm. Incident date: 14 September 2026, 9:00am."
+    assert find_incident_datetime(text, FALLBACK) == (datetime(2026, 9, 14, 15, 10), "stated")
