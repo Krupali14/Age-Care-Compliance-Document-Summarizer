@@ -7,8 +7,10 @@ from app.models.risk import Risk
 from app.models.deadline import Deadline
 from app.models.action_item import ActionItem
 from app.models.eval_run import EvalRun
+from app.models.compliance_check import ComplianceCheck
+from app.models.check_finding import CheckFinding
 
 __all__ = [
     "User", "Document", "Section", "Summary", "Obligation",
-    "Risk", "Deadline", "ActionItem", "EvalRun",
+    "Risk", "Deadline", "ActionItem", "EvalRun", "ComplianceCheck", "CheckFinding",
 ]
