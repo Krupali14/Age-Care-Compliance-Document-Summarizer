@@ -14,7 +14,7 @@ An honest list. Everything here is known, deliberate, and unfixed.
 | **No cross-document view** | Every screen is one document. No "all deadlines across our policies", which is the obvious next feature |
 | **No export** | Findings cannot be downloaded as CSV, Excel or PDF. For a compliance manager whose next step is a spreadsheet, this is the most-missed feature |
 | **No editing** | A wrong finding cannot be corrected, dismissed or annotated. It is a read-only view of what the model produced |
-| **No tracking** | It extracts obligations; it does not track whether they were met. Not a compliance register |
+| **Tracking is manual and one-shot** | A deadline's `status` (`not_started`/`in_progress`/`completed`) is set by hand, and the Compliance Check tab judges one uploaded case study against one compliance document's obligations and deadlines, once, on demand. Neither is continuous monitoring: nothing re-checks a requirement over time, and there is still no register of what has and hasn't been actioned across documents |
 | **No teams** | One account is one person. No sharing, roles or organisations |
 | **English only** | Prompts and parsing assume English |
 | **No reprocessing** | Improving a prompt does not update existing documents; they must be deleted and re-uploaded |
@@ -23,7 +23,7 @@ An honest list. Everything here is known, deliberate, and unfixed.
 
 | Limitation | Consequence | Fix |
 |---|---|---|
-| **Background tasks, not a queue** | No retry after a crash, no visibility, no horizontal scale; extraction competes with request handling. **A restart abandons every in-flight document** — recovered at startup by failing them with a reason, but the work is lost and must be re-uploaded | Celery/RQ/arq — the first thing to change for production ([D9](12-design-decisions.md)) |
+| **Background tasks, not a queue** | No retry after a crash, no visibility, no horizontal scale; extraction competes with request handling. **A restart abandons every in-flight document** — recovered at startup by failing them with a reason, but the work is lost and must be re-uploaded. **Compliance checks are not covered by that recovery hook** (`main.py`'s `lifespan` only sweeps `documents`) — a check stranded on `pending`/`processing` by a restart stays there forever, polled by a UI that never gets an answer | Celery/RQ/arq — the first thing to change for production ([D9](12-design-decisions.md)); extending the same startup sweep to `compliance_checks` is a much smaller interim fix |
 | **Concurrent uploads queue invisibly** | Ten at once serialise behind one process-wide rate limiter; each card reads "Reading" with no queue position or estimate | Comes with the queue work |
 | **Rate limits per process** | Multiply behind multiple workers | Redis-backed store ([D11](12-design-decisions.md)) |
 | **No caching of extractions** | The same document uploaded twice is extracted twice, at full cost | Hash the file, reuse the result |
@@ -51,6 +51,20 @@ An honest list. Everything here is known, deliberate, and unfixed.
 - **Risks are under-extracted on standards documents.** A standards document states
   duties, not risks, and the prompt forbids invention. Correct behaviour, but it
   reads as a gap.
+- **Sub-hour and hour-scale deadlines don't survive extraction cleanly.** Verified
+  on `samples/Incident Escalation Protocol.docx`, which states eight timeframes
+  from 30 minutes to 30 days, across two re-extraction runs: the four shortest (30
+  minutes, 1 hour, 2 hours, 4 hours) are never extracted as deadlines at all — they
+  land under Obligations instead, with no due time, though the Compliance Check
+  still judges them correctly from the obligation text. Of the four that do become
+  deadlines, only two ("within 4 hours" and "30 days and 4 hours") keep their
+  relative wording and resolve to a real time of day; "within 24 hours" and "within
+  2 business days" are collapsed into a bare calendar date by the extraction model
+  despite `extraction.py`'s prompt explicitly telling it to keep relative phrasing
+  verbatim. This is a model-following-instructions gap, not a code bug — the
+  bucketing and resolution logic (`app/services/deadlines.py`) handles minutes and
+  hours correctly when it's given relative text to resolve; the model just doesn't
+  always hand it that text. Parked, not fixed.
 
 ## Security gaps
 

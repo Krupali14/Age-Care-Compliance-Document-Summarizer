@@ -39,9 +39,24 @@ items, 19.4 seconds, no past-dated deadlines.
 ## Hour-scale deadlines and the compliance check
 
 The Kanangra Court escalation protocol states deadlines in minutes and hours — 30
-minutes, 1 hour, 2 hours, 4 hours, 24 hours, and "30 days and 4 hours" — so the
-Deadlines tab shows due times rather than due dates, and the urgency buckets have
-something short-dated to sort.
+minutes, 1 hour, 2 hours, 4 hours, 24 hours, "2 business days", and "30 days and 4
+hours" — to give the urgency buckets something short-dated to sort.
+
+What it actually demonstrates, verified across two re-extraction runs: two of
+those timeframes ("within 4 hours" and "30 days and 4 hours") keep their relative
+wording through extraction and resolve to a real due time of day in the Deadlines
+tab. The rest don't. "Within 24 hours" and "within 2 business days" are collapsed
+into a bare calendar date instead — the extraction model does this despite an
+explicit prompt rule telling it to keep relative phrasing verbatim, so it isn't
+something this sample can force. The four shortest timeframes (30 minutes, 1 hour,
+2 hours, 4 hours) aren't extracted as deadlines at all; they show up under
+Obligations, with no due time. This is a known, parked limitation — see
+[14-known-limitations.md](../project-understanding/14-known-limitations.md) — not
+a bug in this sample or something worth debugging from here.
+
+The Compliance Check tab is unaffected by that gap: it judges the 30-minute/1-hour/
+2-hour/4-hour requirements correctly from their Obligations text, with no due time
+attached, alongside the deadlines that did resolve.
 
 Its companion case study is the evidence document for the Compliance Check tab: it
 states the incident time (14 September 2026, 3:10pm), records some escalation steps

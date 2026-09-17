@@ -198,6 +198,79 @@ startup nothing is running by definition, so a `lifespan` hook fails anything st
 in a working state. That is recovery, not a queue: the work is lost and the document
 must be uploaded again.
 
+## The compliance check
+
+A second pipeline, `backend/app/services/compliance_check.py`, triggered by
+`POST /api/compliance-checks/{doc_id}` and run as its own background task
+(`run_check`). It takes a case study — someone's own account of what they did —
+and returns one verdict per requirement the compliance document carries.
+
+```
+POST /api/compliance-checks/{doc_id} ─► validate, save file ─► 201
+                                              │
+                                              └─► run_check()  (background)
+                                                    1. parse the case study
+                                                    2. find the incident time
+                                                    3. load the parent document's
+                                                       obligations + deadlines
+                                                    4. batch 8 requirements at a time
+                                                    5. one verdict per requirement
+                                                    6. status = "done"
+```
+
+**1–2. Parse, then find the incident time.** The case study is parsed the same way
+any document is (`parse_document()`), then `find_incident_datetime()` scans the
+first 3000 characters for a date and a time, preferring the sentence naming the
+incident itself (`occurred`, `error`, `fall`, `discovered`, …) over a date sentence
+elsewhere, over the first time in the head, over midnight. Every relative deadline
+in the check hangs off this moment, so getting it wrong dates every deadline
+wrong — hence scanning only the opening lines: an incident record states when it
+happened up front, and a mention 20 pages later is a cross-reference to some other
+event, not a second incident. When no date is found at all, the upload time stands
+in (`incident_source = "upload_time"`), and the check says so rather than implying
+a precision the document doesn't have.
+
+**3. Requirements.** Every obligation and deadline the *compliance document*
+carries — not the case study — is loaded as one flat list of `Requirement`s. The
+compliance document is the standard being checked against; the case study is only
+ever evidence.
+
+**4–5. Batched verdicts.** Requirements are judged `MAX_BATCH_REQUIREMENTS = 8` at
+a time, mirroring extraction's own batching and for the same reason: the model
+returns one verdict per requirement in a single structured response, and a bigger
+ask risks the response overrunning its output-token limit and losing the whole
+batch. Each batch gets the evidence it should be judged against, chosen by
+`select_evidence()`:
+
+- **Case study ≤ 12,000 characters (`MAX_WHOLE_EVIDENCE_CHARS`):** the whole thing,
+  every batch. Case studies are short; whole text beats retrieved passages when it's
+  affordable, and there's no risk of a passage split cutting a fact in half.
+- **Longer:** the top 6 BM25-ranked paragraphs (`retrieval.rank()` — the same
+  ranker chat uses, [06](06-ai-and-retrieval.md)) against that batch's own
+  requirement text, kept in **document order** rather than rank order, because a
+  case study is a narrative and passages shuffled into relevance order read as a
+  different sequence of events.
+
+A batch the model fails to answer — a provider error, a malformed response —
+leaves its requirements **`unclear`**, never `not_done`: "no answer" and "the
+evidence shows this wasn't done" are different claims, and reporting silence as a
+failure would accuse someone of something the evidence never addressed. The model
+is instructed the same way: `unclear` whenever the evidence doesn't say, not a
+guess dressed up as one.
+
+**6. Findings.** One `CheckFinding` per requirement, carrying a **snapshot** of the
+requirement text (so a later re-extraction of the compliance document can't change
+what an old check meant), the verdict, the quoted evidence sentence or `null`, and
+— for deadline requirements — `due_at`/`bucket` resolved with the same
+`resolve_due_at()` / `bucket_for()` deadlines uses, anchored to `incident_at`
+instead of upload time. Each batch's findings commit as soon as they're written;
+`status` flips to `done` in one final commit once every batch has been judged. Any
+failure past the parse step is caught, rolled back, and reported as `failed`
+rather than leaving the row stuck in `processing` forever — the same concern the
+restart-recovery hook in `processing.py` addresses for the main pipeline (though
+this task isn't recovered at startup the way document processing is; see
+[14](14-known-limitations.md) if that gap matters to you).
+
 ## Tuning
 
 | Variable | Default | Raise when |

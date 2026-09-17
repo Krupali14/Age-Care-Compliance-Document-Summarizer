@@ -1,7 +1,8 @@
 # 03 — Data model
 
 PostgreSQL 16. Schema defined in `backend/app/models/`, migrated by Alembic
-(`backend/alembic/versions/`: `0001_baseline`, `0002_initial_schema`).
+(`backend/alembic/versions/`: `0001_baseline`, `0002_initial_schema`,
+`0003_deadline_status`, `0004_compliance_checks`).
 
 ## The shape
 
@@ -14,8 +15,13 @@ users
             ├─1:N─ deadlines ─────────┤ the section it came from
             ├─1:N─ action_items ──────┘
             ├─1:N─ summaries
-            └─1:N─ eval_runs
+            ├─1:N─ eval_runs
+            └─1:N─ compliance_checks ─1:N─ check_findings
 ```
+
+`compliance_checks` hangs off `documents` too, but it is not a finding category —
+it is the record of one case study being checked against everything the other
+categories already found. See below.
 
 **The double link is the point.** Each finding carries *both* `document_id` and
 `section_id`. `document_id` makes "all obligations in this document" one indexed
@@ -110,12 +116,20 @@ never sent for extraction — they are contents fragments and stray page numbers
 | `description` | Text, not null | |
 | `due_date` | String, nullable | **Deliberately a string** — see below |
 | `responsible_role` | String, nullable | |
+| `status` | String, not null, default `not_started` | `not_started` \| `in_progress` \| `completed` — migration `0003`. See `app/services/deadlines.STATUSES` |
 
 `due_date` is text, not a `Date`, because a compliance deadline is often not a
 calendar date at all: *"within 30 days of the incident"*, *"1 month after
 commencement"*. Those are the useful ones, and a `Date` column cannot hold them.
 `normalize_due_date()` keeps future dates and relative phrasing, and drops dates
 already past — a commencement date from 2019 is not a deadline.
+
+`status` is the one column on this table a user writes to directly, via
+`PATCH /api/deadlines/item/{id}` ([04](04-api-reference.md)) — recording that a
+deadline was actioned, not re-running extraction. `due_date` stays text either
+way; turning it into a point in time is `resolve_due_at()`'s job, not the
+column's — see [05](05-processing-pipeline.md#the-compliance-check) and
+`app/services/deadlines.py`.
 
 ### `action_items`
 
@@ -150,6 +164,51 @@ concatenated so the Summary tab reads as one continuous document.
 > precision/recall/F1 in them. The UI reads `ground_truth_ref` and relabels
 > accordingly; calling a self-check "precision" would claim a comparison that never
 > happened. See [08 Evaluation](08-evaluation.md).
+
+### `compliance_checks`
+
+| Column | Type | Notes |
+|---|---|---|
+| `id` | Integer PK | |
+| `document_id` | FK → documents.id, not null | The compliance document being checked against |
+| `filename`, `file_type` | String, not null | The case study's own upload — validated and stored the same way a document is ([04](04-api-reference.md)) |
+| `status` | String, not null, default `pending` | `pending → processing → done \| failed`, same shape as `documents.status` |
+| `error_message` | String, nullable | User-facing text on `failed` |
+| `uploaded_at` | DateTime | |
+| `incident_at` | DateTime, nullable | When the case study says the incident happened |
+| `incident_source` | String, nullable | `"stated"` when the case study named a time, `"upload_time"` when none was found and the upload time stood in |
+| `evidence_text` | Text, nullable | The parsed case study, stored once so re-reading a check does not re-parse the file |
+
+A case study is deliberately **not** a `Document` row: it gets no extraction of its
+own, it must not appear on the dashboard, and its only relationship is to the one
+compliance document it was checked against. Migration `0004`.
+
+### `check_findings`
+
+| Column | Type | Notes |
+|---|---|---|
+| `id` | Integer PK | |
+| `check_id` | FK → compliance_checks.id, not null | |
+| `kind` | String, not null | `"obligation"` or `"deadline"` — which table `source_id` points into |
+| `source_id` | Integer, not null | The obligation or deadline row this finding judges |
+| `section_id` | Integer, nullable | Denormalised from the source row, for the same click-through-to-source reason every other finding carries one |
+| `requirement` | Text, not null | **A snapshot** of the obligation/deadline text at check time, not a live join |
+| `verdict` | String, not null | `done` \| `not_done` \| `partly` \| `unclear` |
+| `evidence` | Text, nullable | The sentence from the case study the model quoted, or null |
+| `note` | Text, nullable | One sentence explaining the verdict |
+| `due_at`, `bucket` | DateTime, String, both nullable | Only set when `kind == "deadline"` — the deadline resolved against `incident_at`, not against upload time |
+
+`requirement` is a snapshot on purpose. Re-processing the compliance document
+replaces its `obligations` rows outright, and a live join would silently change or
+delete an old check's findings when that happens; the snapshot keeps a finished
+check meaning what it meant when it ran. See
+[05](05-processing-pipeline.md#the-compliance-check) for how one finding gets its
+verdict. Migration `0004`.
+
+`delete_document` removes a document's checks, their findings and their uploaded
+case-study files along with everything else — there is no `ON DELETE CASCADE` on
+these FKs (same as the rest of this schema), so `backend/app/routers/documents.py`
+deletes children before the parent row.
 
 ## Query patterns
 
