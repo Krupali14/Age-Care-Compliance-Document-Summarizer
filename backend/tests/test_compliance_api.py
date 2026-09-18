@@ -87,6 +87,33 @@ def test_findings_are_served_and_a_check_can_be_deleted(client, session_local, t
     assert body["findings"][0]["verdict"] == "done"
     assert body["counts"]["done"] == 1
 
+    # The uploaded case study itself — the most PII-dense file in the system —
+    # must go with the row, not be left on the volume with nothing pointing at it.
+    check_file = tmp_path / f"check{check_id}_case.pdf"
+    check_file.write_bytes(b"%PDF-1.4")
+
     assert client.get(f"/api/compliance-checks/item/{check_id}", headers=other).status_code == 404
     assert client.delete(f"/api/compliance-checks/item/{check_id}", headers=headers).status_code == 204
     assert client.get(f"/api/compliance-checks/item/{check_id}", headers=headers).status_code == 404
+    assert not check_file.exists()
+
+
+def test_deleting_a_running_check_is_rejected(client, session_local, tmp_path, monkeypatch):
+    from app.models import ComplianceCheck
+
+    monkeypatch.setenv("UPLOAD_DIR", str(tmp_path))
+    headers = _auth_header(client)
+    doc_id = _document(client, session_local, headers)
+
+    db = session_local()
+    check = ComplianceCheck(document_id=doc_id, filename="case.pdf", file_type="pdf", status="processing")
+    db.add(check)
+    db.commit()
+    check_id = check.id
+
+    resp = client.delete(f"/api/compliance-checks/item/{check_id}", headers=headers)
+    assert resp.status_code == 409
+
+    # The row survives so run_check, still writing to it, is not left orphaning
+    # findings against a deleted check.
+    assert client.get(f"/api/compliance-checks/item/{check_id}", headers=headers).status_code == 200

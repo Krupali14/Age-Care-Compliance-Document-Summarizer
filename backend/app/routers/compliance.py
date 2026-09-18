@@ -30,6 +30,14 @@ def _counts(findings: list[CheckFinding]) -> dict[str, int]:
     return {verdict: tally.get(verdict, 0) for verdict in ("done", "partly", "not_done", "unclear")}
 
 
+def _iso_utc(dt) -> str | None:
+    """`incident_at` and `due_at` are naive UTC datetimes — serialising them without
+    an offset lets `new Date(iso)` on the frontend read them as local time, which is
+    hours off from what the server reasoned with. Marking them "Z" fixes that at
+    the source instead of trusting every caller to remember."""
+    return f"{dt.isoformat()}Z" if dt else None
+
+
 @router.post("/{doc_id}", status_code=status.HTTP_201_CREATED)
 def create_check(
     doc_id: int,
@@ -83,8 +91,8 @@ def list_checks(doc_id: int, db: Session = Depends(get_db), user: User = Depends
             "filename": c.filename,
             "status": c.status,
             "error_message": c.error_message,
-            "uploaded_at": c.uploaded_at,
-            "incident_at": c.incident_at,
+            "uploaded_at": _iso_utc(c.uploaded_at),
+            "incident_at": _iso_utc(c.incident_at),
             "incident_source": c.incident_source,
             "counts": _counts(c.findings),
         }
@@ -101,8 +109,8 @@ def get_check(check_id: int, db: Session = Depends(get_db), user: User = Depends
         "filename": check.filename,
         "status": check.status,
         "error_message": check.error_message,
-        "uploaded_at": check.uploaded_at,
-        "incident_at": check.incident_at,
+        "uploaded_at": _iso_utc(check.uploaded_at),
+        "incident_at": _iso_utc(check.incident_at),
         "incident_source": check.incident_source,
         "counts": _counts(check.findings),
         "findings": [
@@ -114,7 +122,7 @@ def get_check(check_id: int, db: Session = Depends(get_db), user: User = Depends
                 "verdict": f.verdict,
                 "evidence": f.evidence,
                 "note": f.note,
-                "due_at": f.due_at.isoformat() if f.due_at else None,
+                "due_at": _iso_utc(f.due_at),
                 "bucket": f.bucket,
             }
             for f in check.findings
@@ -125,6 +133,17 @@ def get_check(check_id: int, db: Session = Depends(get_db), user: User = Depends
 @router.delete("/item/{check_id}", status_code=status.HTTP_204_NO_CONTENT)
 def delete_check(check_id: int, db: Session = Depends(get_db), user: User = Depends(get_current_user)):
     check = _get_owned_check(check_id, db, user)
+    if check.status in ("pending", "processing"):
+        # run_check is still writing to this row from a background task; deleting
+        # it now would leave that task committing findings against a row that no
+        # longer exists.
+        raise HTTPException(
+            status_code=409, detail="This check is still running. Wait for it to finish before deleting it."
+        )
+
+    upload_dir = Path(os.environ.get("UPLOAD_DIR", "/app/uploads"))
+    (upload_dir / f"check{check.id}_{check.filename}").unlink(missing_ok=True)
+
     db.delete(check)
     db.commit()
     return Response(status_code=status.HTTP_204_NO_CONTENT)
