@@ -1,16 +1,16 @@
-# Graph Report - krupali-project-personal  (2026-09-17)
+# Graph Report - krupali-project-personal  (2026-09-18)
 
 ## Corpus Check
-- 136 files · ~90,756 words
+- 136 files · ~92,848 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 887 nodes · 1310 edges · 57 communities (53 shown, 4 thin omitted)
-- Extraction: 85% EXTRACTED · 15% INFERRED · 0% AMBIGUOUS · INFERRED: 199 edges (avg confidence: 0.77)
+- 907 nodes · 1357 edges · 56 communities (52 shown, 4 thin omitted)
+- Extraction: 85% EXTRACTED · 15% INFERRED · 0% AMBIGUOUS · INFERRED: 208 edges (avg confidence: 0.77)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `807cf1fe`
+- Built from commit: `1635a841`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -49,7 +49,6 @@
 - [[_COMMUNITY_Community 41|Community 41]]
 - [[_COMMUNITY_Community 42|Community 42]]
 - [[_COMMUNITY_Community 43|Community 43]]
-- [[_COMMUNITY_Community 44|Community 44]]
 - [[_COMMUNITY_Community 45|Community 45]]
 - [[_COMMUNITY_Community 46|Community 46]]
 - [[_COMMUNITY_Community 47|Community 47]]
@@ -64,14 +63,14 @@
 ## God Nodes (most connected - your core abstractions)
 1. `Aged Care Compliance Summariser Implementation Plan` - 22 edges
 2. `_get_owned_document()` - 19 edges
-3. `find_incident_datetime()` - 18 edges
-4. `process_document()` - 17 edges
-5. `_auth_header()` - 17 edges
+3. `find_incident_datetime()` - 19 edges
+4. `_auth_header()` - 19 edges
+5. `process_document()` - 17 edges
 6. `12 — Design decisions` - 17 edges
 7. `FastAPI` - 16 edges
 8. `compilerOptions` - 16 edges
-9. `ParsedSection` - 14 edges
-10. `Aged Care Compliance Document Summariser — Design` - 14 edges
+9. `run_check()` - 14 edges
+10. `ParsedSection` - 14 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `Aged Care Compliance Document Summariser Design Spec` --references--> `Project Scope: functional requirements (upload, summarisation, obligation/risk/deadline/action extraction, dashboard, chatbot)`  [EXTRACTED]
@@ -95,19 +94,19 @@
 - **graphify Step 3 Part B subagent dispatch and export flow** — skill_graphify_pipeline, references_extraction_spec_prompt, references_exports_pipeline [EXTRACTED 1.00]
 - **Scope requirements -> design spec -> implementation plan traceability chain** — scope_project_scope_template_functional_requirements, specs_design_doc, plans_summariser_implementation_plan [INFERRED 0.85]
 
-## Communities (57 total, 4 thin omitted)
+## Communities (56 total, 4 thin omitted)
 
 ### Community 0 - "Backend DB Models & Alembic"
-Cohesion: 0.08
-Nodes (41): create_access_token(), datetime, Deadline, bucket_for(), parse_relative(), Turning a deadline's stated due date into a point in time, a bucket and a status, The offset a relative timeframe names, or None if it names no timeframe.      Se, The moment a deadline falls due.      `anchor` is when the clock starts for a re (+33 more)
+Cohesion: 0.07
+Nodes (46): datetime, Deadline, bucket_for(), is_relative_due_date(), parse_relative(), Turning a deadline's stated due date into a point in time, a bucket and a status, Which urgency bucket a due time falls in., The offset a relative timeframe names, or None if it names no timeframe.      Se (+38 more)
 
 ### Community 1 - "Frontend API Clients & Views"
-Cohesion: 0.09
-Nodes (31): get_current_user(), clear(), client_ip(), enforce(), A small in-process rate limiter for the authentication endpoints.  ponytail: a d, The caller's address, trusting one proxy hop.      Behind nginx or a load balanc, Record one attempt against `key`; raise 429 once the window is full., Reset all counters — for tests. (+23 more)
+Cohesion: 0.07
+Nodes (33): create_access_token(), get_current_user(), hash_password(), verify_password(), Settings, clear(), client_ip(), enforce() (+25 more)
 
 ### Community 2 - "Backend Router Endpoints"
-Cohesion: 0.06
-Nodes (47): hash_password(), verify_password(), lifespan(), Fail anything left mid-processing by the previous run of this process.      Extr, _release_interrupted_documents(), Session, User, Session (+39 more)
+Cohesion: 0.05
+Nodes (52): lifespan(), Fail anything left mid-processing by the previous run of this process.      Extr, Fail anything left mid-processing by the previous run of this process.      run_, _release_interrupted_checks(), _release_interrupted_documents(), Session, User, Session (+44 more)
 
 ### Community 3 - "Project Docs & Requirements Chain"
 Cohesion: 0.06
@@ -138,8 +137,8 @@ Cohesion: 0.12
 Nodes (17): /graphify slash-command trigger rule, project CLAUDE.md graphify integration section, graphify add <url> ingestion, graphify --watch folder watcher, graphify export pipeline (wiki/neo4j/falkordb/svg/graphml/mcp/benchmark), graphify semantic extraction subagent prompt, graphify clone GitHub repo(s), graphify merge-graphs cross-repo merge (+9 more)
 
 ### Community 10 - "Chat & LLM Config"
-Cohesion: 0.29
-Nodes (5): Settings, BaseSettings, Deployments set their own session length; the default is only a default., test_session_length_is_configurable(), test_settings_load_from_env()
+Cohesion: 0.27
+Nodes (11): _login(), Regression cover for the auth rate limits.  Unlimited password guessing against, Pin the router's limits to something small and deterministic., Otherwise an attacker learns they found it from the response changing., The per-address counter must not lock out the whole application., _register(), _small_limits(), test_a_different_account_is_unaffected_by_another_s_lockout() (+3 more)
 
 ### Community 11 - "Community 11"
 Cohesion: 0.07
@@ -183,7 +182,7 @@ Nodes (14): Aged Care Compliance Document Summariser — Design, API, Architectu
 
 ### Community 32 - "Community 32"
 Cohesion: 0.13
-Nodes (14): 07 — Frontend guide, Accessibility, as implemented, `AIAssistant`, `api/client.ts` — the one fetch wrapper, AuthContext, Build and scripts, Components worth knowing, `ConfirmModal` (+6 more)
+Nodes (15): 07 — Frontend guide, Accessibility, as implemented, `AIAssistant`, `api/client.ts` — the one fetch wrapper, AuthContext, Build and scripts, `ComplianceCheckPanel`, Components worth knowing (+7 more)
 
 ### Community 33 - "Community 33"
 Cohesion: 0.16
@@ -221,10 +220,6 @@ Nodes (7): How risk severity and priority are decided, How the value is constrai
 Cohesion: 0.25
 Nodes (8): 01 — What this is, Domain vocabulary, Scope boundaries enforced in the product, The problem, The shape of a session, What it explicitly is not, What the application does, Who uses it
 
-### Community 44 - "Community 44"
-Cohesion: 0.39
-Nodes (5): _auth(), _doc(), Regression cover for the input ceilings.  Each of these was unbounded: a 300-cha, test_a_question_at_the_limit_is_accepted(), test_an_over_long_question_is_refused_before_reaching_the_model()
-
 ### Community 45 - "Community 45"
 Cohesion: 0.29
 Nodes (7): 14 — Known limitations and what comes next, Product limits, Quality limits, Security gaps, Technical limits, Testing gaps, What I would do next, in order
@@ -243,15 +238,15 @@ Nodes (4): Hour-scale deadlines and the compliance check, Sample documents, Thes
 
 ### Community 50 - "Community 50"
 Cohesion: 0.08
-Nodes (44): datetime, CheckBatch, CheckVerdict, find_incident_datetime(), _first_time_in(), load_requirements(), Checking a case-study document against a compliance document's requirements.  Th, One thing the compliance document requires, as handed to the check. (+36 more)
+Nodes (49): datetime, Obligation, CheckBatch, CheckVerdict, find_incident_datetime(), _first_time_in(), load_requirements(), Checking a case-study document against a compliance document's requirements.  Th (+41 more)
 
 ### Community 51 - "Community 51"
-Cohesion: 0.09
-Nodes (13): Base, ActionItem, CheckFinding, ComplianceCheck, One case-study document checked against one compliance document.      The case s, Document, EvalRun, Obligation (+5 more)
+Cohesion: 0.08
+Nodes (12): Base, ActionItem, CheckFinding, ComplianceCheck, One case-study document checked against one compliance document.      The case s, Document, EvalRun, Risk (+4 more)
 
 ### Community 52 - "Community 52"
 Cohesion: 0.12
-Nodes (29): UploadResponse, BackgroundTasks, Session, UploadFile, User, BackgroundTasks, Path, Session (+21 more)
+Nodes (31): UploadResponse, BackgroundTasks, Session, UploadFile, User, BackgroundTasks, Path, Session (+23 more)
 
 ### Community 53 - "Community 53"
 Cohesion: 0.14
@@ -262,7 +257,7 @@ Cohesion: 0.17
 Nodes (11): Compliance Check Implementation Plan, Global Constraints, Task 1: Move BM25 retrieval into a shared service, Task 2: Share the upload validation, Task 3: Models and migration, Task 4: Read the incident time out of a case study, Task 5: Run the check, Task 6: The API (+3 more)
 
 ## Knowledge Gaps
-- **321 isolated node(s):** `Session`, `Request`, `Session`, `User`, `User` (+316 more)
+- **322 isolated node(s):** `Session`, `Request`, `Session`, `User`, `User` (+317 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **4 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
@@ -270,16 +265,16 @@ Nodes (11): Compliance Check Implementation Plan, Global Constraints, Task 1: Mo
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `Aged Care Compliance Summariser README` connect `Frontend App Shell & Auth Context` to `Project Docs & Requirements Chain`?**
-  _High betweenness centrality (0.025) - this node is a cross-community bridge._
+  _High betweenness centrality (0.024) - this node is a cross-community bridge._
 - **Are the 13 inferred relationships involving `_get_owned_document()` (e.g. with `get_action_items()` and `chat()`) actually correct?**
   _`_get_owned_document()` has 13 INFERRED edges - model-reasoned connections that need verification._
-- **Are the 10 inferred relationships involving `find_incident_datetime()` (e.g. with `_latest_date_in()` and `test_a_24_hour_clock_is_understood()`) actually correct?**
-  _`find_incident_datetime()` has 10 INFERRED edges - model-reasoned connections that need verification._
+- **Are the 11 inferred relationships involving `find_incident_datetime()` (e.g. with `_latest_date_in()` and `test_a_24_hour_clock_is_understood()`) actually correct?**
+  _`find_incident_datetime()` has 11 INFERRED edges - model-reasoned connections that need verification._
 - **Are the 16 inferred relationships involving `process_document()` (e.g. with `ActionItem` and `Deadline`) actually correct?**
   _`process_document()` has 16 INFERRED edges - model-reasoned connections that need verification._
-- **What connects `Session`, `Fail anything left mid-processing by the previous run of this process.      Extr`, `One case-study document checked against one compliance document.      The case s` to the rest of the system?**
-  _400 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **What connects `Session`, `Fail anything left mid-processing by the previous run of this process.      Extr`, `Fail anything left mid-processing by the previous run of this process.      run_` to the rest of the system?**
+  _408 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Backend DB Models & Alembic` be split into smaller, more focused modules?**
-  _Cohesion score 0.07890070921985816 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.07329462989840348 - nodes in this community are weakly interconnected._
 - **Should `Frontend API Clients & Views` be split into smaller, more focused modules?**
-  _Cohesion score 0.09009009009009009 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.0696969696969697 - nodes in this community are weakly interconnected._

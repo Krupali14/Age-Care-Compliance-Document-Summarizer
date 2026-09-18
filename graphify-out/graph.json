@@ -213,7 +213,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_auth",
-      "community": 2,
+      "community": 1,
       "norm_label": "auth.py"
     },
     {
@@ -223,7 +223,7 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "app_auth_hash_password",
-      "community": 2,
+      "community": 1,
       "norm_label": "hash_password()"
     },
     {
@@ -233,7 +233,7 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "app_auth_verify_password",
-      "community": 2,
+      "community": 1,
       "norm_label": "verify_password()"
     },
     {
@@ -243,7 +243,7 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "app_auth_create_access_token",
-      "community": 0,
+      "community": 1,
       "norm_label": "create_access_token()"
     },
     {
@@ -283,7 +283,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_config",
-      "community": 10,
+      "community": 1,
       "norm_label": "config.py"
     },
     {
@@ -293,7 +293,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "app_config_settings",
-      "community": 10,
+      "community": 1,
       "norm_label": "settings"
     },
     {
@@ -303,7 +303,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "basesettings",
-      "community": 10,
+      "community": 1,
       "norm_label": "basesettings"
     },
     {
@@ -340,17 +340,27 @@
       "label": "_release_interrupted_documents()",
       "file_type": "code",
       "source_file": "backend/app/main.py",
-      "source_location": "L20",
+      "source_location": "L25",
       "_origin": "ast",
       "id": "app_main_release_interrupted_documents",
       "community": 2,
       "norm_label": "_release_interrupted_documents()"
     },
     {
+      "label": "_release_interrupted_checks()",
+      "file_type": "code",
+      "source_file": "backend/app/main.py",
+      "source_location": "L64",
+      "_origin": "ast",
+      "id": "app_main_release_interrupted_checks",
+      "community": 2,
+      "norm_label": "_release_interrupted_checks()"
+    },
+    {
       "label": "lifespan()",
       "file_type": "code",
       "source_file": "backend/app/main.py",
-      "source_location": "L60",
+      "source_location": "L92",
       "_origin": "ast",
       "id": "app_main_lifespan",
       "community": 2,
@@ -360,7 +370,7 @@
       "label": "FastAPI",
       "file_type": "code",
       "source_file": "backend/app/main.py",
-      "source_location": "L60",
+      "source_location": "L92",
       "_origin": "ast",
       "id": "fastapi",
       "community": 2,
@@ -370,7 +380,7 @@
       "label": "health()",
       "file_type": "code",
       "source_file": "backend/app/main.py",
-      "source_location": "L91",
+      "source_location": "L124",
       "_origin": "ast",
       "id": "app_main_health",
       "community": 2,
@@ -380,11 +390,21 @@
       "label": "Fail anything left mid-processing by the previous run of this process.      Extr",
       "file_type": "rationale",
       "source_file": "backend/app/main.py",
-      "source_location": "L21",
+      "source_location": "L26",
       "_origin": "ast",
-      "id": "app_main_rationale_21",
+      "id": "app_main_rationale_26",
       "community": 2,
       "norm_label": "fail anything left mid-processing by the previous run of this process.      extr"
+    },
+    {
+      "label": "Fail anything left mid-processing by the previous run of this process.      run_",
+      "file_type": "rationale",
+      "source_file": "backend/app/main.py",
+      "source_location": "L65",
+      "_origin": "ast",
+      "id": "app_main_rationale_65",
+      "community": 2,
+      "norm_label": "fail anything left mid-processing by the previous run of this process.      run_"
     },
     {
       "label": "__init__.py",
@@ -553,7 +573,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "models_obligation_obligation",
-      "community": 51,
+      "community": 50,
       "norm_label": "obligation"
     },
     {
@@ -1037,10 +1057,20 @@
       "norm_label": "checkfinding"
     },
     {
+      "label": "_iso_utc()",
+      "file_type": "code",
+      "source_file": "backend/app/routers/compliance.py",
+      "source_location": "L33",
+      "_origin": "ast",
+      "id": "routers_compliance_iso_utc",
+      "community": 52,
+      "norm_label": "_iso_utc()"
+    },
+    {
       "label": "create_check()",
       "file_type": "code",
       "source_file": "backend/app/routers/compliance.py",
-      "source_location": "L34",
+      "source_location": "L42",
       "_origin": "ast",
       "id": "routers_compliance_create_check",
       "community": 52,
@@ -1050,7 +1080,7 @@
       "label": "UploadFile",
       "file_type": "code",
       "source_file": "backend/app/routers/compliance.py",
-      "source_location": "L34",
+      "source_location": "L42",
       "_origin": "ast",
       "id": "backend_app_routers_compliance_py_uploadfile",
       "community": 52,
@@ -1060,7 +1090,7 @@
       "label": "BackgroundTasks",
       "file_type": "code",
       "source_file": "backend/app/routers/compliance.py",
-      "source_location": "L34",
+      "source_location": "L42",
       "_origin": "ast",
       "id": "backend_app_routers_compliance_py_backgroundtasks",
       "community": 52,
@@ -1070,7 +1100,7 @@
       "label": "list_checks()",
       "file_type": "code",
       "source_file": "backend/app/routers/compliance.py",
-      "source_location": "L72",
+      "source_location": "L80",
       "_origin": "ast",
       "id": "routers_compliance_list_checks",
       "community": 52,
@@ -1080,7 +1110,7 @@
       "label": "get_check()",
       "file_type": "code",
       "source_file": "backend/app/routers/compliance.py",
-      "source_location": "L96",
+      "source_location": "L104",
       "_origin": "ast",
       "id": "routers_compliance_get_check",
       "community": 52,
@@ -1090,11 +1120,21 @@
       "label": "delete_check()",
       "file_type": "code",
       "source_file": "backend/app/routers/compliance.py",
-      "source_location": "L126",
+      "source_location": "L134",
       "_origin": "ast",
       "id": "routers_compliance_delete_check",
       "community": 52,
       "norm_label": "delete_check()"
+    },
+    {
+      "label": "`incident_at` and `due_at` are naive UTC datetimes \u2014 serialising them without",
+      "file_type": "rationale",
+      "source_file": "backend/app/routers/compliance.py",
+      "source_location": "L34",
+      "_origin": "ast",
+      "id": "routers_compliance_rationale_34",
+      "community": 52,
+      "norm_label": "`incident_at` and `due_at` are naive utc datetimes \u2014 serialising them without"
     },
     {
       "label": "deadlines.py",
@@ -1150,7 +1190,7 @@
       "label": "update_deadline_status()",
       "file_type": "code",
       "source_file": "backend/app/routers/deadlines.py",
-      "source_location": "L51",
+      "source_location": "L55",
       "_origin": "ast",
       "id": "routers_deadlines_update_deadline_status",
       "community": 2,
@@ -1160,9 +1200,9 @@
       "label": "Record progress against one deadline.",
       "file_type": "rationale",
       "source_file": "backend/app/routers/deadlines.py",
-      "source_location": "L57",
+      "source_location": "L61",
       "_origin": "ast",
-      "id": "routers_deadlines_rationale_57",
+      "id": "routers_deadlines_rationale_61",
       "community": 2,
       "norm_label": "record progress against one deadline."
     },
@@ -1720,7 +1760,7 @@
       "label": "Requirement",
       "file_type": "code",
       "source_file": "backend/app/services/compliance_check.py",
-      "source_location": "L126",
+      "source_location": "L137",
       "_origin": "ast",
       "id": "services_compliance_check_requirement",
       "community": 50,
@@ -1730,7 +1770,7 @@
       "label": "load_requirements()",
       "file_type": "code",
       "source_file": "backend/app/services/compliance_check.py",
-      "source_location": "L136",
+      "source_location": "L147",
       "_origin": "ast",
       "id": "services_compliance_check_load_requirements",
       "community": 50,
@@ -1740,7 +1780,7 @@
       "label": "select_evidence()",
       "file_type": "code",
       "source_file": "backend/app/services/compliance_check.py",
-      "source_location": "L154",
+      "source_location": "L165",
       "_origin": "ast",
       "id": "services_compliance_check_select_evidence",
       "community": 50,
@@ -1750,7 +1790,7 @@
       "label": "CheckVerdict",
       "file_type": "code",
       "source_file": "backend/app/services/compliance_check.py",
-      "source_location": "L176",
+      "source_location": "L187",
       "_origin": "ast",
       "id": "services_compliance_check_checkverdict",
       "community": 50,
@@ -1760,7 +1800,7 @@
       "label": "._coerce_evidence()",
       "file_type": "code",
       "source_file": "backend/app/services/compliance_check.py",
-      "source_location": "L184",
+      "source_location": "L195",
       "_origin": "ast",
       "id": "services_compliance_check_checkverdict_coerce_evidence",
       "community": 50,
@@ -1770,7 +1810,7 @@
       "label": "CheckBatch",
       "file_type": "code",
       "source_file": "backend/app/services/compliance_check.py",
-      "source_location": "L195",
+      "source_location": "L206",
       "_origin": "ast",
       "id": "services_compliance_check_checkbatch",
       "community": 50,
@@ -1780,7 +1820,7 @@
       "label": "_render_requirements()",
       "file_type": "code",
       "source_file": "backend/app/services/compliance_check.py",
-      "source_location": "L229",
+      "source_location": "L240",
       "_origin": "ast",
       "id": "services_compliance_check_render_requirements",
       "community": 50,
@@ -1790,7 +1830,7 @@
       "label": "_verdicts_for()",
       "file_type": "code",
       "source_file": "backend/app/services/compliance_check.py",
-      "source_location": "L237",
+      "source_location": "L248",
       "_origin": "ast",
       "id": "services_compliance_check_verdicts_for",
       "community": 50,
@@ -1800,7 +1840,7 @@
       "label": "run_check()",
       "file_type": "code",
       "source_file": "backend/app/services/compliance_check.py",
-      "source_location": "L260",
+      "source_location": "L271",
       "_origin": "ast",
       "id": "services_compliance_check_run_check",
       "community": 50,
@@ -1850,9 +1890,9 @@
       "label": "One thing the compliance document requires, as handed to the check.",
       "file_type": "rationale",
       "source_file": "backend/app/services/compliance_check.py",
-      "source_location": "L127",
+      "source_location": "L138",
       "_origin": "ast",
-      "id": "services_compliance_check_rationale_127",
+      "id": "services_compliance_check_rationale_138",
       "community": 50,
       "norm_label": "one thing the compliance document requires, as handed to the check."
     },
@@ -1860,9 +1900,9 @@
       "label": "The part of the case study this batch should be judged against.",
       "file_type": "rationale",
       "source_file": "backend/app/services/compliance_check.py",
-      "source_location": "L155",
+      "source_location": "L166",
       "_origin": "ast",
-      "id": "services_compliance_check_rationale_155",
+      "id": "services_compliance_check_rationale_166",
       "community": 50,
       "norm_label": "the part of the case study this batch should be judged against."
     },
@@ -1870,9 +1910,9 @@
       "label": "The model sometimes writes the word \"null\" (or \"none\", \"n/a\") instead of",
       "file_type": "rationale",
       "source_file": "backend/app/services/compliance_check.py",
-      "source_location": "L185",
+      "source_location": "L196",
       "_origin": "ast",
-      "id": "services_compliance_check_rationale_185",
+      "id": "services_compliance_check_rationale_196",
       "community": 50,
       "norm_label": "the model sometimes writes the word \"null\" (or \"none\", \"n/a\") instead of"
     },
@@ -1880,9 +1920,9 @@
       "label": "One model call for one batch; an empty dict when the call cannot be trusted.",
       "file_type": "rationale",
       "source_file": "backend/app/services/compliance_check.py",
-      "source_location": "L238",
+      "source_location": "L249",
       "_origin": "ast",
-      "id": "services_compliance_check_rationale_238",
+      "id": "services_compliance_check_rationale_249",
       "community": 50,
       "norm_label": "one model call for one batch; an empty dict when the call cannot be trusted."
     },
@@ -1890,9 +1930,9 @@
       "label": "Background task: parse the case study, judge every requirement, store findings.",
       "file_type": "rationale",
       "source_file": "backend/app/services/compliance_check.py",
-      "source_location": "L261",
+      "source_location": "L272",
       "_origin": "ast",
-      "id": "services_compliance_check_rationale_261",
+      "id": "services_compliance_check_rationale_272",
       "community": 50,
       "norm_label": "background task: parse the case study, judge every requirement, store findings."
     },
@@ -1910,7 +1950,7 @@
       "label": "parse_relative()",
       "file_type": "code",
       "source_file": "backend/app/services/deadlines.py",
-      "source_location": "L45",
+      "source_location": "L47",
       "_origin": "ast",
       "id": "services_deadlines_parse_relative",
       "community": 0,
@@ -1920,7 +1960,7 @@
       "label": "timedelta",
       "file_type": "code",
       "source_file": "backend/app/services/deadlines.py",
-      "source_location": "L45",
+      "source_location": "L47",
       "_origin": "ast",
       "id": "timedelta",
       "community": 0,
@@ -1930,7 +1970,7 @@
       "label": "resolve_due_at()",
       "file_type": "code",
       "source_file": "backend/app/services/deadlines.py",
-      "source_location": "L58",
+      "source_location": "L60",
       "_origin": "ast",
       "id": "services_deadlines_resolve_due_at",
       "community": 0,
@@ -1940,17 +1980,27 @@
       "label": "datetime",
       "file_type": "code",
       "source_file": "backend/app/services/deadlines.py",
-      "source_location": "L58",
+      "source_location": "L60",
       "_origin": "ast",
       "id": "backend_app_services_deadlines_py_datetime",
       "community": 0,
       "norm_label": "datetime"
     },
     {
+      "label": "is_relative_due_date()",
+      "file_type": "code",
+      "source_file": "backend/app/services/deadlines.py",
+      "source_location": "L83",
+      "_origin": "ast",
+      "id": "services_deadlines_is_relative_due_date",
+      "community": 0,
+      "norm_label": "is_relative_due_date()"
+    },
+    {
       "label": "bucket_for()",
       "file_type": "code",
       "source_file": "backend/app/services/deadlines.py",
-      "source_location": "L81",
+      "source_location": "L103",
       "_origin": "ast",
       "id": "services_deadlines_bucket_for",
       "community": 0,
@@ -1970,9 +2020,9 @@
       "label": "The offset a relative timeframe names, or None if it names no timeframe.      Se",
       "file_type": "rationale",
       "source_file": "backend/app/services/deadlines.py",
-      "source_location": "L46",
+      "source_location": "L48",
       "_origin": "ast",
-      "id": "services_deadlines_rationale_46",
+      "id": "services_deadlines_rationale_48",
       "community": 0,
       "norm_label": "the offset a relative timeframe names, or none if it names no timeframe.      se"
     },
@@ -1980,19 +2030,29 @@
       "label": "The moment a deadline falls due.      `anchor` is when the clock starts for a re",
       "file_type": "rationale",
       "source_file": "backend/app/services/deadlines.py",
-      "source_location": "L59",
+      "source_location": "L61",
       "_origin": "ast",
-      "id": "services_deadlines_rationale_59",
+      "id": "services_deadlines_rationale_61",
       "community": 0,
       "norm_label": "the moment a deadline falls due.      `anchor` is when the clock starts for a re"
+    },
+    {
+      "label": "Whether `resolve_due_at` would anchor this due date on an event rather than",
+      "file_type": "rationale",
+      "source_file": "backend/app/services/deadlines.py",
+      "source_location": "L84",
+      "_origin": "ast",
+      "id": "services_deadlines_rationale_84",
+      "community": 0,
+      "norm_label": "whether `resolve_due_at` would anchor this due date on an event rather than"
     },
     {
       "label": "Which urgency bucket a due time falls in.",
       "file_type": "rationale",
       "source_file": "backend/app/services/deadlines.py",
-      "source_location": "L82",
+      "source_location": "L104",
       "_origin": "ast",
-      "id": "services_deadlines_rationale_82",
+      "id": "services_deadlines_rationale_104",
       "community": 0,
       "norm_label": "which urgency bucket a due time falls in."
     },
@@ -2553,7 +2613,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "services_llm",
-      "community": 10,
+      "community": 1,
       "norm_label": "llm.py"
     },
     {
@@ -3027,6 +3087,16 @@
       "norm_label": "test_findings_are_served_and_a_check_can_be_deleted()"
     },
     {
+      "label": "test_deleting_a_running_check_is_rejected()",
+      "file_type": "code",
+      "source_file": "backend/tests/test_compliance_api.py",
+      "source_location": "L101",
+      "_origin": "ast",
+      "id": "tests_test_compliance_api_test_deleting_a_running_check_is_rejected",
+      "community": 0,
+      "norm_label": "test_deleting_a_running_check_is_rejected()"
+    },
+    {
       "label": "test_compliance_incident_time.py",
       "file_type": "code",
       "source_file": "backend/tests/test_compliance_incident_time.py",
@@ -3127,6 +3197,26 @@
       "norm_label": "test_trigger_word_time_beats_date_sentence_time_when_both_are_present()"
     },
     {
+      "label": "test_the_trigger_sentences_own_date_is_used_not_an_earlier_report_date()",
+      "file_type": "code",
+      "source_file": "backend/tests/test_compliance_incident_time.py",
+      "source_location": "L52",
+      "_origin": "ast",
+      "id": "tests_test_compliance_incident_time_test_the_trigger_sentences_own_date_is_used_not_an_earlier_report_date",
+      "community": 50,
+      "norm_label": "test_the_trigger_sentences_own_date_is_used_not_an_earlier_report_date()"
+    },
+    {
+      "label": "A report header date and the incident's own date can differ \u2014 the incident's",
+      "file_type": "rationale",
+      "source_file": "backend/tests/test_compliance_incident_time.py",
+      "source_location": "L53",
+      "_origin": "ast",
+      "id": "tests_test_compliance_incident_time_rationale_53",
+      "community": 50,
+      "norm_label": "a report header date and the incident's own date can differ \u2014 the incident's"
+    },
+    {
       "label": "test_compliance_models.py",
       "file_type": "code",
       "source_file": "backend/tests/test_compliance_models.py",
@@ -3220,7 +3310,7 @@
       "label": "test_run_check_records_unclear_when_the_model_call_fails()",
       "file_type": "code",
       "source_file": "backend/tests/test_compliance_run.py",
-      "source_location": "L99",
+      "source_location": "L102",
       "_origin": "ast",
       "id": "tests_test_compliance_run_test_run_check_records_unclear_when_the_model_call_fails",
       "community": 50,
@@ -3230,7 +3320,7 @@
       "label": "test_select_evidence_bounds_a_long_case_study_with_no_paragraph_breaks()",
       "file_type": "code",
       "source_file": "backend/tests/test_compliance_run.py",
-      "source_location": "L120",
+      "source_location": "L123",
       "_origin": "ast",
       "id": "tests_test_compliance_run_test_select_evidence_bounds_a_long_case_study_with_no_paragraph_breaks",
       "community": 50,
@@ -3240,7 +3330,7 @@
       "label": "test_run_check_fails_the_check_when_something_breaks_mid_run()",
       "file_type": "code",
       "source_file": "backend/tests/test_compliance_run.py",
-      "source_location": "L134",
+      "source_location": "L137",
       "_origin": "ast",
       "id": "tests_test_compliance_run_test_run_check_fails_the_check_when_something_breaks_mid_run",
       "community": 50,
@@ -3250,17 +3340,27 @@
       "label": "test_run_check_leaves_out_of_range_indices_unclear()",
       "file_type": "code",
       "source_file": "backend/tests/test_compliance_run.py",
-      "source_location": "L171",
+      "source_location": "L174",
       "_origin": "ast",
       "id": "tests_test_compliance_run_test_run_check_leaves_out_of_range_indices_unclear",
       "community": 50,
       "norm_label": "test_run_check_leaves_out_of_range_indices_unclear()"
     },
     {
+      "label": "test_run_check_caps_requirements_and_tells_the_user_how_many_it_checked()",
+      "file_type": "code",
+      "source_file": "backend/tests/test_compliance_run.py",
+      "source_location": "L203",
+      "_origin": "ast",
+      "id": "tests_test_compliance_run_test_run_check_caps_requirements_and_tells_the_user_how_many_it_checked",
+      "community": 50,
+      "norm_label": "test_run_check_caps_requirements_and_tells_the_user_how_many_it_checked()"
+    },
+    {
       "label": "test_run_check_fails_the_check_when_the_case_study_cannot_be_parsed()",
       "file_type": "code",
       "source_file": "backend/tests/test_compliance_run.py",
-      "source_location": "L200",
+      "source_location": "L242",
       "_origin": "ast",
       "id": "tests_test_compliance_run_test_run_check_fails_the_check_when_the_case_study_cannot_be_parsed",
       "community": 50,
@@ -3270,11 +3370,21 @@
       "label": "A real, unmocked database failure inside the batch loop (a NOT NULL     violatio",
       "file_type": "rationale",
       "source_file": "backend/tests/test_compliance_run.py",
-      "source_location": "L135",
+      "source_location": "L138",
       "_origin": "ast",
-      "id": "tests_test_compliance_run_rationale_135",
+      "id": "tests_test_compliance_run_rationale_138",
       "community": 50,
       "norm_label": "a real, unmocked database failure inside the batch loop (a not null     violatio"
+    },
+    {
+      "label": "The repo's own 1300-section Act could mean hundreds of obligations and     deadl",
+      "file_type": "rationale",
+      "source_file": "backend/tests/test_compliance_run.py",
+      "source_location": "L204",
+      "_origin": "ast",
+      "id": "tests_test_compliance_run_rationale_204",
+      "community": 50,
+      "norm_label": "the repo's own 1300-section act could mean hundreds of obligations and     deadl"
     },
     {
       "label": "test_config.py",
@@ -3283,7 +3393,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tests_test_config",
-      "community": 10,
+      "community": 1,
       "norm_label": "test_config.py"
     },
     {
@@ -3293,7 +3403,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "tests_test_config_test_settings_load_from_env",
-      "community": 10,
+      "community": 1,
       "norm_label": "test_settings_load_from_env()"
     },
     {
@@ -3303,7 +3413,7 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "tests_test_config_test_session_length_is_configurable",
-      "community": 10,
+      "community": 1,
       "norm_label": "test_session_length_is_configurable()"
     },
     {
@@ -3313,7 +3423,7 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "tests_test_config_rationale_21",
-      "community": 10,
+      "community": 1,
       "norm_label": "deployments set their own session length; the default is only a default."
     },
     {
@@ -3387,14 +3497,44 @@
       "norm_label": "test_deadlines_endpoint_serves_due_at_bucket_and_status()"
     },
     {
-      "label": "test_deadline_status_can_be_set_and_is_rejected_when_unknown_or_not_owned()",
+      "label": "test_a_relative_timeframe_is_awaiting_trigger_not_overdue()",
       "file_type": "code",
       "source_file": "backend/tests/test_deadline_scheduling.py",
       "source_location": "L70",
       "_origin": "ast",
+      "id": "tests_test_deadline_scheduling_test_a_relative_timeframe_is_awaiting_trigger_not_overdue",
+      "community": 0,
+      "norm_label": "test_a_relative_timeframe_is_awaiting_trigger_not_overdue()"
+    },
+    {
+      "label": "test_deadlines_endpoint_marks_relative_timeframes_awaiting_trigger()",
+      "file_type": "code",
+      "source_file": "backend/tests/test_deadline_scheduling.py",
+      "source_location": "L86",
+      "_origin": "ast",
+      "id": "tests_test_deadline_scheduling_test_deadlines_endpoint_marks_relative_timeframes_awaiting_trigger",
+      "community": 0,
+      "norm_label": "test_deadlines_endpoint_marks_relative_timeframes_awaiting_trigger()"
+    },
+    {
+      "label": "test_deadline_status_can_be_set_and_is_rejected_when_unknown_or_not_owned()",
+      "file_type": "code",
+      "source_file": "backend/tests/test_deadline_scheduling.py",
+      "source_location": "L95",
+      "_origin": "ast",
       "id": "tests_test_deadline_scheduling_test_deadline_status_can_be_set_and_is_rejected_when_unknown_or_not_owned",
       "community": 0,
       "norm_label": "test_deadline_status_can_be_set_and_is_rejected_when_unknown_or_not_owned()"
+    },
+    {
+      "label": "`document.uploaded_at` stands in for the incident the timeframe is actually",
+      "file_type": "rationale",
+      "source_file": "backend/tests/test_deadline_scheduling.py",
+      "source_location": "L71",
+      "_origin": "ast",
+      "id": "tests_test_deadline_scheduling_rationale_71",
+      "community": 0,
+      "norm_label": "`document.uploaded_at` stands in for the incident the timeframe is actually"
     },
     {
       "label": "test_docling_parser.py",
@@ -3903,7 +4043,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tests_test_input_limits",
-      "community": 44,
+      "community": 1,
       "norm_label": "test_input_limits.py"
     },
     {
@@ -3913,7 +4053,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "tests_test_input_limits_auth",
-      "community": 44,
+      "community": 1,
       "norm_label": "_auth()"
     },
     {
@@ -3923,7 +4063,7 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "tests_test_input_limits_doc",
-      "community": 44,
+      "community": 1,
       "norm_label": "_doc()"
     },
     {
@@ -3933,7 +4073,7 @@
       "source_location": "L32",
       "_origin": "ast",
       "id": "tests_test_input_limits_test_an_over_long_email_is_refused",
-      "community": 44,
+      "community": 1,
       "norm_label": "test_an_over_long_email_is_refused()"
     },
     {
@@ -3943,7 +4083,7 @@
       "source_location": "L39",
       "_origin": "ast",
       "id": "tests_test_input_limits_test_an_email_at_the_limit_is_accepted",
-      "community": 44,
+      "community": 1,
       "norm_label": "test_an_email_at_the_limit_is_accepted()"
     },
     {
@@ -3953,7 +4093,7 @@
       "source_location": "L45",
       "_origin": "ast",
       "id": "tests_test_input_limits_test_an_over_long_question_is_refused_before_reaching_the_model",
-      "community": 44,
+      "community": 1,
       "norm_label": "test_an_over_long_question_is_refused_before_reaching_the_model()"
     },
     {
@@ -3963,7 +4103,7 @@
       "source_location": "L62",
       "_origin": "ast",
       "id": "tests_test_input_limits_test_a_question_at_the_limit_is_accepted",
-      "community": 44,
+      "community": 1,
       "norm_label": "test_a_question_at_the_limit_is_accepted()"
     },
     {
@@ -3973,7 +4113,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tests_test_input_limits_rationale_1",
-      "community": 44,
+      "community": 1,
       "norm_label": "regression cover for the input ceilings.  each of these was unbounded: a 300-cha"
     },
     {
@@ -4173,7 +4313,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tests_test_rate_limit",
-      "community": 1,
+      "community": 10,
       "norm_label": "test_rate_limit.py"
     },
     {
@@ -4183,7 +4323,7 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "tests_test_rate_limit_small_limits",
-      "community": 1,
+      "community": 10,
       "norm_label": "_small_limits()"
     },
     {
@@ -4193,7 +4333,7 @@
       "source_location": "L29",
       "_origin": "ast",
       "id": "tests_test_rate_limit_register",
-      "community": 1,
+      "community": 10,
       "norm_label": "_register()"
     },
     {
@@ -4203,7 +4343,7 @@
       "source_location": "L33",
       "_origin": "ast",
       "id": "tests_test_rate_limit_login",
-      "community": 1,
+      "community": 10,
       "norm_label": "_login()"
     },
     {
@@ -4213,7 +4353,7 @@
       "source_location": "L37",
       "_origin": "ast",
       "id": "tests_test_rate_limit_test_login_locks_out_after_the_attempt_limit",
-      "community": 1,
+      "community": 10,
       "norm_label": "test_login_locks_out_after_the_attempt_limit()"
     },
     {
@@ -4223,7 +4363,7 @@
       "source_location": "L49",
       "_origin": "ast",
       "id": "tests_test_rate_limit_test_the_lockout_also_blocks_the_correct_password",
-      "community": 1,
+      "community": 10,
       "norm_label": "test_the_lockout_also_blocks_the_correct_password()"
     },
     {
@@ -4233,7 +4373,7 @@
       "source_location": "L58",
       "_origin": "ast",
       "id": "tests_test_rate_limit_test_registration_is_capped_per_address",
-      "community": 1,
+      "community": 10,
       "norm_label": "test_registration_is_capped_per_address()"
     },
     {
@@ -4243,7 +4383,7 @@
       "source_location": "L64",
       "_origin": "ast",
       "id": "tests_test_rate_limit_test_a_different_account_is_unaffected_by_another_s_lockout",
-      "community": 1,
+      "community": 10,
       "norm_label": "test_a_different_account_is_unaffected_by_another_s_lockout()"
     },
     {
@@ -4263,7 +4403,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tests_test_rate_limit_rationale_1",
-      "community": 1,
+      "community": 10,
       "norm_label": "regression cover for the auth rate limits.  unlimited password guessing against"
     },
     {
@@ -4273,7 +4413,7 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "tests_test_rate_limit_rationale_22",
-      "community": 1,
+      "community": 10,
       "norm_label": "pin the router's limits to something small and deterministic."
     },
     {
@@ -4283,7 +4423,7 @@
       "source_location": "L50",
       "_origin": "ast",
       "id": "tests_test_rate_limit_rationale_50",
-      "community": 1,
+      "community": 10,
       "norm_label": "otherwise an attacker learns they found it from the response changing."
     },
     {
@@ -4293,7 +4433,7 @@
       "source_location": "L65",
       "_origin": "ast",
       "id": "tests_test_rate_limit_rationale_65",
-      "community": 1,
+      "community": 10,
       "norm_label": "the per-address counter must not lock out the whole application."
     },
     {
@@ -4350,17 +4490,27 @@
       "label": "_doc()",
       "file_type": "code",
       "source_file": "backend/tests/test_startup_recovery.py",
-      "source_location": "L13",
+      "source_location": "L18",
       "_origin": "ast",
       "id": "tests_test_startup_recovery_doc",
       "community": 2,
       "norm_label": "_doc()"
     },
     {
+      "label": "_check()",
+      "file_type": "code",
+      "source_file": "backend/tests/test_startup_recovery.py",
+      "source_location": "L30",
+      "_origin": "ast",
+      "id": "tests_test_startup_recovery_check",
+      "community": 2,
+      "norm_label": "_check()"
+    },
+    {
       "label": "test_documents_left_mid_processing_are_failed_with_a_reason()",
       "file_type": "code",
       "source_file": "backend/tests/test_startup_recovery.py",
-      "source_location": "L25",
+      "source_location": "L38",
       "_origin": "ast",
       "id": "tests_test_startup_recovery_test_documents_left_mid_processing_are_failed_with_a_reason",
       "community": 2,
@@ -4370,7 +4520,7 @@
       "label": "test_finished_documents_are_untouched()",
       "file_type": "code",
       "source_file": "backend/tests/test_startup_recovery.py",
-      "source_location": "L40",
+      "source_location": "L53",
       "_origin": "ast",
       "id": "tests_test_startup_recovery_test_finished_documents_are_untouched",
       "community": 2,
@@ -4380,11 +4530,41 @@
       "label": "test_a_database_failure_at_startup_does_not_stop_the_app()",
       "file_type": "code",
       "source_file": "backend/tests/test_startup_recovery.py",
-      "source_location": "L55",
+      "source_location": "L68",
       "_origin": "ast",
       "id": "tests_test_startup_recovery_test_a_database_failure_at_startup_does_not_stop_the_app",
       "community": 2,
       "norm_label": "test_a_database_failure_at_startup_does_not_stop_the_app()"
+    },
+    {
+      "label": "test_checks_left_mid_processing_are_failed_with_a_reason()",
+      "file_type": "code",
+      "source_file": "backend/tests/test_startup_recovery.py",
+      "source_location": "L77",
+      "_origin": "ast",
+      "id": "tests_test_startup_recovery_test_checks_left_mid_processing_are_failed_with_a_reason",
+      "community": 2,
+      "norm_label": "test_checks_left_mid_processing_are_failed_with_a_reason()"
+    },
+    {
+      "label": "test_finished_checks_are_untouched()",
+      "file_type": "code",
+      "source_file": "backend/tests/test_startup_recovery.py",
+      "source_location": "L94",
+      "_origin": "ast",
+      "id": "tests_test_startup_recovery_test_finished_checks_are_untouched",
+      "community": 2,
+      "norm_label": "test_finished_checks_are_untouched()"
+    },
+    {
+      "label": "test_a_database_failure_at_startup_does_not_stop_the_app_for_checks()",
+      "file_type": "code",
+      "source_file": "backend/tests/test_startup_recovery.py",
+      "source_location": "L107",
+      "_origin": "ast",
+      "id": "tests_test_startup_recovery_test_a_database_failure_at_startup_does_not_stop_the_app_for_checks",
+      "community": 2,
+      "norm_label": "test_a_database_failure_at_startup_does_not_stop_the_app_for_checks()"
     },
     {
       "label": "Regression cover for documents stranded by a restart.  Extraction runs in a Fast",
@@ -4400,9 +4580,9 @@
       "label": "A restart must not undo work that completed before it.",
       "file_type": "rationale",
       "source_file": "backend/tests/test_startup_recovery.py",
-      "source_location": "L41",
+      "source_location": "L54",
       "_origin": "ast",
-      "id": "tests_test_startup_recovery_rationale_41",
+      "id": "tests_test_startup_recovery_rationale_54",
       "community": 2,
       "norm_label": "a restart must not undo work that completed before it."
     },
@@ -4410,11 +4590,21 @@
       "label": "Startup must survive cleanup failing \u2014 the API coming up matters more.",
       "file_type": "rationale",
       "source_file": "backend/tests/test_startup_recovery.py",
-      "source_location": "L56",
+      "source_location": "L69",
       "_origin": "ast",
-      "id": "tests_test_startup_recovery_rationale_56",
+      "id": "tests_test_startup_recovery_rationale_69",
       "community": 2,
       "norm_label": "startup must survive cleanup failing \u2014 the api coming up matters more."
+    },
+    {
+      "label": "run_check is a background task too, so a restart mid-check strands it on     \"pr",
+      "file_type": "rationale",
+      "source_file": "backend/tests/test_startup_recovery.py",
+      "source_location": "L78",
+      "_origin": "ast",
+      "id": "tests_test_startup_recovery_rationale_78",
+      "community": 2,
+      "norm_label": "run_check is a background task too, so a restart mid-check strands it on     \"pr"
     },
     {
       "label": "test_upload.py",
@@ -6870,7 +7060,7 @@
       "label": "`deadlines`",
       "file_type": "document",
       "source_file": "project-understanding/03-data-model.md",
-      "source_location": "L112",
+      "source_location": "L116",
       "_origin": "ast",
       "id": "project_understanding_03_data_model_deadlines",
       "community": 30,
@@ -6880,7 +7070,7 @@
       "label": "`action_items`",
       "file_type": "document",
       "source_file": "project-understanding/03-data-model.md",
-      "source_location": "L134",
+      "source_location": "L138",
       "_origin": "ast",
       "id": "project_understanding_03_data_model_action_items",
       "community": 30,
@@ -6890,7 +7080,7 @@
       "label": "`summaries`",
       "file_type": "document",
       "source_file": "project-understanding/03-data-model.md",
-      "source_location": "L142",
+      "source_location": "L146",
       "_origin": "ast",
       "id": "project_understanding_03_data_model_summaries",
       "community": 30,
@@ -6900,7 +7090,7 @@
       "label": "`eval_runs`",
       "file_type": "document",
       "source_file": "project-understanding/03-data-model.md",
-      "source_location": "L153",
+      "source_location": "L157",
       "_origin": "ast",
       "id": "project_understanding_03_data_model_eval_runs",
       "community": 30,
@@ -6910,7 +7100,7 @@
       "label": "`compliance_checks`",
       "file_type": "document",
       "source_file": "project-understanding/03-data-model.md",
-      "source_location": "L168",
+      "source_location": "L172",
       "_origin": "ast",
       "id": "project_understanding_03_data_model_compliance_checks",
       "community": 30,
@@ -6920,7 +7110,7 @@
       "label": "`check_findings`",
       "file_type": "document",
       "source_file": "project-understanding/03-data-model.md",
-      "source_location": "L186",
+      "source_location": "L190",
       "_origin": "ast",
       "id": "project_understanding_03_data_model_check_findings",
       "community": 30,
@@ -6930,7 +7120,7 @@
       "label": "Query patterns",
       "file_type": "document",
       "source_file": "project-understanding/03-data-model.md",
-      "source_location": "L213",
+      "source_location": "L217",
       "_origin": "ast",
       "id": "project_understanding_03_data_model_query_patterns",
       "community": 30,
@@ -6940,7 +7130,7 @@
       "label": "Things the schema does not have, and why",
       "file_type": "document",
       "source_file": "project-understanding/03-data-model.md",
-      "source_location": "L227",
+      "source_location": "L231",
       "_origin": "ast",
       "id": "project_understanding_03_data_model_things_the_schema_does_not_have_and_why",
       "community": 30,
@@ -7553,7 +7743,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "project_understanding_07_frontend_guide",
-      "community": 32,
+      "community": 36,
       "norm_label": "07-frontend-guide.md"
     },
     {
@@ -7657,10 +7847,20 @@
       "norm_label": "`dashboard`"
     },
     {
-      "label": "`ConfirmModal`",
+      "label": "`ComplianceCheckPanel`",
       "file_type": "document",
       "source_file": "project-understanding/07-frontend-guide.md",
       "source_location": "L131",
+      "_origin": "ast",
+      "id": "project_understanding_07_frontend_guide_compliancecheckpanel",
+      "community": 32,
+      "norm_label": "`compliancecheckpanel`"
+    },
+    {
+      "label": "`ConfirmModal`",
+      "file_type": "document",
+      "source_file": "project-understanding/07-frontend-guide.md",
+      "source_location": "L166",
       "_origin": "ast",
       "id": "project_understanding_07_frontend_guide_confirmmodal",
       "community": 32,
@@ -7670,7 +7870,7 @@
       "label": "Design system \u2014 `tailwind.config.js`",
       "file_type": "document",
       "source_file": "project-understanding/07-frontend-guide.md",
-      "source_location": "L135",
+      "source_location": "L170",
       "_origin": "ast",
       "id": "project_understanding_07_frontend_guide_design_system_tailwind_config_js",
       "community": 32,
@@ -7680,7 +7880,7 @@
       "label": "Accessibility, as implemented",
       "file_type": "document",
       "source_file": "project-understanding/07-frontend-guide.md",
-      "source_location": "L154",
+      "source_location": "L189",
       "_origin": "ast",
       "id": "project_understanding_07_frontend_guide_accessibility_as_implemented",
       "community": 32,
@@ -7690,7 +7890,7 @@
       "label": "Build and scripts",
       "file_type": "document",
       "source_file": "project-understanding/07-frontend-guide.md",
-      "source_location": "L166",
+      "source_location": "L201",
       "_origin": "ast",
       "id": "project_understanding_07_frontend_guide_build_and_scripts",
       "community": 32,
@@ -8440,7 +8640,7 @@
       "label": "Security gaps",
       "file_type": "document",
       "source_file": "project-understanding/14-known-limitations.md",
-      "source_location": "L69",
+      "source_location": "L78",
       "_origin": "ast",
       "id": "project_understanding_14_known_limitations_security_gaps",
       "community": 45,
@@ -8450,7 +8650,7 @@
       "label": "Testing gaps",
       "file_type": "document",
       "source_file": "project-understanding/14-known-limitations.md",
-      "source_location": "L86",
+      "source_location": "L95",
       "_origin": "ast",
       "id": "project_understanding_14_known_limitations_testing_gaps",
       "community": 45,
@@ -8460,7 +8660,7 @@
       "label": "What I would do next, in order",
       "file_type": "document",
       "source_file": "project-understanding/14-known-limitations.md",
-      "source_location": "L97",
+      "source_location": "L106",
       "_origin": "ast",
       "id": "project_understanding_14_known_limitations_what_i_would_do_next_in_order",
       "community": 45,
@@ -9135,9 +9335,9 @@
       "source_file": "backend/alembic/versions/0004_compliance_checks.py",
       "source_location": "L53",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "versions_0004_compliance_checks",
-      "target": "versions_0004_compliance_checks_downgrade",
-      "confidence_score": 1.0
+      "target": "versions_0004_compliance_checks_downgrade"
     },
     {
       "relation": "contains",
@@ -9145,9 +9345,9 @@
       "source_file": "backend/alembic/versions/0004_compliance_checks.py",
       "source_location": "L20",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "versions_0004_compliance_checks",
-      "target": "versions_0004_compliance_checks_upgrade",
-      "confidence_score": 1.0
+      "target": "versions_0004_compliance_checks_upgrade"
     },
     {
       "relation": "contains",
@@ -9262,9 +9462,9 @@
       "source_file": "backend/app/routers/compliance.py",
       "source_location": "L8",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "routers_compliance",
-      "target": "app_auth",
-      "confidence_score": 1.0
+      "target": "app_auth"
     },
     {
       "relation": "imports_from",
@@ -9512,9 +9712,9 @@
       "source_file": "backend/app/models/check_finding.py",
       "source_location": "L4",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "models_check_finding",
-      "target": "app_database",
-      "confidence_score": 1.0
+      "target": "app_database"
     },
     {
       "relation": "imports_from",
@@ -9523,9 +9723,9 @@
       "source_file": "backend/app/models/compliance_check.py",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "models_compliance_check",
-      "target": "app_database",
-      "confidence_score": 1.0
+      "target": "app_database"
     },
     {
       "relation": "imports_from",
@@ -9655,9 +9855,9 @@
       "source_file": "backend/app/routers/compliance.py",
       "source_location": "L9",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "routers_compliance",
-      "target": "app_database",
-      "confidence_score": 1.0
+      "target": "app_database"
     },
     {
       "relation": "imports_from",
@@ -9754,9 +9954,9 @@
       "source_file": "backend/app/services/compliance_check.py",
       "source_location": "L16",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_compliance_check",
-      "target": "app_database",
-      "confidence_score": 1.0
+      "target": "app_database"
     },
     {
       "relation": "imports_from",
@@ -9787,9 +9987,9 @@
       "source_file": "backend/tests/test_compliance_models.py",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_compliance_models",
-      "target": "app_database",
-      "confidence_score": 1.0
+      "target": "app_database"
     },
     {
       "relation": "imports_from",
@@ -9798,9 +9998,9 @@
       "source_file": "backend/tests/test_compliance_run.py",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_compliance_run",
-      "target": "app_database",
-      "confidence_score": 1.0
+      "target": "app_database"
     },
     {
       "relation": "imports_from",
@@ -9843,6 +10043,16 @@
       "confidence_score": 1.0,
       "source": "app_main",
       "target": "app_main_lifespan"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/main.py",
+      "source_location": "L64",
+      "weight": 1.0,
+      "source": "app_main",
+      "target": "app_main_release_interrupted_checks",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -9902,11 +10112,11 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "backend/app/main.py",
-      "source_location": "L21",
+      "source_location": "L26",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_main_rationale_21",
-      "target": "app_main_release_interrupted_documents"
+      "source": "app_main_rationale_26",
+      "target": "app_main_release_interrupted_documents",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -9940,6 +10150,60 @@
       "weight": 1.0,
       "source": "tests_test_startup_recovery_test_finished_documents_are_untouched",
       "target": "app_main_release_interrupted_documents"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/main.py",
+      "source_location": "L94",
+      "weight": 1.0,
+      "source": "app_main_lifespan",
+      "target": "app_main_release_interrupted_checks",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/main.py",
+      "source_location": "L65",
+      "weight": 1.0,
+      "source": "app_main_rationale_65",
+      "target": "app_main_release_interrupted_checks",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/tests/test_startup_recovery.py",
+      "source_location": "L112",
+      "weight": 1.0,
+      "source": "tests_test_startup_recovery_test_a_database_failure_at_startup_does_not_stop_the_app_for_checks",
+      "target": "app_main_release_interrupted_checks"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/tests/test_startup_recovery.py",
+      "source_location": "L85",
+      "weight": 1.0,
+      "source": "tests_test_startup_recovery_test_checks_left_mid_processing_are_failed_with_a_reason",
+      "target": "app_main_release_interrupted_checks"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/tests/test_startup_recovery.py",
+      "source_location": "L99",
+      "weight": 1.0,
+      "source": "tests_test_startup_recovery_test_finished_checks_are_untouched",
+      "target": "app_main_release_interrupted_checks"
     },
     {
       "relation": "references",
@@ -10003,9 +10267,9 @@
       "source_file": "backend/app/routers/compliance.py",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "routers_compliance",
-      "target": "fastapi",
-      "confidence_score": 1.0
+      "target": "fastapi"
     },
     {
       "relation": "imports_from",
@@ -10091,9 +10355,9 @@
       "source_file": "backend/tests/test_upload_helper.py",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_upload_helper",
-      "target": "fastapi",
-      "confidence_score": 1.0
+      "target": "fastapi"
     },
     {
       "relation": "contains",
@@ -10154,9 +10418,9 @@
       "source_file": "backend/app/models/check_finding.py",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "models_check_finding_checkfinding",
-      "target": "base",
-      "confidence_score": 1.0
+      "target": "base"
     },
     {
       "relation": "inherits",
@@ -10164,9 +10428,9 @@
       "source_file": "backend/app/models/compliance_check.py",
       "source_location": "L9",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "models_compliance_check_compliancecheck",
-      "target": "base",
-      "confidence_score": 1.0
+      "target": "base"
     },
     {
       "relation": "inherits",
@@ -10254,9 +10518,9 @@
       "source_file": "backend/app/models/check_finding.py",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "models_check_finding",
-      "target": "models_check_finding_checkfinding",
-      "confidence_score": 1.0
+      "target": "models_check_finding_checkfinding"
     },
     {
       "relation": "contains",
@@ -10264,9 +10528,9 @@
       "source_file": "backend/app/models/compliance_check.py",
       "source_location": "L9",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "models_compliance_check",
-      "target": "models_compliance_check_compliancecheck",
-      "confidence_score": 1.0
+      "target": "models_compliance_check_compliancecheck"
     },
     {
       "relation": "rationale_for",
@@ -10274,9 +10538,9 @@
       "source_file": "backend/app/models/compliance_check.py",
       "source_location": "L10",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "models_compliance_check_rationale_10",
-      "target": "models_compliance_check_compliancecheck",
-      "confidence_score": 1.0
+      "target": "models_compliance_check_compliancecheck"
     },
     {
       "relation": "contains",
@@ -10426,6 +10690,17 @@
       "source_location": "L28",
       "weight": 1.0,
       "source": "tests_test_compliance_run_seed",
+      "target": "models_obligation_obligation"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/tests/test_compliance_run.py",
+      "source_location": "L218",
+      "weight": 1.0,
+      "source": "tests_test_compliance_run_test_run_check_caps_requirements_and_tells_the_user_how_many_it_checked",
       "target": "models_obligation_obligation"
     },
     {
@@ -10626,9 +10901,9 @@
       "source_file": "backend/app/rate_limit.py",
       "source_location": "L12",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_rate_limit",
-      "target": "time",
-      "confidence_score": 1.0
+      "target": "time"
     },
     {
       "relation": "rationale_for",
@@ -11138,9 +11413,9 @@
       "source_file": "backend/app/services/compliance_check.py",
       "source_location": "L195",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_compliance_check_checkbatch",
-      "target": "basemodel",
-      "confidence_score": 1.0
+      "target": "basemodel"
     },
     {
       "relation": "inherits",
@@ -11148,9 +11423,9 @@
       "source_file": "backend/app/services/compliance_check.py",
       "source_location": "L176",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_compliance_check_checkverdict",
-      "target": "basemodel",
-      "confidence_score": 1.0
+      "target": "basemodel"
     },
     {
       "relation": "inherits",
@@ -11250,9 +11525,9 @@
       "source_file": "backend/app/routers/chat.py",
       "source_location": "L55",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "routers_chat_rationale_55",
-      "target": "routers_chat_findings",
-      "confidence_score": 1.0
+      "target": "routers_chat_findings"
     },
     {
       "relation": "references",
@@ -11326,9 +11601,9 @@
       "source_file": "backend/app/routers/chat.py",
       "source_location": "L90",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "routers_chat_rationale_90",
-      "target": "routers_chat_select",
-      "confidence_score": 1.0
+      "target": "routers_chat_select"
     },
     {
       "relation": "calls",
@@ -11391,9 +11666,9 @@
       "source_file": "backend/app/routers/compliance.py",
       "source_location": "L28",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "routers_compliance",
-      "target": "routers_compliance_counts",
-      "confidence_score": 1.0
+      "target": "routers_compliance_counts"
     },
     {
       "relation": "contains",
@@ -11401,9 +11676,9 @@
       "source_file": "backend/app/routers/compliance.py",
       "source_location": "L34",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "routers_compliance",
-      "target": "routers_compliance_create_check",
-      "confidence_score": 1.0
+      "target": "routers_compliance_create_check"
     },
     {
       "relation": "contains",
@@ -11411,9 +11686,9 @@
       "source_file": "backend/app/routers/compliance.py",
       "source_location": "L126",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "routers_compliance",
-      "target": "routers_compliance_delete_check",
-      "confidence_score": 1.0
+      "target": "routers_compliance_delete_check"
     },
     {
       "relation": "contains",
@@ -11421,9 +11696,9 @@
       "source_file": "backend/app/routers/compliance.py",
       "source_location": "L96",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "routers_compliance",
-      "target": "routers_compliance_get_check",
-      "confidence_score": 1.0
+      "target": "routers_compliance_get_check"
     },
     {
       "relation": "contains",
@@ -11431,8 +11706,18 @@
       "source_file": "backend/app/routers/compliance.py",
       "source_location": "L18",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "routers_compliance",
-      "target": "routers_compliance_get_owned_check",
+      "target": "routers_compliance_get_owned_check"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/routers/compliance.py",
+      "source_location": "L33",
+      "weight": 1.0,
+      "source": "routers_compliance",
+      "target": "routers_compliance_iso_utc",
       "confidence_score": 1.0
     },
     {
@@ -11441,9 +11726,9 @@
       "source_file": "backend/app/routers/compliance.py",
       "source_location": "L72",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "routers_compliance",
-      "target": "routers_compliance_list_checks",
-      "confidence_score": 1.0
+      "target": "routers_compliance_list_checks"
     },
     {
       "relation": "calls",
@@ -11452,9 +11737,9 @@
       "source_file": "backend/app/routers/compliance.py",
       "source_location": "L127",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "routers_compliance_delete_check",
-      "target": "routers_compliance_get_owned_check",
-      "confidence_score": 1.0
+      "target": "routers_compliance_get_owned_check"
     },
     {
       "relation": "calls",
@@ -11463,9 +11748,9 @@
       "source_file": "backend/app/routers/compliance.py",
       "source_location": "L97",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "routers_compliance_get_check",
-      "target": "routers_compliance_get_owned_check",
-      "confidence_score": 1.0
+      "target": "routers_compliance_get_owned_check"
     },
     {
       "relation": "references",
@@ -11474,9 +11759,9 @@
       "source_file": "backend/app/routers/compliance.py",
       "source_location": "L18",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "routers_compliance_get_owned_check",
-      "target": "backend_app_routers_compliance_py_session",
-      "confidence_score": 1.0
+      "target": "backend_app_routers_compliance_py_session"
     },
     {
       "relation": "references",
@@ -11485,9 +11770,9 @@
       "source_file": "backend/app/routers/compliance.py",
       "source_location": "L18",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "routers_compliance_get_owned_check",
-      "target": "backend_app_routers_compliance_py_user",
-      "confidence_score": 1.0
+      "target": "backend_app_routers_compliance_py_user"
     },
     {
       "relation": "references",
@@ -11496,9 +11781,9 @@
       "source_file": "backend/app/routers/compliance.py",
       "source_location": "L18",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "routers_compliance_get_owned_check",
-      "target": "compliancecheck",
-      "confidence_score": 1.0
+      "target": "compliancecheck"
     },
     {
       "relation": "calls",
@@ -11518,9 +11803,9 @@
       "source_file": "backend/app/routers/compliance.py",
       "source_location": "L34",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "routers_compliance_create_check",
-      "target": "backend_app_routers_compliance_py_session",
-      "confidence_score": 1.0
+      "target": "backend_app_routers_compliance_py_session"
     },
     {
       "relation": "references",
@@ -11529,9 +11814,9 @@
       "source_file": "backend/app/routers/compliance.py",
       "source_location": "L126",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "routers_compliance_delete_check",
-      "target": "backend_app_routers_compliance_py_session",
-      "confidence_score": 1.0
+      "target": "backend_app_routers_compliance_py_session"
     },
     {
       "relation": "references",
@@ -11540,9 +11825,9 @@
       "source_file": "backend/app/routers/compliance.py",
       "source_location": "L96",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "routers_compliance_get_check",
-      "target": "backend_app_routers_compliance_py_session",
-      "confidence_score": 1.0
+      "target": "backend_app_routers_compliance_py_session"
     },
     {
       "relation": "references",
@@ -11551,9 +11836,9 @@
       "source_file": "backend/app/routers/compliance.py",
       "source_location": "L72",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "routers_compliance_list_checks",
-      "target": "backend_app_routers_compliance_py_session",
-      "confidence_score": 1.0
+      "target": "backend_app_routers_compliance_py_session"
     },
     {
       "relation": "references",
@@ -11562,9 +11847,9 @@
       "source_file": "backend/app/routers/compliance.py",
       "source_location": "L34",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "routers_compliance_create_check",
-      "target": "backend_app_routers_compliance_py_user",
-      "confidence_score": 1.0
+      "target": "backend_app_routers_compliance_py_user"
     },
     {
       "relation": "references",
@@ -11573,9 +11858,9 @@
       "source_file": "backend/app/routers/compliance.py",
       "source_location": "L126",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "routers_compliance_delete_check",
-      "target": "backend_app_routers_compliance_py_user",
-      "confidence_score": 1.0
+      "target": "backend_app_routers_compliance_py_user"
     },
     {
       "relation": "references",
@@ -11584,9 +11869,9 @@
       "source_file": "backend/app/routers/compliance.py",
       "source_location": "L96",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "routers_compliance_get_check",
-      "target": "backend_app_routers_compliance_py_user",
-      "confidence_score": 1.0
+      "target": "backend_app_routers_compliance_py_user"
     },
     {
       "relation": "references",
@@ -11595,9 +11880,9 @@
       "source_file": "backend/app/routers/compliance.py",
       "source_location": "L72",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "routers_compliance_list_checks",
-      "target": "backend_app_routers_compliance_py_user",
-      "confidence_score": 1.0
+      "target": "backend_app_routers_compliance_py_user"
     },
     {
       "relation": "calls",
@@ -11606,9 +11891,9 @@
       "source_file": "backend/app/routers/compliance.py",
       "source_location": "L48",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "routers_compliance_create_check",
-      "target": "compliancecheck",
-      "confidence_score": 1.0
+      "target": "compliancecheck"
     },
     {
       "relation": "references",
@@ -11617,9 +11902,9 @@
       "source_file": "backend/app/routers/compliance.py",
       "source_location": "L28",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "routers_compliance_counts",
-      "target": "checkfinding",
-      "confidence_score": 1.0
+      "target": "checkfinding"
     },
     {
       "relation": "calls",
@@ -11628,9 +11913,9 @@
       "source_file": "backend/app/routers/compliance.py",
       "source_location": "L107",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "routers_compliance_get_check",
-      "target": "routers_compliance_counts",
-      "confidence_score": 1.0
+      "target": "routers_compliance_counts"
     },
     {
       "relation": "calls",
@@ -11639,8 +11924,40 @@
       "source_file": "backend/app/routers/compliance.py",
       "source_location": "L89",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "routers_compliance_list_checks",
-      "target": "routers_compliance_counts",
+      "target": "routers_compliance_counts"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/routers/compliance.py",
+      "source_location": "L112",
+      "weight": 1.0,
+      "source": "routers_compliance_get_check",
+      "target": "routers_compliance_iso_utc",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/routers/compliance.py",
+      "source_location": "L94",
+      "weight": 1.0,
+      "source": "routers_compliance_list_checks",
+      "target": "routers_compliance_iso_utc",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/routers/compliance.py",
+      "source_location": "L34",
+      "weight": 1.0,
+      "source": "routers_compliance_rationale_34",
+      "target": "routers_compliance_iso_utc",
       "confidence_score": 1.0
     },
     {
@@ -11650,9 +11967,9 @@
       "source_file": "backend/app/routers/compliance.py",
       "source_location": "L34",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "routers_compliance_create_check",
-      "target": "backend_app_routers_compliance_py_backgroundtasks",
-      "confidence_score": 1.0
+      "target": "backend_app_routers_compliance_py_backgroundtasks"
     },
     {
       "relation": "references",
@@ -11661,9 +11978,9 @@
       "source_file": "backend/app/routers/compliance.py",
       "source_location": "L34",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "routers_compliance_create_check",
-      "target": "backend_app_routers_compliance_py_uploadfile",
-      "confidence_score": 1.0
+      "target": "backend_app_routers_compliance_py_uploadfile"
     },
     {
       "relation": "calls",
@@ -11800,6 +12117,17 @@
       "confidence": "INFERRED",
       "confidence_score": 0.8,
       "source_file": "backend/app/routers/deadlines.py",
+      "source_location": "L40",
+      "weight": 1.0,
+      "source": "routers_deadlines_get_deadlines",
+      "target": "services_deadlines_is_relative_due_date"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/app/routers/deadlines.py",
       "source_location": "L36",
       "weight": 1.0,
       "source": "routers_deadlines_get_deadlines",
@@ -11842,11 +12170,11 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "backend/app/routers/deadlines.py",
-      "source_location": "L57",
+      "source_location": "L61",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "routers_deadlines_rationale_57",
-      "target": "routers_deadlines_update_deadline_status"
+      "source": "routers_deadlines_rationale_61",
+      "target": "routers_deadlines_update_deadline_status",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -12401,9 +12729,9 @@
       "source_file": "backend/app/routers/upload.py",
       "source_location": "L47",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "routers_upload",
-      "target": "routers_upload_save_upload",
-      "confidence_score": 1.0
+      "target": "routers_upload_save_upload"
     },
     {
       "relation": "contains",
@@ -12422,9 +12750,9 @@
       "source_file": "backend/app/routers/upload.py",
       "source_location": "L39",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "routers_upload_fit_filename",
-      "target": "backend_app_routers_upload_py_path",
-      "confidence_score": 1.0
+      "target": "backend_app_routers_upload_py_path"
     },
     {
       "relation": "rationale_for",
@@ -12443,9 +12771,9 @@
       "source_file": "backend/app/routers/upload.py",
       "source_location": "L56",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "routers_upload_save_upload",
-      "target": "routers_upload_fit_filename",
-      "confidence_score": 1.0
+      "target": "routers_upload_fit_filename"
     },
     {
       "relation": "calls",
@@ -12464,9 +12792,9 @@
       "source_file": "backend/app/routers/upload.py",
       "source_location": "L48",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "routers_upload_rationale_48",
-      "target": "routers_upload_save_upload",
-      "confidence_score": 1.0
+      "target": "routers_upload_save_upload"
     },
     {
       "relation": "references",
@@ -12475,9 +12803,9 @@
       "source_file": "backend/app/routers/upload.py",
       "source_location": "L47",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "routers_upload_save_upload",
-      "target": "backend_app_routers_upload_py_path",
-      "confidence_score": 1.0
+      "target": "backend_app_routers_upload_py_path"
     },
     {
       "relation": "references",
@@ -12486,9 +12814,9 @@
       "source_file": "backend/app/routers/upload.py",
       "source_location": "L47",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "routers_upload_save_upload",
-      "target": "backend_app_routers_upload_py_uploadfile",
-      "confidence_score": 1.0
+      "target": "backend_app_routers_upload_py_uploadfile"
     },
     {
       "relation": "calls",
@@ -12497,9 +12825,9 @@
       "source_file": "backend/app/routers/upload.py",
       "source_location": "L115",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "routers_upload_upload_document",
-      "target": "routers_upload_save_upload",
-      "confidence_score": 1.0
+      "target": "routers_upload_save_upload"
     },
     {
       "relation": "calls",
@@ -12551,9 +12879,9 @@
       "source_file": "backend/app/routers/upload.py",
       "source_location": "L10",
       "weight": 0.8,
+      "confidence_score": 0.5,
       "source": "backend_app_routers_upload_py_uploadfile",
-      "target": "app_schemas_uploadresponse",
-      "confidence_score": 0.5
+      "target": "app_schemas_uploadresponse"
     },
     {
       "relation": "references",
@@ -12562,9 +12890,9 @@
       "source_file": "backend/app/routers/upload.py",
       "source_location": "L92",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "routers_upload_upload_document",
-      "target": "backend_app_routers_upload_py_uploadfile",
-      "confidence_score": 1.0
+      "target": "backend_app_routers_upload_py_uploadfile"
     },
     {
       "relation": "uses",
@@ -12572,9 +12900,9 @@
       "source_file": "backend/app/routers/upload.py",
       "source_location": "L10",
       "weight": 0.8,
+      "confidence_score": 0.5,
       "source": "backend_app_routers_upload_py_path",
-      "target": "app_schemas_uploadresponse",
-      "confidence_score": 0.5
+      "target": "app_schemas_uploadresponse"
     },
     {
       "relation": "calls",
@@ -12583,9 +12911,9 @@
       "source_file": "backend/app/routers/upload.py",
       "source_location": "L98",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "routers_upload_upload_document",
-      "target": "backend_app_routers_upload_py_path",
-      "confidence_score": 1.0
+      "target": "backend_app_routers_upload_py_path"
     },
     {
       "relation": "references",
@@ -12594,9 +12922,9 @@
       "source_file": "backend/app/routers/upload.py",
       "source_location": "L92",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "routers_upload_upload_document",
-      "target": "backend_app_routers_upload_py_backgroundtasks",
-      "confidence_score": 1.0
+      "target": "backend_app_routers_upload_py_backgroundtasks"
     },
     {
       "relation": "references",
@@ -12626,9 +12954,9 @@
       "source_file": "backend/app/routers/upload.py",
       "source_location": "L10",
       "weight": 0.8,
+      "confidence_score": 0.5,
       "source": "backend_app_routers_upload_py_backgroundtasks",
-      "target": "app_schemas_uploadresponse",
-      "confidence_score": 0.5
+      "target": "app_schemas_uploadresponse"
     },
     {
       "relation": "uses",
@@ -12718,9 +13046,9 @@
       "source_file": "backend/app/services/compliance_check.py",
       "source_location": "L11",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_compliance_check",
-      "target": "backend_app_services_compliance_check_py_datetime",
-      "confidence_score": 1.0
+      "target": "backend_app_services_compliance_check_py_datetime"
     },
     {
       "relation": "contains",
@@ -12728,9 +13056,9 @@
       "source_file": "backend/app/services/compliance_check.py",
       "source_location": "L195",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_compliance_check",
-      "target": "services_compliance_check_checkbatch",
-      "confidence_score": 1.0
+      "target": "services_compliance_check_checkbatch"
     },
     {
       "relation": "contains",
@@ -12738,9 +13066,9 @@
       "source_file": "backend/app/services/compliance_check.py",
       "source_location": "L176",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_compliance_check",
-      "target": "services_compliance_check_checkverdict",
-      "confidence_score": 1.0
+      "target": "services_compliance_check_checkverdict"
     },
     {
       "relation": "contains",
@@ -12748,9 +13076,9 @@
       "source_file": "backend/app/services/compliance_check.py",
       "source_location": "L74",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_compliance_check",
-      "target": "services_compliance_check_find_incident_datetime",
-      "confidence_score": 1.0
+      "target": "services_compliance_check_find_incident_datetime"
     },
     {
       "relation": "contains",
@@ -12758,9 +13086,9 @@
       "source_file": "backend/app/services/compliance_check.py",
       "source_location": "L43",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_compliance_check",
-      "target": "services_compliance_check_first_time_in",
-      "confidence_score": 1.0
+      "target": "services_compliance_check_first_time_in"
     },
     {
       "relation": "contains",
@@ -12768,9 +13096,9 @@
       "source_file": "backend/app/services/compliance_check.py",
       "source_location": "L136",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_compliance_check",
-      "target": "services_compliance_check_load_requirements",
-      "confidence_score": 1.0
+      "target": "services_compliance_check_load_requirements"
     },
     {
       "relation": "contains",
@@ -12778,9 +13106,9 @@
       "source_file": "backend/app/services/compliance_check.py",
       "source_location": "L229",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_compliance_check",
-      "target": "services_compliance_check_render_requirements",
-      "confidence_score": 1.0
+      "target": "services_compliance_check_render_requirements"
     },
     {
       "relation": "contains",
@@ -12788,9 +13116,9 @@
       "source_file": "backend/app/services/compliance_check.py",
       "source_location": "L126",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_compliance_check",
-      "target": "services_compliance_check_requirement",
-      "confidence_score": 1.0
+      "target": "services_compliance_check_requirement"
     },
     {
       "relation": "contains",
@@ -12798,9 +13126,9 @@
       "source_file": "backend/app/services/compliance_check.py",
       "source_location": "L260",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_compliance_check",
-      "target": "services_compliance_check_run_check",
-      "confidence_score": 1.0
+      "target": "services_compliance_check_run_check"
     },
     {
       "relation": "contains",
@@ -12808,9 +13136,9 @@
       "source_file": "backend/app/services/compliance_check.py",
       "source_location": "L154",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_compliance_check",
-      "target": "services_compliance_check_select_evidence",
-      "confidence_score": 1.0
+      "target": "services_compliance_check_select_evidence"
     },
     {
       "relation": "contains",
@@ -12818,9 +13146,9 @@
       "source_file": "backend/app/services/compliance_check.py",
       "source_location": "L56",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_compliance_check",
-      "target": "services_compliance_check_sentence_with_date",
-      "confidence_score": 1.0
+      "target": "services_compliance_check_sentence_with_date"
     },
     {
       "relation": "contains",
@@ -12828,9 +13156,9 @@
       "source_file": "backend/app/services/compliance_check.py",
       "source_location": "L64",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_compliance_check",
-      "target": "services_compliance_check_sentence_with_trigger_word",
-      "confidence_score": 1.0
+      "target": "services_compliance_check_sentence_with_trigger_word"
     },
     {
       "relation": "contains",
@@ -12838,9 +13166,9 @@
       "source_file": "backend/app/services/compliance_check.py",
       "source_location": "L237",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_compliance_check",
-      "target": "services_compliance_check_verdicts_for",
-      "confidence_score": 1.0
+      "target": "services_compliance_check_verdicts_for"
     },
     {
       "relation": "rationale_for",
@@ -12848,9 +13176,9 @@
       "source_file": "backend/app/services/compliance_check.py",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_compliance_check_rationale_1",
-      "target": "services_compliance_check",
-      "confidence_score": 1.0
+      "target": "services_compliance_check"
     },
     {
       "relation": "calls",
@@ -12859,9 +13187,9 @@
       "source_file": "backend/app/services/compliance_check.py",
       "source_location": "L95",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_compliance_check_find_incident_datetime",
-      "target": "services_compliance_check_first_time_in",
-      "confidence_score": 1.0
+      "target": "services_compliance_check_first_time_in"
     },
     {
       "relation": "references",
@@ -12870,9 +13198,9 @@
       "source_file": "backend/app/services/compliance_check.py",
       "source_location": "L43",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_compliance_check_first_time_in",
-      "target": "time",
-      "confidence_score": 1.0
+      "target": "time"
     },
     {
       "relation": "calls",
@@ -12881,9 +13209,9 @@
       "source_file": "backend/app/services/compliance_check.py",
       "source_location": "L112",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_compliance_check_find_incident_datetime",
-      "target": "time",
-      "confidence_score": 1.0
+      "target": "time"
     },
     {
       "relation": "calls",
@@ -12903,9 +13231,9 @@
       "source_file": "backend/app/services/compliance_check.py",
       "source_location": "L100",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_compliance_check_find_incident_datetime",
-      "target": "services_compliance_check_sentence_with_date",
-      "confidence_score": 1.0
+      "target": "services_compliance_check_sentence_with_date"
     },
     {
       "relation": "rationale_for",
@@ -12913,9 +13241,9 @@
       "source_file": "backend/app/services/compliance_check.py",
       "source_location": "L57",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_compliance_check_rationale_57",
-      "target": "services_compliance_check_sentence_with_date",
-      "confidence_score": 1.0
+      "target": "services_compliance_check_sentence_with_date"
     },
     {
       "relation": "calls",
@@ -12935,9 +13263,9 @@
       "source_file": "backend/app/services/compliance_check.py",
       "source_location": "L93",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_compliance_check_find_incident_datetime",
-      "target": "services_compliance_check_sentence_with_trigger_word",
-      "confidence_score": 1.0
+      "target": "services_compliance_check_sentence_with_trigger_word"
     },
     {
       "relation": "rationale_for",
@@ -12945,9 +13273,9 @@
       "source_file": "backend/app/services/compliance_check.py",
       "source_location": "L65",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_compliance_check_rationale_65",
-      "target": "services_compliance_check_sentence_with_trigger_word",
-      "confidence_score": 1.0
+      "target": "services_compliance_check_sentence_with_trigger_word"
     },
     {
       "relation": "references",
@@ -12956,9 +13284,9 @@
       "source_file": "backend/app/services/compliance_check.py",
       "source_location": "L74",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_compliance_check_find_incident_datetime",
-      "target": "backend_app_services_compliance_check_py_datetime",
-      "confidence_score": 1.0
+      "target": "backend_app_services_compliance_check_py_datetime"
     },
     {
       "relation": "calls",
@@ -12977,9 +13305,9 @@
       "source_file": "backend/app/services/compliance_check.py",
       "source_location": "L75",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_compliance_check_rationale_75",
-      "target": "services_compliance_check_find_incident_datetime",
-      "confidence_score": 1.0
+      "target": "services_compliance_check_find_incident_datetime"
     },
     {
       "relation": "calls",
@@ -12988,9 +13316,9 @@
       "source_file": "backend/app/services/compliance_check.py",
       "source_location": "L302",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_compliance_check_run_check",
-      "target": "services_compliance_check_find_incident_datetime",
-      "confidence_score": 1.0
+      "target": "services_compliance_check_find_incident_datetime"
     },
     {
       "relation": "calls",
@@ -13086,6 +13414,17 @@
       "confidence": "INFERRED",
       "confidence_score": 0.8,
       "source_file": "backend/tests/test_compliance_incident_time.py",
+      "source_location": "L57",
+      "weight": 1.0,
+      "source": "tests_test_compliance_incident_time_test_the_trigger_sentences_own_date_is_used_not_an_earlier_report_date",
+      "target": "services_compliance_check_find_incident_datetime"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/tests/test_compliance_incident_time.py",
       "source_location": "L49",
       "weight": 1.0,
       "source": "tests_test_compliance_incident_time_test_trigger_word_time_beats_date_sentence_time_when_both_are_present",
@@ -13098,17 +13437,17 @@
       "source_file": "backend/app/services/compliance_check.py",
       "source_location": "L136",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_compliance_check_load_requirements",
-      "target": "services_compliance_check_requirement",
-      "confidence_score": 1.0
+      "target": "services_compliance_check_requirement"
     },
     {
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "backend/app/services/compliance_check.py",
-      "source_location": "L127",
+      "source_location": "L138",
       "weight": 1.0,
-      "source": "services_compliance_check_rationale_127",
+      "source": "services_compliance_check_rationale_138",
       "target": "services_compliance_check_requirement",
       "confidence_score": 1.0
     },
@@ -13119,9 +13458,9 @@
       "source_file": "backend/app/services/compliance_check.py",
       "source_location": "L229",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_compliance_check_render_requirements",
-      "target": "services_compliance_check_requirement",
-      "confidence_score": 1.0
+      "target": "services_compliance_check_requirement"
     },
     {
       "relation": "references",
@@ -13130,9 +13469,9 @@
       "source_file": "backend/app/services/compliance_check.py",
       "source_location": "L237",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_compliance_check_verdicts_for",
-      "target": "services_compliance_check_requirement",
-      "confidence_score": 1.0
+      "target": "services_compliance_check_requirement"
     },
     {
       "relation": "calls",
@@ -13152,17 +13491,17 @@
       "source_file": "backend/app/services/compliance_check.py",
       "source_location": "L307",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_compliance_check_run_check",
-      "target": "services_compliance_check_load_requirements",
-      "confidence_score": 1.0
+      "target": "services_compliance_check_load_requirements"
     },
     {
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "backend/app/services/compliance_check.py",
-      "source_location": "L155",
+      "source_location": "L166",
       "weight": 1.0,
-      "source": "services_compliance_check_rationale_155",
+      "source": "services_compliance_check_rationale_166",
       "target": "services_compliance_check_select_evidence",
       "confidence_score": 1.0
     },
@@ -13184,9 +13523,9 @@
       "source_file": "backend/app/services/compliance_check.py",
       "source_location": "L241",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_compliance_check_verdicts_for",
-      "target": "services_compliance_check_select_evidence",
-      "confidence_score": 1.0
+      "target": "services_compliance_check_select_evidence"
     },
     {
       "relation": "calls",
@@ -13227,9 +13566,9 @@
       "source_file": "backend/app/services/compliance_check.py",
       "source_location": "L184",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_compliance_check_checkverdict",
-      "target": "services_compliance_check_checkverdict_coerce_evidence",
-      "confidence_score": 1.0
+      "target": "services_compliance_check_checkverdict_coerce_evidence"
     },
     {
       "relation": "references",
@@ -13238,9 +13577,9 @@
       "source_file": "backend/app/services/compliance_check.py",
       "source_location": "L237",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_compliance_check_verdicts_for",
-      "target": "services_compliance_check_checkverdict",
-      "confidence_score": 1.0
+      "target": "services_compliance_check_checkverdict"
     },
     {
       "relation": "calls",
@@ -13251,6 +13590,17 @@
       "source_location": "L40",
       "weight": 1.0,
       "source": "tests_test_compliance_run_test_check_verdict_coerces_the_word_null_to_none",
+      "target": "services_compliance_check_checkverdict"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/tests/test_compliance_run.py",
+      "source_location": "L224",
+      "weight": 1.0,
+      "source": "tests_test_compliance_run_test_run_check_caps_requirements_and_tells_the_user_how_many_it_checked",
       "target": "services_compliance_check_checkverdict"
     },
     {
@@ -13279,11 +13629,22 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "backend/app/services/compliance_check.py",
-      "source_location": "L185",
+      "source_location": "L196",
       "weight": 1.0,
-      "source": "services_compliance_check_rationale_185",
+      "source": "services_compliance_check_rationale_196",
       "target": "services_compliance_check_checkverdict_coerce_evidence",
       "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/tests/test_compliance_run.py",
+      "source_location": "L224",
+      "weight": 1.0,
+      "source": "tests_test_compliance_run_test_run_check_caps_requirements_and_tells_the_user_how_many_it_checked",
+      "target": "services_compliance_check_checkbatch"
     },
     {
       "relation": "calls",
@@ -13314,17 +13675,17 @@
       "source_file": "backend/app/services/compliance_check.py",
       "source_location": "L242",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_compliance_check_verdicts_for",
-      "target": "services_compliance_check_render_requirements",
-      "confidence_score": 1.0
+      "target": "services_compliance_check_render_requirements"
     },
     {
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "backend/app/services/compliance_check.py",
-      "source_location": "L238",
+      "source_location": "L249",
       "weight": 1.0,
-      "source": "services_compliance_check_rationale_238",
+      "source": "services_compliance_check_rationale_249",
       "target": "services_compliance_check_verdicts_for",
       "confidence_score": 1.0
     },
@@ -13335,9 +13696,9 @@
       "source_file": "backend/app/services/compliance_check.py",
       "source_location": "L319",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_compliance_check_run_check",
-      "target": "services_compliance_check_verdicts_for",
-      "confidence_score": 1.0
+      "target": "services_compliance_check_verdicts_for"
     },
     {
       "relation": "calls",
@@ -13354,9 +13715,9 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "backend/app/services/compliance_check.py",
-      "source_location": "L261",
+      "source_location": "L272",
       "weight": 1.0,
-      "source": "services_compliance_check_rationale_261",
+      "source": "services_compliance_check_rationale_272",
       "target": "services_compliance_check_run_check",
       "confidence_score": 1.0
     },
@@ -13392,6 +13753,17 @@
       "weight": 1.0,
       "source": "services_compliance_check_run_check",
       "target": "services_docling_parser_parse_document"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/tests/test_compliance_run.py",
+      "source_location": "L231",
+      "weight": 1.0,
+      "source": "tests_test_compliance_run_test_run_check_caps_requirements_and_tells_the_user_how_many_it_checked",
+      "target": "services_compliance_check_run_check"
     },
     {
       "relation": "calls",
@@ -13455,9 +13827,9 @@
       "source_file": "backend/app/services/deadlines.py",
       "source_location": "L10",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_deadlines",
-      "target": "backend_app_services_deadlines_py_datetime",
-      "confidence_score": 1.0
+      "target": "backend_app_services_deadlines_py_datetime"
     },
     {
       "relation": "contains",
@@ -13468,6 +13840,16 @@
       "confidence_score": 1.0,
       "source": "services_deadlines",
       "target": "services_deadlines_bucket_for"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/deadlines.py",
+      "source_location": "L83",
+      "weight": 1.0,
+      "source": "services_deadlines",
+      "target": "services_deadlines_is_relative_due_date",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -13500,6 +13882,17 @@
       "target": "services_deadlines"
     },
     {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/deadlines.py",
+      "source_location": "L100",
+      "weight": 1.0,
+      "source": "services_deadlines_is_relative_due_date",
+      "target": "services_deadlines_parse_relative",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "references",
       "context": "return_type",
       "confidence": "EXTRACTED",
@@ -13514,9 +13907,9 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "backend/app/services/deadlines.py",
-      "source_location": "L46",
+      "source_location": "L48",
       "weight": 1.0,
-      "source": "services_deadlines_rationale_46",
+      "source": "services_deadlines_rationale_48",
       "target": "services_deadlines_parse_relative",
       "confidence_score": 1.0
     },
@@ -13623,9 +14016,9 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "backend/app/services/deadlines.py",
-      "source_location": "L59",
+      "source_location": "L61",
       "weight": 1.0,
-      "source": "services_deadlines_rationale_59",
+      "source": "services_deadlines_rationale_61",
       "target": "services_deadlines_resolve_due_at",
       "confidence_score": 1.0
     },
@@ -13636,9 +14029,9 @@
       "source_file": "backend/app/services/deadlines.py",
       "source_location": "L58",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_deadlines_resolve_due_at",
-      "target": "backend_app_services_deadlines_py_datetime",
-      "confidence_score": 1.0
+      "target": "backend_app_services_deadlines_py_datetime"
     },
     {
       "relation": "calls",
@@ -13691,17 +14084,49 @@
       "source_file": "backend/app/services/deadlines.py",
       "source_location": "L81",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_deadlines_bucket_for",
-      "target": "backend_app_services_deadlines_py_datetime",
-      "confidence_score": 1.0
+      "target": "backend_app_services_deadlines_py_datetime"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/app/services/deadlines.py",
+      "source_location": "L98",
+      "weight": 1.0,
+      "source": "services_deadlines_is_relative_due_date",
+      "target": "services_extraction_latest_date_in"
     },
     {
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "backend/app/services/deadlines.py",
-      "source_location": "L82",
+      "source_location": "L84",
       "weight": 1.0,
-      "source": "services_deadlines_rationale_82",
+      "source": "services_deadlines_rationale_84",
+      "target": "services_deadlines_is_relative_due_date",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/tests/test_deadline_scheduling.py",
+      "source_location": "L78",
+      "weight": 1.0,
+      "source": "tests_test_deadline_scheduling_test_a_relative_timeframe_is_awaiting_trigger_not_overdue",
+      "target": "services_deadlines_is_relative_due_date"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/deadlines.py",
+      "source_location": "L104",
+      "weight": 1.0,
+      "source": "services_deadlines_rationale_104",
       "target": "services_deadlines_bucket_for",
       "confidence_score": 1.0
     },
@@ -14914,9 +15339,9 @@
       "source_file": "backend/app/services/extraction.py",
       "source_location": "L210",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_extraction_rationale_210",
-      "target": "services_extraction_latest_date_in",
-      "confidence_score": 1.0
+      "target": "services_extraction_latest_date_in"
     },
     {
       "relation": "references",
@@ -14968,9 +15393,9 @@
       "source_file": "backend/app/services/extraction.py",
       "source_location": "L239",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_extraction_rationale_239",
-      "target": "services_extraction_normalize_due_date",
-      "confidence_score": 1.0
+      "target": "services_extraction_normalize_due_date"
     },
     {
       "relation": "calls",
@@ -15011,9 +15436,9 @@
       "source_file": "backend/app/services/extraction.py",
       "source_location": "L259",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_extraction_rationale_259",
-      "target": "services_extraction_headings_match",
-      "confidence_score": 1.0
+      "target": "services_extraction_headings_match"
     },
     {
       "relation": "references",
@@ -15131,9 +15556,9 @@
       "source_file": "backend/app/services/extraction.py",
       "source_location": "L289",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_extraction_rationale_289",
-      "target": "services_extraction_extract_batch",
-      "confidence_score": 1.0
+      "target": "services_extraction_extract_batch"
     },
     {
       "relation": "calls",
@@ -15163,9 +15588,9 @@
       "source_file": "backend/app/services/extraction.py",
       "source_location": "L326",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_extraction_rationale_326",
-      "target": "services_extraction_plan_batches",
-      "confidence_score": 1.0
+      "target": "services_extraction_plan_batches"
     },
     {
       "relation": "calls",
@@ -15206,9 +15631,9 @@
       "source_file": "backend/app/services/extraction.py",
       "source_location": "L331",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_extraction_rationale_331",
-      "target": "services_extraction_extract_section",
-      "confidence_score": 1.0
+      "target": "services_extraction_extract_section"
     },
     {
       "relation": "calls",
@@ -15249,9 +15674,9 @@
       "source_file": "backend/app/services/extraction.py",
       "source_location": "L336",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_extraction_rationale_336",
-      "target": "services_extraction_check_relevance",
-      "confidence_score": 1.0
+      "target": "services_extraction_check_relevance"
     },
     {
       "relation": "calls",
@@ -15389,9 +15814,9 @@
       "source_file": "backend/app/services/retrieval.py",
       "source_location": "L24",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_retrieval",
-      "target": "services_retrieval_rank",
-      "confidence_score": 1.0
+      "target": "services_retrieval_rank"
     },
     {
       "relation": "contains",
@@ -15399,9 +15824,9 @@
       "source_file": "backend/app/services/retrieval.py",
       "source_location": "L20",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_retrieval",
-      "target": "services_retrieval_terms",
-      "confidence_score": 1.0
+      "target": "services_retrieval_terms"
     },
     {
       "relation": "rationale_for",
@@ -15409,9 +15834,9 @@
       "source_file": "backend/app/services/retrieval.py",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_retrieval_rationale_1",
-      "target": "services_retrieval",
-      "confidence_score": 1.0
+      "target": "services_retrieval"
     },
     {
       "relation": "calls",
@@ -15420,9 +15845,9 @@
       "source_file": "backend/app/services/retrieval.py",
       "source_location": "L39",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_retrieval_rank",
-      "target": "services_retrieval_terms",
-      "confidence_score": 1.0
+      "target": "services_retrieval_terms"
     },
     {
       "relation": "calls",
@@ -15441,9 +15866,9 @@
       "source_file": "backend/app/services/retrieval.py",
       "source_location": "L25",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_retrieval_rationale_25",
-      "target": "services_retrieval_rank",
-      "confidence_score": 1.0
+      "target": "services_retrieval_rank"
     },
     {
       "relation": "calls",
@@ -15567,6 +15992,17 @@
       "source_location": "L9",
       "weight": 1.0,
       "source": "tests_test_compliance_api_document",
+      "target": "tests_conftest_session_local"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/tests/test_compliance_api.py",
+      "source_location": "L108",
+      "weight": 1.0,
+      "source": "tests_test_compliance_api_test_deleting_a_running_check_is_rejected",
       "target": "tests_conftest_session_local"
     },
     {
@@ -15929,9 +16365,9 @@
       "source_file": "backend/tests/test_compliance_api.py",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_compliance_api",
-      "target": "tests_test_compliance_api_document",
-      "confidence_score": 1.0
+      "target": "tests_test_compliance_api_document"
     },
     {
       "relation": "contains",
@@ -15939,8 +16375,18 @@
       "source_file": "backend/tests/test_compliance_api.py",
       "source_location": "L53",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_compliance_api",
-      "target": "tests_test_compliance_api_test_checks_are_scoped_to_the_documents_owner",
+      "target": "tests_test_compliance_api_test_checks_are_scoped_to_the_documents_owner"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/test_compliance_api.py",
+      "source_location": "L101",
+      "weight": 1.0,
+      "source": "tests_test_compliance_api",
+      "target": "tests_test_compliance_api_test_deleting_a_running_check_is_rejected",
       "confidence_score": 1.0
     },
     {
@@ -15949,9 +16395,9 @@
       "source_file": "backend/tests/test_compliance_api.py",
       "source_location": "L68",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_compliance_api",
-      "target": "tests_test_compliance_api_test_findings_are_served_and_a_check_can_be_deleted",
-      "confidence_score": 1.0
+      "target": "tests_test_compliance_api_test_findings_are_served_and_a_check_can_be_deleted"
     },
     {
       "relation": "contains",
@@ -15959,9 +16405,9 @@
       "source_file": "backend/tests/test_compliance_api.py",
       "source_location": "L22",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_compliance_api",
-      "target": "tests_test_compliance_api_test_upload_creates_a_check_and_schedules_it",
-      "confidence_score": 1.0
+      "target": "tests_test_compliance_api_test_upload_creates_a_check_and_schedules_it"
     },
     {
       "relation": "contains",
@@ -15969,9 +16415,9 @@
       "source_file": "backend/tests/test_compliance_api.py",
       "source_location": "L40",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_compliance_api",
-      "target": "tests_test_compliance_api_test_upload_rejects_a_file_that_is_not_a_pdf_or_docx",
-      "confidence_score": 1.0
+      "target": "tests_test_compliance_api_test_upload_rejects_a_file_that_is_not_a_pdf_or_docx"
     },
     {
       "relation": "imports_from",
@@ -15980,9 +16426,9 @@
       "source_file": "backend/tests/test_compliance_api.py",
       "source_location": "L3",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_compliance_api",
-      "target": "tests_test_documents",
-      "confidence_score": 1.0
+      "target": "tests_test_documents"
     },
     {
       "relation": "calls",
@@ -15991,7 +16437,18 @@
       "source_file": "backend/tests/test_compliance_api.py",
       "source_location": "L57",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_compliance_api_test_checks_are_scoped_to_the_documents_owner",
+      "target": "tests_test_compliance_api_document"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/test_compliance_api.py",
+      "source_location": "L106",
+      "weight": 1.0,
+      "source": "tests_test_compliance_api_test_deleting_a_running_check_is_rejected",
       "target": "tests_test_compliance_api_document",
       "confidence_score": 1.0
     },
@@ -16002,9 +16459,9 @@
       "source_file": "backend/tests/test_compliance_api.py",
       "source_location": "L74",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_compliance_api_test_findings_are_served_and_a_check_can_be_deleted",
-      "target": "tests_test_compliance_api_document",
-      "confidence_score": 1.0
+      "target": "tests_test_compliance_api_document"
     },
     {
       "relation": "calls",
@@ -16013,9 +16470,9 @@
       "source_file": "backend/tests/test_compliance_api.py",
       "source_location": "L25",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_compliance_api_test_upload_creates_a_check_and_schedules_it",
-      "target": "tests_test_compliance_api_document",
-      "confidence_score": 1.0
+      "target": "tests_test_compliance_api_document"
     },
     {
       "relation": "calls",
@@ -16024,9 +16481,9 @@
       "source_file": "backend/tests/test_compliance_api.py",
       "source_location": "L43",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_compliance_api_test_upload_rejects_a_file_that_is_not_a_pdf_or_docx",
-      "target": "tests_test_compliance_api_document",
-      "confidence_score": 1.0
+      "target": "tests_test_compliance_api_document"
     },
     {
       "relation": "calls",
@@ -16073,14 +16530,25 @@
       "target": "tests_test_documents_auth_header"
     },
     {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/tests/test_compliance_api.py",
+      "source_location": "L105",
+      "weight": 1.0,
+      "source": "tests_test_compliance_api_test_deleting_a_running_check_is_rejected",
+      "target": "tests_test_documents_auth_header"
+    },
+    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/tests/test_compliance_incident_time.py",
       "source_location": "L13",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_compliance_incident_time",
-      "target": "tests_test_compliance_incident_time_test_a_24_hour_clock_is_understood",
-      "confidence_score": 1.0
+      "target": "tests_test_compliance_incident_time_test_a_24_hour_clock_is_understood"
     },
     {
       "relation": "contains",
@@ -16088,9 +16556,9 @@
       "source_file": "backend/tests/test_compliance_incident_time.py",
       "source_location": "L18",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_compliance_incident_time",
-      "target": "tests_test_compliance_incident_time_test_a_date_with_no_time_starts_at_midnight",
-      "confidence_score": 1.0
+      "target": "tests_test_compliance_incident_time_test_a_date_with_no_time_starts_at_midnight"
     },
     {
       "relation": "contains",
@@ -16098,9 +16566,9 @@
       "source_file": "backend/tests/test_compliance_incident_time.py",
       "source_location": "L8",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_compliance_incident_time",
-      "target": "tests_test_compliance_incident_time_test_a_stated_date_and_time_is_used",
-      "confidence_score": 1.0
+      "target": "tests_test_compliance_incident_time_test_a_stated_date_and_time_is_used"
     },
     {
       "relation": "contains",
@@ -16108,9 +16576,9 @@
       "source_file": "backend/tests/test_compliance_incident_time.py",
       "source_location": "L27",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_compliance_incident_time",
-      "target": "tests_test_compliance_incident_time_test_a_time_in_the_same_sentence_as_a_trigger_word_is_preferred",
-      "confidence_score": 1.0
+      "target": "tests_test_compliance_incident_time_test_a_time_in_the_same_sentence_as_a_trigger_word_is_preferred"
     },
     {
       "relation": "contains",
@@ -16118,9 +16586,9 @@
       "source_file": "backend/tests/test_compliance_incident_time.py",
       "source_location": "L32",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_compliance_incident_time",
-      "target": "tests_test_compliance_incident_time_test_a_time_in_the_same_sentence_as_the_date_is_preferred_over_first_time",
-      "confidence_score": 1.0
+      "target": "tests_test_compliance_incident_time_test_a_time_in_the_same_sentence_as_the_date_is_preferred_over_first_time"
     },
     {
       "relation": "contains",
@@ -16128,9 +16596,9 @@
       "source_file": "backend/tests/test_compliance_incident_time.py",
       "source_location": "L42",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_compliance_incident_time",
-      "target": "tests_test_compliance_incident_time_test_dot_form_time_is_not_split_across_sentence_boundary",
-      "confidence_score": 1.0
+      "target": "tests_test_compliance_incident_time_test_dot_form_time_is_not_split_across_sentence_boundary"
     },
     {
       "relation": "contains",
@@ -16138,9 +16606,9 @@
       "source_file": "backend/tests/test_compliance_incident_time.py",
       "source_location": "L23",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_compliance_incident_time",
-      "target": "tests_test_compliance_incident_time_test_no_date_at_all_falls_back_to_the_upload_time",
-      "confidence_score": 1.0
+      "target": "tests_test_compliance_incident_time_test_no_date_at_all_falls_back_to_the_upload_time"
     },
     {
       "relation": "contains",
@@ -16148,8 +16616,18 @@
       "source_file": "backend/tests/test_compliance_incident_time.py",
       "source_location": "L37",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_compliance_incident_time",
-      "target": "tests_test_compliance_incident_time_test_the_first_time_is_used_if_no_trigger_word_or_date_sentence_time",
+      "target": "tests_test_compliance_incident_time_test_the_first_time_is_used_if_no_trigger_word_or_date_sentence_time"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/test_compliance_incident_time.py",
+      "source_location": "L52",
+      "weight": 1.0,
+      "source": "tests_test_compliance_incident_time",
+      "target": "tests_test_compliance_incident_time_test_the_trigger_sentences_own_date_is_used_not_an_earlier_report_date",
       "confidence_score": 1.0
     },
     {
@@ -16158,8 +16636,18 @@
       "source_file": "backend/tests/test_compliance_incident_time.py",
       "source_location": "L47",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_compliance_incident_time",
-      "target": "tests_test_compliance_incident_time_test_trigger_word_time_beats_date_sentence_time_when_both_are_present",
+      "target": "tests_test_compliance_incident_time_test_trigger_word_time_beats_date_sentence_time_when_both_are_present"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/test_compliance_incident_time.py",
+      "source_location": "L53",
+      "weight": 1.0,
+      "source": "tests_test_compliance_incident_time_rationale_53",
+      "target": "tests_test_compliance_incident_time_test_the_trigger_sentences_own_date_is_used_not_an_earlier_report_date",
       "confidence_score": 1.0
     },
     {
@@ -16168,9 +16656,9 @@
       "source_file": "backend/tests/test_compliance_models.py",
       "source_location": "L10",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_compliance_models",
-      "target": "tests_test_compliance_models_test_a_check_cascades_its_findings_when_deleted",
-      "confidence_score": 1.0
+      "target": "tests_test_compliance_models_test_a_check_cascades_its_findings_when_deleted"
     },
     {
       "relation": "contains",
@@ -16178,9 +16666,9 @@
       "source_file": "backend/tests/test_compliance_run.py",
       "source_location": "L12",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_compliance_run",
-      "target": "tests_test_compliance_run_db",
-      "confidence_score": 1.0
+      "target": "tests_test_compliance_run_db"
     },
     {
       "relation": "contains",
@@ -16188,9 +16676,9 @@
       "source_file": "backend/tests/test_compliance_run.py",
       "source_location": "L18",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_compliance_run",
-      "target": "tests_test_compliance_run_seed",
-      "confidence_score": 1.0
+      "target": "tests_test_compliance_run_seed"
     },
     {
       "relation": "contains",
@@ -16198,8 +16686,18 @@
       "source_file": "backend/tests/test_compliance_run.py",
       "source_location": "L36",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_compliance_run",
-      "target": "tests_test_compliance_run_test_check_verdict_coerces_the_word_null_to_none",
+      "target": "tests_test_compliance_run_test_check_verdict_coerces_the_word_null_to_none"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/test_compliance_run.py",
+      "source_location": "L203",
+      "weight": 1.0,
+      "source": "tests_test_compliance_run",
+      "target": "tests_test_compliance_run_test_run_check_caps_requirements_and_tells_the_user_how_many_it_checked",
       "confidence_score": 1.0
     },
     {
@@ -16208,9 +16706,9 @@
       "source_file": "backend/tests/test_compliance_run.py",
       "source_location": "L134",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_compliance_run",
-      "target": "tests_test_compliance_run_test_run_check_fails_the_check_when_something_breaks_mid_run",
-      "confidence_score": 1.0
+      "target": "tests_test_compliance_run_test_run_check_fails_the_check_when_something_breaks_mid_run"
     },
     {
       "relation": "contains",
@@ -16218,9 +16716,9 @@
       "source_file": "backend/tests/test_compliance_run.py",
       "source_location": "L200",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_compliance_run",
-      "target": "tests_test_compliance_run_test_run_check_fails_the_check_when_the_case_study_cannot_be_parsed",
-      "confidence_score": 1.0
+      "target": "tests_test_compliance_run_test_run_check_fails_the_check_when_the_case_study_cannot_be_parsed"
     },
     {
       "relation": "contains",
@@ -16228,9 +16726,9 @@
       "source_file": "backend/tests/test_compliance_run.py",
       "source_location": "L171",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_compliance_run",
-      "target": "tests_test_compliance_run_test_run_check_leaves_out_of_range_indices_unclear",
-      "confidence_score": 1.0
+      "target": "tests_test_compliance_run_test_run_check_leaves_out_of_range_indices_unclear"
     },
     {
       "relation": "contains",
@@ -16238,9 +16736,9 @@
       "source_file": "backend/tests/test_compliance_run.py",
       "source_location": "L99",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_compliance_run",
-      "target": "tests_test_compliance_run_test_run_check_records_unclear_when_the_model_call_fails",
-      "confidence_score": 1.0
+      "target": "tests_test_compliance_run_test_run_check_records_unclear_when_the_model_call_fails"
     },
     {
       "relation": "contains",
@@ -16248,9 +16746,9 @@
       "source_file": "backend/tests/test_compliance_run.py",
       "source_location": "L65",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_compliance_run",
-      "target": "tests_test_compliance_run_test_run_check_stores_a_verdict_per_requirement_and_times_deadlines_from_the_incident",
-      "confidence_score": 1.0
+      "target": "tests_test_compliance_run_test_run_check_stores_a_verdict_per_requirement_and_times_deadlines_from_the_incident"
     },
     {
       "relation": "contains",
@@ -16258,9 +16756,9 @@
       "source_file": "backend/tests/test_compliance_run.py",
       "source_location": "L120",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_compliance_run",
-      "target": "tests_test_compliance_run_test_select_evidence_bounds_a_long_case_study_with_no_paragraph_breaks",
-      "confidence_score": 1.0
+      "target": "tests_test_compliance_run_test_select_evidence_bounds_a_long_case_study_with_no_paragraph_breaks"
     },
     {
       "relation": "contains",
@@ -16268,9 +16766,9 @@
       "source_file": "backend/tests/test_compliance_run.py",
       "source_location": "L47",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_compliance_run",
-      "target": "tests_test_compliance_run_test_select_evidence_passes_a_short_case_study_whole",
-      "confidence_score": 1.0
+      "target": "tests_test_compliance_run_test_select_evidence_passes_a_short_case_study_whole"
     },
     {
       "relation": "contains",
@@ -16278,8 +16776,19 @@
       "source_file": "backend/tests/test_compliance_run.py",
       "source_location": "L54",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_compliance_run",
-      "target": "tests_test_compliance_run_test_select_evidence_retrieves_passages_from_a_long_case_study",
+      "target": "tests_test_compliance_run_test_select_evidence_retrieves_passages_from_a_long_case_study"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/test_compliance_run.py",
+      "source_location": "L211",
+      "weight": 1.0,
+      "source": "tests_test_compliance_run_test_run_check_caps_requirements_and_tells_the_user_how_many_it_checked",
+      "target": "tests_test_compliance_run_db",
       "confidence_score": 1.0
     },
     {
@@ -16289,9 +16798,9 @@
       "source_file": "backend/tests/test_compliance_run.py",
       "source_location": "L147",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_compliance_run_test_run_check_fails_the_check_when_something_breaks_mid_run",
-      "target": "tests_test_compliance_run_db",
-      "confidence_score": 1.0
+      "target": "tests_test_compliance_run_db"
     },
     {
       "relation": "calls",
@@ -16300,9 +16809,9 @@
       "source_file": "backend/tests/test_compliance_run.py",
       "source_location": "L203",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_compliance_run_test_run_check_fails_the_check_when_the_case_study_cannot_be_parsed",
-      "target": "tests_test_compliance_run_db",
-      "confidence_score": 1.0
+      "target": "tests_test_compliance_run_db"
     },
     {
       "relation": "calls",
@@ -16311,9 +16820,9 @@
       "source_file": "backend/tests/test_compliance_run.py",
       "source_location": "L174",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_compliance_run_test_run_check_leaves_out_of_range_indices_unclear",
-      "target": "tests_test_compliance_run_db",
-      "confidence_score": 1.0
+      "target": "tests_test_compliance_run_db"
     },
     {
       "relation": "calls",
@@ -16322,9 +16831,9 @@
       "source_file": "backend/tests/test_compliance_run.py",
       "source_location": "L102",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_compliance_run_test_run_check_records_unclear_when_the_model_call_fails",
-      "target": "tests_test_compliance_run_db",
-      "confidence_score": 1.0
+      "target": "tests_test_compliance_run_db"
     },
     {
       "relation": "calls",
@@ -16333,8 +16842,19 @@
       "source_file": "backend/tests/test_compliance_run.py",
       "source_location": "L68",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_compliance_run_test_run_check_stores_a_verdict_per_requirement_and_times_deadlines_from_the_incident",
-      "target": "tests_test_compliance_run_db",
+      "target": "tests_test_compliance_run_db"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/test_compliance_run.py",
+      "source_location": "L212",
+      "weight": 1.0,
+      "source": "tests_test_compliance_run_test_run_check_caps_requirements_and_tells_the_user_how_many_it_checked",
+      "target": "tests_test_compliance_run_seed",
       "confidence_score": 1.0
     },
     {
@@ -16344,9 +16864,9 @@
       "source_file": "backend/tests/test_compliance_run.py",
       "source_location": "L148",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_compliance_run_test_run_check_fails_the_check_when_something_breaks_mid_run",
-      "target": "tests_test_compliance_run_seed",
-      "confidence_score": 1.0
+      "target": "tests_test_compliance_run_seed"
     },
     {
       "relation": "calls",
@@ -16355,9 +16875,9 @@
       "source_file": "backend/tests/test_compliance_run.py",
       "source_location": "L204",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_compliance_run_test_run_check_fails_the_check_when_the_case_study_cannot_be_parsed",
-      "target": "tests_test_compliance_run_seed",
-      "confidence_score": 1.0
+      "target": "tests_test_compliance_run_seed"
     },
     {
       "relation": "calls",
@@ -16366,9 +16886,9 @@
       "source_file": "backend/tests/test_compliance_run.py",
       "source_location": "L175",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_compliance_run_test_run_check_leaves_out_of_range_indices_unclear",
-      "target": "tests_test_compliance_run_seed",
-      "confidence_score": 1.0
+      "target": "tests_test_compliance_run_seed"
     },
     {
       "relation": "calls",
@@ -16377,9 +16897,9 @@
       "source_file": "backend/tests/test_compliance_run.py",
       "source_location": "L103",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_compliance_run_test_run_check_records_unclear_when_the_model_call_fails",
-      "target": "tests_test_compliance_run_seed",
-      "confidence_score": 1.0
+      "target": "tests_test_compliance_run_seed"
     },
     {
       "relation": "calls",
@@ -16388,18 +16908,28 @@
       "source_file": "backend/tests/test_compliance_run.py",
       "source_location": "L69",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_compliance_run_test_run_check_stores_a_verdict_per_requirement_and_times_deadlines_from_the_incident",
-      "target": "tests_test_compliance_run_seed",
+      "target": "tests_test_compliance_run_seed"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/test_compliance_run.py",
+      "source_location": "L138",
+      "weight": 1.0,
+      "source": "tests_test_compliance_run_rationale_138",
+      "target": "tests_test_compliance_run_test_run_check_fails_the_check_when_something_breaks_mid_run",
       "confidence_score": 1.0
     },
     {
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "backend/tests/test_compliance_run.py",
-      "source_location": "L135",
+      "source_location": "L204",
       "weight": 1.0,
-      "source": "tests_test_compliance_run_rationale_135",
-      "target": "tests_test_compliance_run_test_run_check_fails_the_check_when_something_breaks_mid_run",
+      "source": "tests_test_compliance_run_rationale_204",
+      "target": "tests_test_compliance_run_test_run_check_caps_requirements_and_tells_the_user_how_many_it_checked",
       "confidence_score": 1.0
     },
     {
@@ -16446,6 +16976,16 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/tests/test_deadline_scheduling.py",
+      "source_location": "L70",
+      "weight": 1.0,
+      "source": "tests_test_deadline_scheduling",
+      "target": "tests_test_deadline_scheduling_test_a_relative_timeframe_is_awaiting_trigger_not_overdue",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/test_deadline_scheduling.py",
       "source_location": "L25",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -16476,6 +17016,16 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/tests/test_deadline_scheduling.py",
+      "source_location": "L86",
+      "weight": 1.0,
+      "source": "tests_test_deadline_scheduling",
+      "target": "tests_test_deadline_scheduling_test_deadlines_endpoint_marks_relative_timeframes_awaiting_trigger",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/test_deadline_scheduling.py",
       "source_location": "L53",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -16488,9 +17038,9 @@
       "source_file": "backend/tests/test_deadline_scheduling.py",
       "source_location": "L18",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_deadline_scheduling",
-      "target": "tests_test_deadline_scheduling_test_minute_scale_timeframes_resolve_from_the_upload_time",
-      "confidence_score": 1.0
+      "target": "tests_test_deadline_scheduling_test_minute_scale_timeframes_resolve_from_the_upload_time"
     },
     {
       "relation": "contains",
@@ -16529,6 +17079,17 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "backend/tests/test_deadline_scheduling.py",
+      "source_location": "L88",
+      "weight": 1.0,
+      "source": "tests_test_deadline_scheduling_test_deadlines_endpoint_marks_relative_timeframes_awaiting_trigger",
+      "target": "tests_test_deadline_scheduling_seed",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/test_deadline_scheduling.py",
       "source_location": "L55",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -16544,6 +17105,27 @@
       "source_location": "L54",
       "weight": 1.0,
       "source": "tests_test_deadline_scheduling_test_deadlines_endpoint_serves_due_at_bucket_and_status",
+      "target": "tests_test_documents_auth_header"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/test_deadline_scheduling.py",
+      "source_location": "L71",
+      "weight": 1.0,
+      "source": "tests_test_deadline_scheduling_rationale_71",
+      "target": "tests_test_deadline_scheduling_test_a_relative_timeframe_is_awaiting_trigger_not_overdue",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/tests/test_deadline_scheduling.py",
+      "source_location": "L87",
+      "weight": 1.0,
+      "source": "tests_test_deadline_scheduling_test_deadlines_endpoint_marks_relative_timeframes_awaiting_trigger",
       "target": "tests_test_documents_auth_header"
     },
     {
@@ -16693,9 +17275,9 @@
       "source_file": "backend/tests/test_documents.py",
       "source_location": "L151",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_documents",
-      "target": "tests_test_documents_test_delete_document_removes_a_compliance_check_and_its_findings",
-      "confidence_score": 1.0
+      "target": "tests_test_documents_test_delete_document_removes_a_compliance_check_and_its_findings"
     },
     {
       "relation": "contains",
@@ -16808,9 +17390,9 @@
       "source_file": "backend/tests/test_documents.py",
       "source_location": "L153",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_documents_test_delete_document_removes_a_compliance_check_and_its_findings",
-      "target": "tests_test_documents_auth_header",
-      "confidence_score": 1.0
+      "target": "tests_test_documents_auth_header"
     },
     {
       "relation": "calls",
@@ -16873,9 +17455,9 @@
       "source_file": "backend/tests/test_documents.py",
       "source_location": "L180",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_documents_rationale_180",
-      "target": "tests_test_documents_test_deadlines_endpoint_hides_dates_that_have_already_passed",
-      "confidence_score": 1.0
+      "target": "tests_test_documents_test_deadlines_endpoint_hides_dates_that_have_already_passed"
     },
     {
       "relation": "contains",
@@ -17768,9 +18350,9 @@
       "source_file": "backend/tests/test_retrieval.py",
       "source_location": "L8",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_retrieval",
-      "target": "tests_test_retrieval_test_rank_prefers_the_passage_sharing_rare_terms",
-      "confidence_score": 1.0
+      "target": "tests_test_retrieval_test_rank_prefers_the_passage_sharing_rare_terms"
     },
     {
       "relation": "contains",
@@ -17778,9 +18360,9 @@
       "source_file": "backend/tests/test_retrieval.py",
       "source_location": "L17",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_retrieval",
-      "target": "tests_test_retrieval_test_rank_returns_every_index_even_when_nothing_matches",
-      "confidence_score": 1.0
+      "target": "tests_test_retrieval_test_rank_returns_every_index_even_when_nothing_matches"
     },
     {
       "relation": "contains",
@@ -17788,8 +18370,18 @@
       "source_file": "backend/tests/test_retrieval.py",
       "source_location": "L4",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_retrieval",
-      "target": "tests_test_retrieval_test_terms_drops_stopwords_and_single_characters",
+      "target": "tests_test_retrieval_test_terms_drops_stopwords_and_single_characters"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/test_startup_recovery.py",
+      "source_location": "L30",
+      "weight": 1.0,
+      "source": "tests_test_startup_recovery",
+      "target": "tests_test_startup_recovery_check",
       "confidence_score": 1.0
     },
     {
@@ -17816,11 +18408,41 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/tests/test_startup_recovery.py",
+      "source_location": "L107",
+      "weight": 1.0,
+      "source": "tests_test_startup_recovery",
+      "target": "tests_test_startup_recovery_test_a_database_failure_at_startup_does_not_stop_the_app_for_checks",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/test_startup_recovery.py",
+      "source_location": "L77",
+      "weight": 1.0,
+      "source": "tests_test_startup_recovery",
+      "target": "tests_test_startup_recovery_test_checks_left_mid_processing_are_failed_with_a_reason",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/test_startup_recovery.py",
       "source_location": "L25",
       "weight": 1.0,
       "confidence_score": 1.0,
       "source": "tests_test_startup_recovery",
       "target": "tests_test_startup_recovery_test_documents_left_mid_processing_are_failed_with_a_reason"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/test_startup_recovery.py",
+      "source_location": "L94",
+      "weight": 1.0,
+      "source": "tests_test_startup_recovery",
+      "target": "tests_test_startup_recovery_test_finished_checks_are_untouched",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -17847,6 +18469,17 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "backend/tests/test_startup_recovery.py",
+      "source_location": "L31",
+      "weight": 1.0,
+      "source": "tests_test_startup_recovery_check",
+      "target": "tests_test_startup_recovery_doc",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/test_startup_recovery.py",
       "source_location": "L27",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -17865,24 +18498,56 @@
       "target": "tests_test_startup_recovery_doc"
     },
     {
-      "relation": "rationale_for",
+      "relation": "calls",
+      "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "backend/tests/test_startup_recovery.py",
-      "source_location": "L41",
+      "source_location": "L82",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tests_test_startup_recovery_rationale_41",
-      "target": "tests_test_startup_recovery_test_finished_documents_are_untouched"
+      "source": "tests_test_startup_recovery_test_checks_left_mid_processing_are_failed_with_a_reason",
+      "target": "tests_test_startup_recovery_check",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/test_startup_recovery.py",
+      "source_location": "L96",
+      "weight": 1.0,
+      "source": "tests_test_startup_recovery_test_finished_checks_are_untouched",
+      "target": "tests_test_startup_recovery_check",
+      "confidence_score": 1.0
     },
     {
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "backend/tests/test_startup_recovery.py",
-      "source_location": "L56",
+      "source_location": "L54",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tests_test_startup_recovery_rationale_56",
-      "target": "tests_test_startup_recovery_test_a_database_failure_at_startup_does_not_stop_the_app"
+      "source": "tests_test_startup_recovery_rationale_54",
+      "target": "tests_test_startup_recovery_test_finished_documents_are_untouched",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/test_startup_recovery.py",
+      "source_location": "L69",
+      "weight": 1.0,
+      "source": "tests_test_startup_recovery_rationale_69",
+      "target": "tests_test_startup_recovery_test_a_database_failure_at_startup_does_not_stop_the_app",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/test_startup_recovery.py",
+      "source_location": "L78",
+      "weight": 1.0,
+      "source": "tests_test_startup_recovery_rationale_78",
+      "target": "tests_test_startup_recovery_test_checks_left_mid_processing_are_failed_with_a_reason",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -18200,9 +18865,9 @@
       "source_file": "backend/tests/test_upload_helper.py",
       "source_location": "L21",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_upload_helper",
-      "target": "tests_test_upload_helper_test_save_upload_rejects_a_disallowed_extension",
-      "confidence_score": 1.0
+      "target": "tests_test_upload_helper_test_save_upload_rejects_a_disallowed_extension"
     },
     {
       "relation": "contains",
@@ -18210,9 +18875,9 @@
       "source_file": "backend/tests/test_upload_helper.py",
       "source_location": "L27",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_upload_helper",
-      "target": "tests_test_upload_helper_test_save_upload_rejects_a_file_whose_bytes_do_not_match_its_extension",
-      "confidence_score": 1.0
+      "target": "tests_test_upload_helper_test_save_upload_rejects_a_file_whose_bytes_do_not_match_its_extension"
     },
     {
       "relation": "contains",
@@ -18220,9 +18885,9 @@
       "source_file": "backend/tests/test_upload_helper.py",
       "source_location": "L34",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_upload_helper",
-      "target": "tests_test_upload_helper_test_save_upload_rejects_an_empty_file",
-      "confidence_score": 1.0
+      "target": "tests_test_upload_helper_test_save_upload_rejects_an_empty_file"
     },
     {
       "relation": "contains",
@@ -18230,9 +18895,9 @@
       "source_file": "backend/tests/test_upload_helper.py",
       "source_location": "L14",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_upload_helper",
-      "target": "tests_test_upload_helper_test_save_upload_writes_the_file_with_its_prefix",
-      "confidence_score": 1.0
+      "target": "tests_test_upload_helper_test_save_upload_writes_the_file_with_its_prefix"
     },
     {
       "relation": "contains",
@@ -18240,9 +18905,9 @@
       "source_file": "backend/tests/test_upload_helper.py",
       "source_location": "L10",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_upload_helper",
-      "target": "tests_test_upload_helper_upload",
-      "confidence_score": 1.0
+      "target": "tests_test_upload_helper_upload"
     },
     {
       "relation": "calls",
@@ -18251,9 +18916,9 @@
       "source_file": "backend/tests/test_upload_helper.py",
       "source_location": "L23",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_upload_helper_test_save_upload_rejects_a_disallowed_extension",
-      "target": "tests_test_upload_helper_upload",
-      "confidence_score": 1.0
+      "target": "tests_test_upload_helper_upload"
     },
     {
       "relation": "calls",
@@ -18262,9 +18927,9 @@
       "source_file": "backend/tests/test_upload_helper.py",
       "source_location": "L29",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_upload_helper_test_save_upload_rejects_a_file_whose_bytes_do_not_match_its_extension",
-      "target": "tests_test_upload_helper_upload",
-      "confidence_score": 1.0
+      "target": "tests_test_upload_helper_upload"
     },
     {
       "relation": "calls",
@@ -18273,9 +18938,9 @@
       "source_file": "backend/tests/test_upload_helper.py",
       "source_location": "L36",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_upload_helper_test_save_upload_rejects_an_empty_file",
-      "target": "tests_test_upload_helper_upload",
-      "confidence_score": 1.0
+      "target": "tests_test_upload_helper_upload"
     },
     {
       "relation": "calls",
@@ -18284,9 +18949,9 @@
       "source_file": "backend/tests/test_upload_helper.py",
       "source_location": "L15",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_upload_helper_test_save_upload_writes_the_file_with_its_prefix",
-      "target": "tests_test_upload_helper_upload",
-      "confidence_score": 1.0
+      "target": "tests_test_upload_helper_upload"
     },
     {
       "relation": "references",
@@ -18295,9 +18960,9 @@
       "source_file": "backend/tests/test_upload_helper.py",
       "source_location": "L10",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_upload_helper_upload",
-      "target": "backend_tests_test_upload_helper_py_uploadfile",
-      "confidence_score": 1.0
+      "target": "backend_tests_test_upload_helper_py_uploadfile"
     },
     {
       "relation": "contains",
@@ -18755,9 +19420,9 @@
       "source_file": "samples/generate_escalation_samples.py",
       "source_location": "L80",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "samples_generate_escalation_samples",
-      "target": "samples_generate_escalation_samples_write",
-      "confidence_score": 1.0
+      "target": "samples_generate_escalation_samples_write"
     },
     {
       "relation": "references",
@@ -18766,9 +19431,9 @@
       "source_file": "samples/generate_escalation_samples.py",
       "source_location": "L80",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "samples_generate_escalation_samples_write",
-      "target": "samples_generate_escalation_samples_py_path",
-      "confidence_score": 1.0
+      "target": "samples_generate_escalation_samples_py_path"
     },
     {
       "relation": "contains",
@@ -19259,6 +19924,16 @@
       "confidence_score": 1.0,
       "source": "docs_risk_priority",
       "target": "docs_risk_priority_how_risk_severity_and_priority_are_decided"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "project-understanding/03-data-model.md",
+      "source_location": "L113",
+      "weight": 1.0,
+      "source": "project_understanding_03_data_model",
+      "target": "docs_risk_priority",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -19786,9 +20461,9 @@
       "source_file": "docs/superpowers/plans/2026-09-17-compliance-check.md",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plans_2026_09_17_compliance_check",
-      "target": "plans_2026_09_17_compliance_check_compliance_check_implementation_plan",
-      "confidence_score": 1.0
+      "target": "plans_2026_09_17_compliance_check_compliance_check_implementation_plan"
     },
     {
       "relation": "contains",
@@ -19796,9 +20471,9 @@
       "source_file": "docs/superpowers/plans/2026-09-17-compliance-check.md",
       "source_location": "L13",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plans_2026_09_17_compliance_check_compliance_check_implementation_plan",
-      "target": "plans_2026_09_17_compliance_check_global_constraints",
-      "confidence_score": 1.0
+      "target": "plans_2026_09_17_compliance_check_global_constraints"
     },
     {
       "relation": "contains",
@@ -19806,9 +20481,9 @@
       "source_file": "docs/superpowers/plans/2026-09-17-compliance-check.md",
       "source_location": "L27",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plans_2026_09_17_compliance_check_global_constraints",
-      "target": "plans_2026_09_17_compliance_check_task_1_move_bm25_retrieval_into_a_shared_service",
-      "confidence_score": 1.0
+      "target": "plans_2026_09_17_compliance_check_task_1_move_bm25_retrieval_into_a_shared_service"
     },
     {
       "relation": "contains",
@@ -19816,9 +20491,9 @@
       "source_file": "docs/superpowers/plans/2026-09-17-compliance-check.md",
       "source_location": "L153",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plans_2026_09_17_compliance_check_global_constraints",
-      "target": "plans_2026_09_17_compliance_check_task_2_share_the_upload_validation",
-      "confidence_score": 1.0
+      "target": "plans_2026_09_17_compliance_check_task_2_share_the_upload_validation"
     },
     {
       "relation": "contains",
@@ -19826,9 +20501,9 @@
       "source_file": "docs/superpowers/plans/2026-09-17-compliance-check.md",
       "source_location": "L321",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plans_2026_09_17_compliance_check_global_constraints",
-      "target": "plans_2026_09_17_compliance_check_task_3_models_and_migration",
-      "confidence_score": 1.0
+      "target": "plans_2026_09_17_compliance_check_task_3_models_and_migration"
     },
     {
       "relation": "contains",
@@ -19836,9 +20511,9 @@
       "source_file": "docs/superpowers/plans/2026-09-17-compliance-check.md",
       "source_location": "L538",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plans_2026_09_17_compliance_check_global_constraints",
-      "target": "plans_2026_09_17_compliance_check_task_4_read_the_incident_time_out_of_a_case_study",
-      "confidence_score": 1.0
+      "target": "plans_2026_09_17_compliance_check_task_4_read_the_incident_time_out_of_a_case_study"
     },
     {
       "relation": "contains",
@@ -19846,9 +20521,9 @@
       "source_file": "docs/superpowers/plans/2026-09-17-compliance-check.md",
       "source_location": "L658",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plans_2026_09_17_compliance_check_global_constraints",
-      "target": "plans_2026_09_17_compliance_check_task_5_run_the_check",
-      "confidence_score": 1.0
+      "target": "plans_2026_09_17_compliance_check_task_5_run_the_check"
     },
     {
       "relation": "contains",
@@ -19856,9 +20531,9 @@
       "source_file": "docs/superpowers/plans/2026-09-17-compliance-check.md",
       "source_location": "L1028",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plans_2026_09_17_compliance_check_global_constraints",
-      "target": "plans_2026_09_17_compliance_check_task_6_the_api",
-      "confidence_score": 1.0
+      "target": "plans_2026_09_17_compliance_check_task_6_the_api"
     },
     {
       "relation": "contains",
@@ -19866,9 +20541,9 @@
       "source_file": "docs/superpowers/plans/2026-09-17-compliance-check.md",
       "source_location": "L1301",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plans_2026_09_17_compliance_check_global_constraints",
-      "target": "plans_2026_09_17_compliance_check_task_7_the_compliance_check_tab",
-      "confidence_score": 1.0
+      "target": "plans_2026_09_17_compliance_check_task_7_the_compliance_check_tab"
     },
     {
       "relation": "contains",
@@ -19876,9 +20551,9 @@
       "source_file": "docs/superpowers/plans/2026-09-17-compliance-check.md",
       "source_location": "L1615",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plans_2026_09_17_compliance_check_global_constraints",
-      "target": "plans_2026_09_17_compliance_check_task_8_sample_documents_with_hour_scale_deadlines",
-      "confidence_score": 1.0
+      "target": "plans_2026_09_17_compliance_check_task_8_sample_documents_with_hour_scale_deadlines"
     },
     {
       "relation": "contains",
@@ -19886,9 +20561,9 @@
       "source_file": "docs/superpowers/plans/2026-09-17-compliance-check.md",
       "source_location": "L1775",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plans_2026_09_17_compliance_check_global_constraints",
-      "target": "plans_2026_09_17_compliance_check_task_9_documentation_and_graph_refresh",
-      "confidence_score": 1.0
+      "target": "plans_2026_09_17_compliance_check_task_9_documentation_and_graph_refresh"
     },
     {
       "relation": "contains",
@@ -20036,9 +20711,9 @@
       "source_file": "docs/superpowers/specs/2026-09-17-compliance-check-design.md",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "specs_2026_09_17_compliance_check_design",
-      "target": "specs_2026_09_17_compliance_check_design_compliance_check_design",
-      "confidence_score": 1.0
+      "target": "specs_2026_09_17_compliance_check_design_compliance_check_design"
     },
     {
       "relation": "contains",
@@ -20046,9 +20721,9 @@
       "source_file": "docs/superpowers/specs/2026-09-17-compliance-check-design.md",
       "source_location": "L121",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "specs_2026_09_17_compliance_check_design_compliance_check_design",
-      "target": "specs_2026_09_17_compliance_check_design_api",
-      "confidence_score": 1.0
+      "target": "specs_2026_09_17_compliance_check_design_api"
     },
     {
       "relation": "contains",
@@ -20056,9 +20731,9 @@
       "source_file": "docs/superpowers/specs/2026-09-17-compliance-check-design.md",
       "source_location": "L58",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "specs_2026_09_17_compliance_check_design_compliance_check_design",
-      "target": "specs_2026_09_17_compliance_check_design_data_model",
-      "confidence_score": 1.0
+      "target": "specs_2026_09_17_compliance_check_design_data_model"
     },
     {
       "relation": "contains",
@@ -20066,9 +20741,9 @@
       "source_file": "docs/superpowers/specs/2026-09-17-compliance-check-design.md",
       "source_location": "L20",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "specs_2026_09_17_compliance_check_design_compliance_check_design",
-      "target": "specs_2026_09_17_compliance_check_design_direction_is_one_way",
-      "confidence_score": 1.0
+      "target": "specs_2026_09_17_compliance_check_design_direction_is_one_way"
     },
     {
       "relation": "contains",
@@ -20076,9 +20751,9 @@
       "source_file": "docs/superpowers/specs/2026-09-17-compliance-check-design.md",
       "source_location": "L133",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "specs_2026_09_17_compliance_check_design_compliance_check_design",
-      "target": "specs_2026_09_17_compliance_check_design_frontend",
-      "confidence_score": 1.0
+      "target": "specs_2026_09_17_compliance_check_design_frontend"
     },
     {
       "relation": "contains",
@@ -20086,9 +20761,9 @@
       "source_file": "docs/superpowers/specs/2026-09-17-compliance-check-design.md",
       "source_location": "L174",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "specs_2026_09_17_compliance_check_design_compliance_check_design",
-      "target": "specs_2026_09_17_compliance_check_design_out_of_scope",
-      "confidence_score": 1.0
+      "target": "specs_2026_09_17_compliance_check_design_out_of_scope"
     },
     {
       "relation": "contains",
@@ -20096,9 +20771,9 @@
       "source_file": "docs/superpowers/specs/2026-09-17-compliance-check-design.md",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "specs_2026_09_17_compliance_check_design_compliance_check_design",
-      "target": "specs_2026_09_17_compliance_check_design_problem",
-      "confidence_score": 1.0
+      "target": "specs_2026_09_17_compliance_check_design_problem"
     },
     {
       "relation": "contains",
@@ -20106,9 +20781,9 @@
       "source_file": "docs/superpowers/specs/2026-09-17-compliance-check-design.md",
       "source_location": "L87",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "specs_2026_09_17_compliance_check_design_compliance_check_design",
-      "target": "specs_2026_09_17_compliance_check_design_processing",
-      "confidence_score": 1.0
+      "target": "specs_2026_09_17_compliance_check_design_processing"
     },
     {
       "relation": "contains",
@@ -20116,9 +20791,9 @@
       "source_file": "docs/superpowers/specs/2026-09-17-compliance-check-design.md",
       "source_location": "L146",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "specs_2026_09_17_compliance_check_design_compliance_check_design",
-      "target": "specs_2026_09_17_compliance_check_design_sample_documents",
-      "confidence_score": 1.0
+      "target": "specs_2026_09_17_compliance_check_design_sample_documents"
     },
     {
       "relation": "contains",
@@ -20126,9 +20801,9 @@
       "source_file": "docs/superpowers/specs/2026-09-17-compliance-check-design.md",
       "source_location": "L110",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "specs_2026_09_17_compliance_check_design_compliance_check_design",
-      "target": "specs_2026_09_17_compliance_check_design_shared_code_that_moves",
-      "confidence_score": 1.0
+      "target": "specs_2026_09_17_compliance_check_design_shared_code_that_moves"
     },
     {
       "relation": "contains",
@@ -20136,9 +20811,9 @@
       "source_file": "docs/superpowers/specs/2026-09-17-compliance-check-design.md",
       "source_location": "L163",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "specs_2026_09_17_compliance_check_design_compliance_check_design",
-      "target": "specs_2026_09_17_compliance_check_design_testing",
-      "confidence_score": 1.0
+      "target": "specs_2026_09_17_compliance_check_design_testing"
     },
     {
       "relation": "contains",
@@ -20146,9 +20821,9 @@
       "source_file": "docs/superpowers/specs/2026-09-17-compliance-check-design.md",
       "source_location": "L47",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "specs_2026_09_17_compliance_check_design_compliance_check_design",
-      "target": "specs_2026_09_17_compliance_check_design_the_clock",
-      "confidence_score": 1.0
+      "target": "specs_2026_09_17_compliance_check_design_the_clock"
     },
     {
       "relation": "contains",
@@ -20156,9 +20831,9 @@
       "source_file": "docs/superpowers/specs/2026-09-17-compliance-check-design.md",
       "source_location": "L31",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "specs_2026_09_17_compliance_check_design_compliance_check_design",
-      "target": "specs_2026_09_17_compliance_check_design_what_a_check_produces",
-      "confidence_score": 1.0
+      "target": "specs_2026_09_17_compliance_check_design_what_a_check_produces"
     },
     {
       "relation": "contains",
@@ -20586,9 +21261,9 @@
       "source_file": "project-understanding/03-data-model.md",
       "source_location": "L128",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "project_understanding_03_data_model",
-      "target": "project_understanding_04_api_reference",
-      "confidence_score": 1.0
+      "target": "project_understanding_04_api_reference"
     },
     {
       "relation": "references",
@@ -20596,9 +21271,9 @@
       "source_file": "project-understanding/03-data-model.md",
       "source_location": "L131",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "project_understanding_03_data_model",
-      "target": "project_understanding_05_processing_pipeline",
-      "confidence_score": 1.0
+      "target": "project_understanding_05_processing_pipeline"
     },
     {
       "relation": "references",
@@ -20666,9 +21341,9 @@
       "source_file": "project-understanding/03-data-model.md",
       "source_location": "L186",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "project_understanding_03_data_model_tables",
-      "target": "project_understanding_03_data_model_check_findings",
-      "confidence_score": 1.0
+      "target": "project_understanding_03_data_model_check_findings"
     },
     {
       "relation": "contains",
@@ -20676,9 +21351,9 @@
       "source_file": "project-understanding/03-data-model.md",
       "source_location": "L168",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "project_understanding_03_data_model_tables",
-      "target": "project_understanding_03_data_model_compliance_checks",
-      "confidence_score": 1.0
+      "target": "project_understanding_03_data_model_compliance_checks"
     },
     {
       "relation": "contains",
@@ -20786,9 +21461,9 @@
       "source_file": "project-understanding/04-api-reference.md",
       "source_location": "L140",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "project_understanding_04_api_reference",
-      "target": "project_understanding_05_processing_pipeline",
-      "confidence_score": 1.0
+      "target": "project_understanding_05_processing_pipeline"
     },
     {
       "relation": "references",
@@ -20826,9 +21501,9 @@
       "source_file": "project-understanding/04-api-reference.md",
       "source_location": "L212",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "project_understanding_04_api_reference_04_api_reference",
-      "target": "project_understanding_04_api_reference_compliance_checks",
-      "confidence_score": 1.0
+      "target": "project_understanding_04_api_reference_compliance_checks"
     },
     {
       "relation": "contains",
@@ -20986,9 +21661,9 @@
       "source_file": "project-understanding/04-api-reference.md",
       "source_location": "L143",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "project_understanding_04_api_reference_extractions",
-      "target": "project_understanding_04_api_reference_patch_api_deadlines_item_deadline_id",
-      "confidence_score": 1.0
+      "target": "project_understanding_04_api_reference_patch_api_deadlines_item_deadline_id"
     },
     {
       "relation": "contains",
@@ -21036,9 +21711,9 @@
       "source_file": "project-understanding/04-api-reference.md",
       "source_location": "L266",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "project_understanding_04_api_reference_compliance_checks",
-      "target": "project_understanding_04_api_reference_delete_api_compliance_checks_item_check_id",
-      "confidence_score": 1.0
+      "target": "project_understanding_04_api_reference_delete_api_compliance_checks_item_check_id"
     },
     {
       "relation": "contains",
@@ -21046,9 +21721,9 @@
       "source_file": "project-understanding/04-api-reference.md",
       "source_location": "L230",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "project_understanding_04_api_reference_compliance_checks",
-      "target": "project_understanding_04_api_reference_get_api_compliance_checks_doc_id",
-      "confidence_score": 1.0
+      "target": "project_understanding_04_api_reference_get_api_compliance_checks_doc_id"
     },
     {
       "relation": "contains",
@@ -21056,9 +21731,9 @@
       "source_file": "project-understanding/04-api-reference.md",
       "source_location": "L244",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "project_understanding_04_api_reference_compliance_checks",
-      "target": "project_understanding_04_api_reference_get_api_compliance_checks_item_check_id",
-      "confidence_score": 1.0
+      "target": "project_understanding_04_api_reference_get_api_compliance_checks_item_check_id"
     },
     {
       "relation": "contains",
@@ -21066,9 +21741,9 @@
       "source_file": "project-understanding/04-api-reference.md",
       "source_location": "L218",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "project_understanding_04_api_reference_compliance_checks",
-      "target": "project_understanding_04_api_reference_post_api_compliance_checks_doc_id",
-      "confidence_score": 1.0
+      "target": "project_understanding_04_api_reference_post_api_compliance_checks_doc_id"
     },
     {
       "relation": "contains",
@@ -21086,9 +21761,9 @@
       "source_file": "project-understanding/05-processing-pipeline.md",
       "source_location": "L249",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "project_understanding_05_processing_pipeline",
-      "target": "project_understanding_06_ai_and_retrieval",
-      "confidence_score": 1.0
+      "target": "project_understanding_06_ai_and_retrieval"
     },
     {
       "relation": "references",
@@ -21106,8 +21781,18 @@
       "source_file": "project-understanding/05-processing-pipeline.md",
       "source_location": "L272",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "project_understanding_05_processing_pipeline",
-      "target": "project_understanding_14_known_limitations",
+      "target": "project_understanding_14_known_limitations"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "project-understanding/07-frontend-guide.md",
+      "source_location": "L133",
+      "weight": 1.0,
+      "source": "project_understanding_07_frontend_guide",
+      "target": "project_understanding_05_processing_pipeline",
       "confidence_score": 1.0
     },
     {
@@ -21196,9 +21881,9 @@
       "source_file": "project-understanding/05-processing-pipeline.md",
       "source_location": "L201",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "project_understanding_05_processing_pipeline_05_the_processing_pipeline",
-      "target": "project_understanding_05_processing_pipeline_the_compliance_check",
-      "confidence_score": 1.0
+      "target": "project_understanding_05_processing_pipeline_the_compliance_check"
     },
     {
       "relation": "contains",
@@ -21499,6 +22184,16 @@
       "confidence_score": 1.0,
       "source": "project_understanding_07_frontend_guide_components_worth_knowing",
       "target": "project_understanding_07_frontend_guide_aiassistant"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "project-understanding/07-frontend-guide.md",
+      "source_location": "L131",
+      "weight": 1.0,
+      "source": "project_understanding_07_frontend_guide_components_worth_knowing",
+      "target": "project_understanding_07_frontend_guide_compliancecheckpanel",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -22216,9 +22911,9 @@
       "source_file": "samples/README.md",
       "source_location": "L54",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "samples_readme",
-      "target": "project_understanding_14_known_limitations",
-      "confidence_score": 1.0
+      "target": "project_understanding_14_known_limitations"
     },
     {
       "relation": "contains",
@@ -22296,9 +22991,9 @@
       "source_file": "samples/README.md",
       "source_location": "L39",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "samples_readme_sample_documents",
-      "target": "samples_readme_hour_scale_deadlines_and_the_compliance_check",
-      "confidence_score": 1.0
+      "target": "samples_readme_hour_scale_deadlines_and_the_compliance_check"
     },
     {
       "relation": "contains",
@@ -22663,5 +23358,5 @@
       "source_file": "docs/superpowers/specs/2026-08-17-aged-care-compliance-summariser-design.md"
     }
   ],
-  "built_at_commit": "807cf1fe4b250556946fb7cfbd5c4de4f5963c37"
+  "built_at_commit": "1635a841f19167a8e653003034b47f24f02b0e3c"
 }
