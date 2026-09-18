@@ -6,7 +6,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.database import SessionLocal
-from app.models import Document
+from app.models import ComplianceCheck, Document
 from app.routers import actions, auth, chat, compliance, deadlines, documents, eval, obligations, risks, summarize, upload
 
 logger = logging.getLogger(__name__)
@@ -14,6 +14,11 @@ logger = logging.getLogger(__name__)
 INTERRUPTED_MESSAGE = (
     "Processing was interrupted before it finished, most likely by a server "
     "restart. Upload the document again."
+)
+
+CHECK_INTERRUPTED_MESSAGE = (
+    "Checking was interrupted before it finished, most likely by a server "
+    "restart. Upload the case study again."
 )
 
 
@@ -56,9 +61,37 @@ def _release_interrupted_documents() -> None:
             db.close()
 
 
+def _release_interrupted_checks() -> None:
+    """Fail anything left mid-processing by the previous run of this process.
+
+    run_check is a FastAPI background task too, so it lives and dies with the
+    process exactly like extraction does — a restart mid-check leaves the row on
+    "processing" forever, polled by a UI that will never get an answer.
+    """
+    db = None
+    try:
+        db = SessionLocal()
+        stranded = db.query(ComplianceCheck).filter(ComplianceCheck.status.in_(["pending", "processing"])).all()
+        for check in stranded:
+            check.status = "failed"
+            check.error_message = CHECK_INTERRUPTED_MESSAGE
+        if stranded:
+            db.commit()
+            logger.warning(
+                "Released %s compliance check(s) left mid-processing by a previous run: %s",
+                len(stranded), [c.id for c in stranded],
+            )
+    except Exception:  # noqa: BLE001 - startup must not fail because of cleanup
+        logger.exception("Could not release interrupted compliance checks at startup")
+    finally:
+        if db is not None:
+            db.close()
+
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     _release_interrupted_documents()
+    _release_interrupted_checks()
     yield
 
 
