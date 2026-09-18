@@ -109,6 +109,10 @@ never sent for extraction — they are contents fragments and stray page numbers
 | `text` | Text, not null | |
 | `severity` | String, **not null** | `high` / `medium` / `low` — the one required rating |
 
+How `severity` gets decided — which prompt clause produces it, and what happens to
+the value afterwards — is **[docs/RISK-PRIORITY.md](../docs/RISK-PRIORITY.md)**,
+not repeated here.
+
 ### `deadlines`
 
 | Column | Type | Notes |

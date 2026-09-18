@@ -38,25 +38,41 @@ items, 19.4 seconds, no past-dated deadlines.
 
 ## Hour-scale deadlines and the compliance check
 
-The Kanangra Court escalation protocol states deadlines in minutes and hours — 30
-minutes, 1 hour, 2 hours, 4 hours, 24 hours, "2 business days", and "30 days and 4
-hours" — to give the urgency buckets something short-dated to sort.
+The Kanangra Court escalation protocol states eight timeframes, from 30 minutes to
+a 6-month recurring audit, to give the urgency buckets something short-dated to
+sort. What it actually demonstrates, verified across two re-extraction runs, is
+narrower than that list suggests — and the honest summary is: the resolution
+machinery is exact once relative wording reaches it; what limits the demonstration
+is which of the eight the extraction model keeps as deadlines, and in what form.
 
-What it actually demonstrates, verified across two re-extraction runs: two of
-those timeframes ("within 4 hours" and "30 days and 4 hours") keep their relative
-wording through extraction and resolve to a real due time of day in the Deadlines
-tab. The rest don't. "Within 24 hours" and "within 2 business days" are collapsed
-into a bare calendar date instead — the extraction model does this despite an
-explicit prompt rule telling it to keep relative phrasing verbatim, so it isn't
-something this sample can force. The four shortest timeframes (30 minutes, 1 hour,
-2 hours, 4 hours) aren't extracted as deadlines at all; they show up under
-Obligations, with no due time. This is a known, parked limitation — see
+| Stated timeframe | Extracted as a deadline? | Due time shown |
+|---|---|---|
+| within 30 minutes of the incident | No — appears under Obligations | — |
+| within 1 hour | No — appears under Obligations | — |
+| within 2 hours | No — appears under Obligations | — |
+| within 4 hours | No — appears under Obligations | — |
+| within 24 hours | Yes, but collapsed to a bare calendar date | End of day only, no time |
+| within 2 business days | Yes, but collapsed to a bare calendar date | End of day only, no time |
+| within 30 days and 4 hours of the incident | Yes, relative wording intact | 14 October 2026, 19:10 |
+| monthly for 6 months | Yes, relative wording intact | 13 March 2027, 15:10 |
+
+Only the last two keep their relative phrasing through extraction and resolve to
+a real time of day, anchored to the case study's stated incident time (14
+September 2026, 3:10pm) — not to some fixed offset from upload. "Within 24 hours"
+and "within 2 business days" are extracted but collapsed into a bare calendar date
+instead, despite an explicit prompt rule telling the model to keep relative
+phrasing verbatim; that isn't something this sample can force. The four shortest
+timeframes aren't extracted as deadlines at all. None of this is a bug in
+`app/services/deadlines.py` — give it relative text and it resolves it correctly
+every time, minutes included; the gap is upstream, in which timeframes the
+extraction model hands it as deadlines with relative wording preserved. It is a
+known, parked limitation — see
 [14-known-limitations.md](../project-understanding/14-known-limitations.md) — not
 a bug in this sample or something worth debugging from here.
 
-The Compliance Check tab is unaffected by that gap: it judges the 30-minute/1-hour/
-2-hour/4-hour requirements correctly from their Obligations text, with no due time
-attached, alongside the deadlines that did resolve.
+The Compliance Check tab is unaffected by that gap: it judges the six timeframes
+that don't resolve to a due time (the four shortest, plus the two collapsed to a
+bare date) correctly from their text regardless, alongside the two that do.
 
 Its companion case study is the evidence document for the Compliance Check tab: it
 states the incident time (14 September 2026, 3:10pm), records some escalation steps

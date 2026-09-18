@@ -52,19 +52,28 @@ An honest list. Everything here is known, deliberate, and unfixed.
   duties, not risks, and the prompt forbids invention. Correct behaviour, but it
   reads as a gap.
 - **Sub-hour and hour-scale deadlines don't survive extraction cleanly.** Verified
-  on `samples/Incident Escalation Protocol.docx`, which states eight timeframes
-  from 30 minutes to 30 days, across two re-extraction runs: the four shortest (30
-  minutes, 1 hour, 2 hours, 4 hours) are never extracted as deadlines at all — they
-  land under Obligations instead, with no due time, though the Compliance Check
-  still judges them correctly from the obligation text. Of the four that do become
-  deadlines, only two ("within 4 hours" and "30 days and 4 hours") keep their
-  relative wording and resolve to a real time of day; "within 24 hours" and "within
-  2 business days" are collapsed into a bare calendar date by the extraction model
-  despite `extraction.py`'s prompt explicitly telling it to keep relative phrasing
-  verbatim. This is a model-following-instructions gap, not a code bug — the
-  bucketing and resolution logic (`app/services/deadlines.py`) handles minutes and
-  hours correctly when it's given relative text to resolve; the model just doesn't
-  always hand it that text. Parked, not fixed.
+  on `samples/Kanangra-Court-Incident-Escalation-Protocol.docx`, which states eight
+  timeframes from 30 minutes to a 6-month recurring audit, across two
+  re-extraction runs:
+  - Four (30 minutes, 1 hour, 2 hours, 4 hours) are never extracted as deadlines
+    at all — they land under Obligations instead, with no due time, though the
+    Compliance Check still judges them correctly from the obligation text.
+  - Two ("within 24 hours", "within 2 business days") are extracted as deadlines
+    but collapsed into a bare calendar date by the extraction model, despite
+    `extraction.py`'s prompt explicitly telling it to keep relative phrasing
+    verbatim — so the Deadlines tab shows an end-of-day date with no time for
+    either.
+  - Two ("within 30 days and 4 hours of the incident", "monthly for 6 months")
+    keep their relative wording and resolve to a real time of day, anchored to
+    the case study's stated incident time (14 September 2026, 3:10pm): 14 October
+    2026, 19:10 and 13 March 2027, 15:10 respectively.
+
+  This is a model-following-instructions gap, not a code bug — the bucketing and
+  resolution logic (`app/services/deadlines.py`) handles minutes and hours
+  correctly whenever it's given relative text to resolve; the model just doesn't
+  consistently hand it that text. Parked, not fixed. See
+  `samples/README.md`'s "Hour-scale deadlines and the compliance check" section
+  for the same table.
 
 ## Security gaps
 
