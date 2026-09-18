@@ -93,7 +93,10 @@ def test_run_check_stores_a_verdict_per_requirement_and_times_deadlines_from_the
     assert findings["deadline"].verdict == "not_done"
     # "within 24 hours of the incident", counted from 3:10pm on the 14th.
     assert findings["deadline"].due_at == datetime(2026, 9, 15, 15, 10)
-    assert findings["deadline"].bucket in {"overdue", "within_24_hours", "within_7_days", "within_30_days", "later"}
+    # A check answers "was this done before the deadline", not "is the deadline
+    # before now" — bucketing due_at against the current moment would call every
+    # past incident's deadline "overdue" regardless of the verdict beside it.
+    assert findings["deadline"].bucket is None
 
 
 def test_run_check_records_unclear_when_the_model_call_fails():
@@ -195,6 +198,45 @@ def test_run_check_leaves_out_of_range_indices_unclear():
     findings = list(db.query(CheckFinding).filter_by(check_id=check_id))
     assert len(findings) == 2
     assert {f.verdict for f in findings} == {"unclear"}
+
+
+def test_run_check_caps_requirements_and_tells_the_user_how_many_it_checked():
+    """The repo's own 1300-section Act could mean hundreds of obligations and
+    deadlines from one upload — at 8 requirements per model call, that is roughly
+    240 calls from a single authenticated request. The check must cap its own
+    input, the way chat.py caps a question, and say so rather than silently
+    checking a subset."""
+    from app.services.compliance_check import MAX_CHECK_REQUIREMENTS, CheckBatch, CheckVerdict, run_check
+
+    db = _db()
+    doc, check = _seed(db)
+    check_id = check.id
+
+    # One extra obligation beyond the cap, on top of the two _seed already wrote.
+    section = db.query(Obligation).first().section_id
+    for i in range(MAX_CHECK_REQUIREMENTS):
+        db.add(Obligation(document_id=doc.id, section_id=section, text=f"Obligation {i}"))
+    db.commit()
+    total = db.query(Obligation).filter_by(document_id=doc.id).count() + db.query(Deadline).filter_by(document_id=doc.id).count()
+    assert total > MAX_CHECK_REQUIREMENTS
+
+    parsed = [ParsedSection(heading="Case study", order_idx=0, page_ref=None, raw_text="A resident fell on 14 September 2026.")]
+    verdicts = CheckBatch(verdicts=[CheckVerdict(index=i, verdict="unclear", evidence=None, note="x") for i in range(8)])
+    fake_llm = MagicMock()
+    fake_llm.with_structured_output.return_value.invoke.return_value = verdicts
+
+    with patch("app.services.compliance_check.SessionLocal", return_value=db), \
+         patch("app.services.compliance_check.parse_document", return_value=parsed), \
+         patch("app.services.compliance_check.get_llm", return_value=fake_llm):
+        run_check(check_id, "/tmp/case.pdf")
+
+    stored = db.query(ComplianceCheck).filter_by(id=check_id).one()
+    # The check still succeeds — a truncated check is not a failed one.
+    assert stored.status == "done"
+    assert str(MAX_CHECK_REQUIREMENTS) in stored.error_message
+    assert str(total) in stored.error_message
+    findings = db.query(CheckFinding).filter_by(check_id=check_id).count()
+    assert findings == MAX_CHECK_REQUIREMENTS
 
 
 def test_run_check_fails_the_check_when_the_case_study_cannot_be_parsed():

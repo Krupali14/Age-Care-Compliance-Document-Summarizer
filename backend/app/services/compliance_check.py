@@ -15,7 +15,7 @@ from pydantic import BaseModel, field_validator
 
 from app.database import SessionLocal
 from app.models import CheckFinding, ComplianceCheck, Deadline, Obligation
-from app.services.deadlines import bucket_for, resolve_due_at
+from app.services.deadlines import resolve_due_at
 from app.services.docling_parser import parse_document
 from app.services.extraction import _latest_date_in
 from app.services.llm import get_llm
@@ -94,7 +94,12 @@ def find_incident_datetime(text: str, fallback: datetime) -> tuple[datetime, str
     if trigger_sentence:
         trigger_time = _first_time_in(trigger_sentence)
         if trigger_time:
-            return datetime.combine(when, trigger_time), "stated"
+            # The sentence naming the incident may name its own date too, and that
+            # date — not a report header's, which can be days later — is the one
+            # relative deadlines have to hang off. Fall back to the head's date
+            # only when the trigger sentence itself is silent on which day.
+            trigger_date = _latest_date_in(trigger_sentence) or when
+            return datetime.combine(trigger_date, trigger_time), "stated"
 
     # Priority 2: Time in sentence with the date
     date_sentence = _sentence_with_date(sentences)
@@ -120,6 +125,12 @@ EVIDENCE_TOP_K = 6
 # Matching extraction's batching: the response carries one verdict per requirement,
 # and a batch that overruns the output-token limit loses the whole call.
 MAX_BATCH_REQUIREMENTS = 8
+
+# Matching chat.py's MAX_QUESTION_CHARS: without a ceiling, one authenticated upload
+# checks every obligation and deadline the parent document has — the repo's own
+# 1300-section Act would be roughly 240 model calls from a single request. Capping
+# the input here is what keeps that decision out of the user's hands.
+MAX_CHECK_REQUIREMENTS = 200
 
 
 @dataclass
@@ -313,7 +324,17 @@ def run_check(check_id: int, file_path: str) -> None:
             db.commit()
             return
 
-        now = datetime.utcnow()
+        total_requirements = len(requirements)
+        if total_requirements > MAX_CHECK_REQUIREMENTS:
+            # Truncated, not failed — the user gets a partial, honest check rather
+            # than either an unbounded bill or a check that silently checked less
+            # than it claims to.
+            requirements = requirements[:MAX_CHECK_REQUIREMENTS]
+            check.error_message = (
+                f"This compliance document has {total_requirements} requirements; "
+                f"only the first {MAX_CHECK_REQUIREMENTS} were checked."
+            )
+
         for start in range(0, len(requirements), MAX_BATCH_REQUIREMENTS):
             batch = requirements[start : start + MAX_BATCH_REQUIREMENTS]
             verdicts = _verdicts_for(batch, evidence_text)
@@ -332,8 +353,11 @@ def run_check(check_id: int, file_path: str) -> None:
                     verdict=verdict.verdict if verdict else "unclear",
                     evidence=verdict.evidence if verdict else None,
                     note=verdict.note if verdict else "The check could not reach a verdict for this requirement.",
+                    # No bucket here: a check judges "was this done before the
+                    # deadline", and bucketing due_at against now would call every
+                    # deadline of a past incident "overdue" beside a "done" verdict.
+                    # The column stays for schema stability; nothing writes to it.
                     due_at=due_at,
-                    bucket=bucket_for(due_at, now) if req.kind == "deadline" else None,
                 ))
             db.commit()
 
