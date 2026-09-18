@@ -15,9 +15,11 @@ from app.services.extraction import _latest_date_in
 STATUSES = ("not_started", "in_progress", "completed")
 DEFAULT_STATUS = "not_started"
 
-# Buckets, ordered from most to least urgent. "no_date" holds the relative
-# timeframes whose trigger never happened and anything unparseable.
-BUCKETS = ("overdue", "within_24_hours", "within_7_days", "within_30_days", "later", "no_date")
+# Buckets, ordered from most to least urgent. "awaiting_trigger" holds relative
+# timeframes counted from an event (the incident) that has not happened — never
+# "overdue", since there is no real anchor yet to be overdue against. "no_date"
+# holds anything unparseable.
+BUCKETS = ("overdue", "awaiting_trigger", "within_24_hours", "within_7_days", "within_30_days", "later", "no_date")
 
 _UNITS = {
     "minute": timedelta(minutes=1),
@@ -76,6 +78,26 @@ def resolve_due_at(due_date: str | None, anchor: datetime) -> datetime | None:
         return datetime.combine(when, time(23, 59, 59))
     offset = parse_relative(value)
     return anchor + offset if offset is not None else None
+
+
+def is_relative_due_date(due_date: str | None) -> bool:
+    """Whether `resolve_due_at` would anchor this due date on an event rather than
+    a fixed calendar date.
+
+    Mirrors the same calendar-date-then-relative-offset order `resolve_due_at`
+    checks in, so the two never disagree about which case a due date falls into.
+    """
+    if not due_date or not due_date.strip():
+        return False
+    value = due_date.strip()
+    try:
+        datetime.fromisoformat(value)
+        return False
+    except ValueError:
+        pass
+    if _latest_date_in(value) is not None:
+        return False
+    return parse_relative(value) is not None
 
 
 def bucket_for(due_at: datetime | None, now: datetime) -> str:

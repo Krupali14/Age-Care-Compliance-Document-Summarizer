@@ -59,11 +59,36 @@ def _seed(session_local, due_date):
 
 def test_deadlines_endpoint_serves_due_at_bucket_and_status(client, session_local):
     headers = _auth_header(client)
+    doc_id, _ = _seed(session_local, "2026-12-31")
+
+    row = client.get(f"/api/deadlines/{doc_id}", headers=headers).json()[0]
+    assert row["bucket"] == "later"
+    assert row["status"] == "not_started"
+    assert row["due_at"] is not None
+
+
+def test_a_relative_timeframe_is_awaiting_trigger_not_overdue():
+    """`document.uploaded_at` stands in for the incident the timeframe is actually
+    counted from, which has not happened yet. Bucketing that fake anchor against now
+    would turn "within 4 hours of the incident" red hours after the policy itself was
+    uploaded — for an incident that never occurred. It must never read as overdue,
+    nor be hidden as though it had no date at all."""
+    from app.services.deadlines import is_relative_due_date
+
+    assert is_relative_due_date("within 4 hours of the incident") is True
+    assert is_relative_due_date("within 30 days") is True
+    assert is_relative_due_date("2026-12-31") is False
+    assert is_relative_due_date("by 31 December 2026") is False
+    assert is_relative_due_date(None) is False
+    assert is_relative_due_date("as soon as practicable") is False
+
+
+def test_deadlines_endpoint_marks_relative_timeframes_awaiting_trigger(client, session_local):
+    headers = _auth_header(client)
     doc_id, _ = _seed(session_local, "within 4 hours of the incident")
 
     row = client.get(f"/api/deadlines/{doc_id}", headers=headers).json()[0]
-    assert row["bucket"] == "within_24_hours"
-    assert row["status"] == "not_started"
+    assert row["bucket"] == "awaiting_trigger"
     assert row["due_at"] is not None
 
 

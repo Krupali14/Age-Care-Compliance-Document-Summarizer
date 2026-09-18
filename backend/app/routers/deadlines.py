@@ -8,7 +8,7 @@ from app.auth import get_current_user
 from app.database import get_db
 from app.models import Deadline, User
 from app.routers.documents import _get_owned_document
-from app.services.deadlines import DEFAULT_STATUS, STATUSES, bucket_for, resolve_due_at
+from app.services.deadlines import DEFAULT_STATUS, STATUSES, bucket_for, is_relative_due_date, resolve_due_at
 from app.services.extraction import normalize_due_date
 
 router = APIRouter(prefix="/api/deadlines", tags=["deadlines"])
@@ -34,13 +34,17 @@ def get_deadlines(doc_id: int, db: Session = Depends(get_db), user: User = Depen
         # that has gone by is shown as having no date rather than as still being due.
         due_date = normalize_due_date(d.due_date)
         due_at = resolve_due_at(due_date, anchor)
+        # A relative timeframe is counted from the incident, not the upload — so its
+        # due_at above is only ever a stand-in, and bucketing that stand-in against
+        # `now` would call it "overdue" for an incident that hasn't happened.
+        bucket = "awaiting_trigger" if is_relative_due_date(due_date) else bucket_for(due_at, now)
         out.append({
             "id": d.id,
             "section_id": d.section_id,
             "description": d.description,
             "due_date": due_date,
-            "due_at": due_at.isoformat() if due_at else None,
-            "bucket": bucket_for(due_at, now),
+            "due_at": f"{due_at.isoformat()}Z" if due_at else None,
+            "bucket": bucket,
             "responsible_role": d.responsible_role,
             "status": d.status or DEFAULT_STATUS,
         })
