@@ -101,6 +101,15 @@ onwards:
 due_date to that date in YYYY-MM-DD form.
 - Otherwise set due_date to the timeframe as stated relative to its trigger, e.g. \
 "within 30 days of the incident", "1 month after commencement", "2 months".
+- Keep the unit the document uses, including hour-scale ones: "within 4 hours", \
+"within 24 hours of the incident", "within 30 days and 4 hours of the incident".
+- Never compute a timeframe measured from an event into a calendar date. A trigger \
+such as "the incident", "the error being identified" or "becoming aware of it" has no \
+date until a real incident happens — the document itself does not know when that will \
+be. "Within 30 minutes of the incident" must stay exactly that; writing "2026-09-17" \
+for it is wrong even if today happens to be that date, because it throws away the \
+timeframe and leaves nothing to re-anchor to the incident's real time later. Only a \
+calendar date the document itself prints becomes YYYY-MM-DD.
 - Never output a date that has already passed. Commencement dates, past amendments, \
 historical reporting periods and superseded dates are not deadlines — omit them.
 - A section that only records past dates has no deadlines; return an empty list for it."""

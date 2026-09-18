@@ -44,37 +44,23 @@ def _fit_filename(name: str) -> str:
     return f"{stem}{suffix}"
 
 
-@router.post("/upload", status_code=status.HTTP_201_CREATED, response_model=UploadResponse)
-def upload_document(
-    file: UploadFile,
-    background_tasks: BackgroundTasks,
-    db: Session = Depends(get_db),
-    user: User = Depends(get_current_user),
-):
+def save_upload(file: UploadFile, dest_dir: Path, name_prefix: str) -> tuple[Path, str]:
+    """Validate and stream an upload to `dest_dir/{name_prefix}_{filename}`.
+
+    Every caller that accepts a file from a user goes through here, so the
+    extension allow-list, the magic-byte check, the size cap and the filename byte
+    budget cannot drift apart between upload paths.
+    """
     # ponytail: strip directory components so a crafted filename (e.g. "../../etc/x.pdf")
-    # can't escape UPLOAD_DIR — Path.name discards any path segments, keeping only the basename.
+    # can't escape dest_dir — Path.name discards any path segments, keeping only the basename.
     safe_filename = _fit_filename(Path(file.filename).name)
     ext = Path(safe_filename).suffix.lower()
     if ext not in ALLOWED_TYPES:
         raise HTTPException(status_code=400, detail="Only PDF and DOCX files are supported")
 
-    document = Document(
-        user_id=user.id,
-        filename=safe_filename,
-        file_type=ext.lstrip("."),
-        status="pending",
-    )
-    db.add(document)
-    db.commit()
-    db.refresh(document)
+    dest_dir.mkdir(parents=True, exist_ok=True)
+    dest = dest_dir / f"{name_prefix}_{safe_filename}"
 
-    upload_dir = Path(os.environ.get("UPLOAD_DIR", "/app/uploads"))
-    upload_dir.mkdir(parents=True, exist_ok=True)
-    dest = upload_dir / f"{document.id}_{safe_filename}"
-
-    # Streamed in chunks and abandoned the moment it runs over the limit, so an
-    # oversized upload costs a bounded amount of memory and disk rather than its
-    # full size. The partial file is removed on every failure path.
     written = 0
     try:
         with dest.open("wb") as f:
@@ -94,11 +80,42 @@ def upload_document(
         if written == 0:
             raise HTTPException(status_code=400, detail="This file is empty")
     except Exception:
-        # Every failure, not only the ones raised above. An OSError here — a name the
-        # filesystem refuses, a full disk, a permissions problem — used to escape as
-        # a 500 *and* leave the Document row behind with no file to process, so the
-        # dashboard showed a document that could never finish.
+        # Every failure, not only the ones raised above: an OSError here — a name the
+        # filesystem refuses, a full disk, a permissions problem — must not leave a
+        # partial file behind for a caller that is about to roll its row back.
         dest.unlink(missing_ok=True)
+        raise
+    return dest, safe_filename
+
+
+@router.post("/upload", status_code=status.HTTP_201_CREATED, response_model=UploadResponse)
+def upload_document(
+    file: UploadFile,
+    background_tasks: BackgroundTasks,
+    db: Session = Depends(get_db),
+    user: User = Depends(get_current_user),
+):
+    safe_filename = _fit_filename(Path(file.filename).name)
+    ext = Path(safe_filename).suffix.lower()
+    if ext not in ALLOWED_TYPES:
+        raise HTTPException(status_code=400, detail="Only PDF and DOCX files are supported")
+
+    document = Document(
+        user_id=user.id,
+        filename=safe_filename,
+        file_type=ext.lstrip("."),
+        status="pending",
+    )
+    db.add(document)
+    db.commit()
+    db.refresh(document)
+
+    upload_dir = Path(os.environ.get("UPLOAD_DIR", "/app/uploads"))
+    try:
+        dest, _name = save_upload(file, upload_dir, str(document.id))
+    except Exception:
+        # The row exists only to hold the file being written; without it the
+        # dashboard would show a document that can never finish processing.
         db.delete(document)
         db.commit()
         raise

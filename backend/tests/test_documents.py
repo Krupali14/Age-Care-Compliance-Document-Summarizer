@@ -148,6 +148,34 @@ def test_delete_document_removes_extracted_rows(client, db_session, tmp_path, mo
     assert db_session.query(ActionItem).filter_by(document_id=doc_id).count() == 0
 
 
+def test_delete_document_removes_a_compliance_check_and_its_findings(client, db_session, tmp_path, monkeypatch):
+    monkeypatch.setenv("UPLOAD_DIR", str(tmp_path))
+    headers = _auth_header(client)
+
+    upload_resp = client.post("/api/upload", headers=headers, files={"file": ("doc.pdf", io.BytesIO(b"%PDF-1.4"), "application/pdf")})
+    doc_id = upload_resp.json()["id"]
+
+    from app.models import CheckFinding, ComplianceCheck
+
+    check = ComplianceCheck(document_id=doc_id, filename="case.pdf", file_type="pdf", status="done")
+    db_session.add(check)
+    db_session.flush()
+    db_session.add(CheckFinding(check_id=check.id, kind="obligation", source_id=1, section_id=None,
+                                 requirement="req", verdict="done", evidence="e", note="n"))
+    db_session.commit()
+    check_id = check.id
+    check_file = tmp_path / f"check{check_id}_case.pdf"
+    check_file.write_bytes(b"%PDF-1.4")
+
+    resp = client.delete(f"/api/documents/{doc_id}", headers=headers)
+    assert resp.status_code == 204
+
+    db_session.expire_all()
+    assert db_session.query(ComplianceCheck).filter_by(id=check_id).first() is None
+    assert db_session.query(CheckFinding).filter_by(check_id=check_id).count() == 0
+    assert not check_file.exists()
+
+
 def test_deadlines_endpoint_hides_dates_that_have_already_passed(client, session_local):
     """Rows stored before the stale-date rule existed — and rows whose date has since
     gone by — must not be served to the UI as though they were still due."""

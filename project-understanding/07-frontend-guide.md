@@ -128,6 +128,41 @@ Upload, the document grid, delete.
 - Dropping several files uploads the first and says so, rather than silently
   discarding the rest.
 
+### `ComplianceCheckPanel`
+The Compliance Check tab on `DocumentDetail` — a case study checked against this
+document's own obligations and deadlines ([05](05-processing-pipeline.md#the-compliance-check)).
+
+- Upload accepts `.pdf`/`.docx`, same as the main upload button; a real hidden
+  `<input>` behind a styled label, not a `<div onClick>`.
+- **Four states**, driven by `check.status`: nothing uploaded yet ("No case study
+  checked yet…"); `pending`/`processing` ("Checking *filename* against this
+  document…"); `failed` (the server's own `error_message`, in coral); `done` (the
+  findings, grouped).
+- **Polls while running**, at both levels: the check list refetches every 3 s while
+  *any* check for the document is `pending`/`processing`, and the selected check
+  refetches every 3 s on its own status — the same "poll while unsettled, stop once
+  it isn't" pattern the rest of the app uses for document processing.
+- On `done`, findings are grouped into four fixed sections in a fixed order — **Not
+  done, Partly done, Done — maintain, Not covered by this case study** (the UI's
+  label for `unclear`) — each showing its own count, and a row count badge per
+  group. Within a group, findings with a due date sort first: a requirement with a
+  clock on it is the one to act on before one that doesn't.
+- A finding row shows the requirement text, the model's one-sentence note, the
+  quoted evidence sentence (if any) as a blockquote, and — only for deadline
+  findings — a pill reading "Due `<date/time>` · `<bucket label>`" (Overdue / Within
+  24 hours / Within 7 days / Within 30 days / Later / No date). A finding with no
+  `due_at` shows no pill at all rather than a blank one.
+- Each row's source-section chip works exactly like a chat citation: click it, jump
+  to Sections, scroll and highlight — reusing `onSectionClick` from the same parent
+  that wires up `AIAssistant`'s source chips.
+- The header above the findings shows the incident time the check resolved
+  (`check.incident_at`), and appends "(assumed — the document states no date)" when
+  `incident_source` is `"upload_time"` rather than `"stated"` — the same honesty
+  the backend's `find_incident_datetime()` returns for, surfaced rather than hidden.
+- More than one check against the same document gets a filename `<select>`; exactly
+  one gets none. Deleting the active check clears the selection back to "most
+  recent" rather than leaving a dangling id.
+
 ### `ConfirmModal`
 Focus starts inside, Escape closes, Tab cycles within, focus returns to the trigger
 on close. The reference for how a dialog should behave here.

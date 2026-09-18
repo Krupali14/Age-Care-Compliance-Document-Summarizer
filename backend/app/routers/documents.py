@@ -6,7 +6,7 @@ from sqlalchemy.orm import Session
 
 from app.auth import get_current_user
 from app.database import get_db
-from app.models import ActionItem, Deadline, Document, EvalRun, Obligation, Risk, Section, Summary, User
+from app.models import ActionItem, CheckFinding, ComplianceCheck, Deadline, Document, EvalRun, Obligation, Risk, Section, Summary, User
 
 router = APIRouter(prefix="/api/documents", tags=["documents"])
 
@@ -56,6 +56,14 @@ def delete_document(doc_id: int, db: Session = Depends(get_db), user: User = Dep
     upload_dir = Path(os.environ.get("UPLOAD_DIR", "/app/uploads"))
     file_path = upload_dir / f"{document.id}_{document.filename}"
     file_path.unlink(missing_ok=True)
+
+    # Compliance checks are children of this document too; their uploaded case-study
+    # files live outside the DB, so each one is unlinked here rather than left orphaned.
+    checks = db.query(ComplianceCheck).filter(ComplianceCheck.document_id == doc_id).all()
+    for check in checks:
+        db.query(CheckFinding).filter(CheckFinding.check_id == check.id).delete()
+        (upload_dir / f"check{check.id}_{check.filename}").unlink(missing_ok=True)
+    db.query(ComplianceCheck).filter(ComplianceCheck.document_id == doc_id).delete()
 
     db.delete(document)
     db.commit()

@@ -14,7 +14,7 @@ An honest list. Everything here is known, deliberate, and unfixed.
 | **No cross-document view** | Every screen is one document. No "all deadlines across our policies", which is the obvious next feature |
 | **No export** | Findings cannot be downloaded as CSV, Excel or PDF. For a compliance manager whose next step is a spreadsheet, this is the most-missed feature |
 | **No editing** | A wrong finding cannot be corrected, dismissed or annotated. It is a read-only view of what the model produced |
-| **No tracking** | It extracts obligations; it does not track whether they were met. Not a compliance register |
+| **Tracking is manual and one-shot** | A deadline's `status` (`not_started`/`in_progress`/`completed`) is set by hand, and the Compliance Check tab judges one uploaded case study against one compliance document's obligations and deadlines, once, on demand. Neither is continuous monitoring: nothing re-checks a requirement over time, and there is still no register of what has and hasn't been actioned across documents |
 | **No teams** | One account is one person. No sharing, roles or organisations |
 | **English only** | Prompts and parsing assume English |
 | **No reprocessing** | Improving a prompt does not update existing documents; they must be deleted and re-uploaded |
@@ -23,7 +23,7 @@ An honest list. Everything here is known, deliberate, and unfixed.
 
 | Limitation | Consequence | Fix |
 |---|---|---|
-| **Background tasks, not a queue** | No retry after a crash, no visibility, no horizontal scale; extraction competes with request handling. **A restart abandons every in-flight document** — recovered at startup by failing them with a reason, but the work is lost and must be re-uploaded | Celery/RQ/arq — the first thing to change for production ([D9](12-design-decisions.md)) |
+| **Background tasks, not a queue** | No retry after a crash, no visibility, no horizontal scale; extraction and compliance checking both compete with request handling. **A restart abandons every in-flight document or check** — `main.py`'s `lifespan` sweeps both `documents` and `compliance_checks` at startup and fails anything stranded on `pending`/`processing` with a reason, but the work itself is lost and must be re-uploaded / re-checked | Celery/RQ/arq — the first thing to change for production ([D9](12-design-decisions.md)) |
 | **Concurrent uploads queue invisibly** | Ten at once serialise behind one process-wide rate limiter; each card reads "Reading" with no queue position or estimate | Comes with the queue work |
 | **Rate limits per process** | Multiply behind multiple workers | Redis-backed store ([D11](12-design-decisions.md)) |
 | **No caching of extractions** | The same document uploaded twice is extracted twice, at full cost | Hash the file, reuse the result |
@@ -33,7 +33,7 @@ An honest list. Everything here is known, deliberate, and unfixed.
 | **Chat has no memory** | Each question is retrieved and answered independently; "and who signs that off?" has no antecedent | Feed the transcript into retrieval |
 | **Summary is concatenated** | Section summaries joined in order, not synthesised into a document-level summary | A second pass over the section summaries |
 | **Only the PKs and `users.email` are indexed** | Fine at current sizes | Index `document_id` when a query is measurably slow |
-| **Uploads never cleaned up** | The volume grows forever | Delete the file when the document is deleted |
+| **Uploads are cleaned up on delete, but not on failure** | `delete_document` (and, on this branch, `delete_check`) unlinks the file from the volume; a document or check that ends up `failed` and is never deleted still leaves its file behind | Sweep orphaned files, or delete-on-failure |
 
 ## Quality limits
 
@@ -51,6 +51,29 @@ An honest list. Everything here is known, deliberate, and unfixed.
 - **Risks are under-extracted on standards documents.** A standards document states
   duties, not risks, and the prompt forbids invention. Correct behaviour, but it
   reads as a gap.
+- **Sub-hour and hour-scale deadlines don't survive extraction cleanly.** Verified
+  on `samples/Kanangra-Court-Incident-Escalation-Protocol.docx`, which states eight
+  timeframes from 30 minutes to a 6-month recurring audit, across two
+  re-extraction runs:
+  - Four (30 minutes, 1 hour, 2 hours, 4 hours) are never extracted as deadlines
+    at all — they land under Obligations instead, with no due time, though the
+    Compliance Check still judges them correctly from the obligation text.
+  - Two ("within 24 hours", "within 2 business days") are extracted as deadlines
+    but collapsed into a bare calendar date by the extraction model, despite
+    `extraction.py`'s prompt explicitly telling it to keep relative phrasing
+    verbatim — so the Deadlines tab shows an end-of-day date with no time for
+    either.
+  - Two ("within 30 days and 4 hours of the incident", "monthly for 6 months")
+    keep their relative wording and resolve to a real time of day, anchored to
+    the case study's stated incident time (14 September 2026, 3:10pm): 14 October
+    2026, 19:10 and 13 March 2027, 15:10 respectively.
+
+  This is a model-following-instructions gap, not a code bug — the bucketing and
+  resolution logic (`app/services/deadlines.py`) handles minutes and hours
+  correctly whenever it's given relative text to resolve; the model just doesn't
+  consistently hand it that text. Parked, not fixed. See
+  `samples/README.md`'s "Hour-scale deadlines and the compliance check" section
+  for the same table.
 
 ## Security gaps
 

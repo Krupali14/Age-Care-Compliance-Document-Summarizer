@@ -24,8 +24,31 @@ export async function getRisks(id: number) {
   return (await apiFetch(`/api/risks/${id}`)).json();
 }
 
-export async function getDeadlines(id: number) {
+export interface Deadline {
+  id: number;
+  section_id: number;
+  description: string;
+  /** The wording the document used: an ISO date, or a timeframe like "within 4 hours". */
+  due_date: string | null;
+  /** That wording resolved to a moment in time, relative timeframes counted from upload. */
+  due_at: string | null;
+  bucket: string;
+  status: string;
+  responsible_role: string | null;
+}
+
+export async function getDeadlines(id: number): Promise<Deadline[]> {
   return (await apiFetch(`/api/deadlines/${id}`)).json();
+}
+
+export async function updateDeadlineStatus(deadlineId: number, status: string) {
+  return (
+    await apiFetch(`/api/deadlines/item/${deadlineId}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ status }),
+    })
+  ).json();
 }
 
 export async function getActionItems(id: number) {
