@@ -4,10 +4,14 @@ import { updateDeadlineStatus, type Deadline } from "../api/extractions";
 
 // Ordered most urgent first — the same order the API's BUCKETS tuple uses, and the
 // order rows sort in when sorting by urgency.
-const BUCKETS = ["overdue", "within_24_hours", "within_7_days", "within_30_days", "later", "no_date"] as const;
+const BUCKETS = ["overdue", "awaiting_trigger", "within_24_hours", "within_7_days", "within_30_days", "later", "no_date"] as const;
 
 const BUCKET_LABEL: Record<string, string> = {
   overdue: "Overdue",
+  // A relative timeframe ("within 4 hours of the incident") is counted from an
+  // event that hasn't happened — never "overdue", which would accuse the policy
+  // of missing a deadline for an incident that doesn't exist yet.
+  awaiting_trigger: "Counts from the incident",
   within_24_hours: "Within 24 hours",
   within_7_days: "Within 7 days",
   within_30_days: "Within 30 days",
@@ -17,6 +21,7 @@ const BUCKET_LABEL: Record<string, string> = {
 
 const BUCKET_TONE: Record<string, string> = {
   overdue: "bg-coral/10 text-coral",
+  awaiting_trigger: "bg-parchment-200 text-slate-500",
   within_24_hours: "bg-coral/10 text-coral",
   within_7_days: "bg-amber-50 text-amber",
   within_30_days: "bg-teal-50 text-teal-600",
@@ -26,6 +31,7 @@ const BUCKET_TONE: Record<string, string> = {
 
 const BUCKET_BAR: Record<string, string> = {
   overdue: "bg-coral",
+  awaiting_trigger: "bg-slate-200",
   within_24_hours: "bg-coral",
   within_7_days: "bg-amber",
   within_30_days: "bg-teal",

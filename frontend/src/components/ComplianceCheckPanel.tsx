@@ -11,15 +11,6 @@ const VERDICT_GROUPS = [
   { key: "unclear", label: "Not covered by this case study", tone: "bg-parchment-200 text-slate-500" },
 ] as const;
 
-const BUCKET_LABEL: Record<string, string> = {
-  overdue: "Overdue",
-  within_24_hours: "Within 24 hours",
-  within_7_days: "Within 7 days",
-  within_30_days: "Within 30 days",
-  later: "Later",
-  no_date: "No date",
-};
-
 function formatWhen(iso: string | null) {
   if (!iso) return null;
   return new Date(iso).toLocaleString(undefined, {
@@ -49,10 +40,13 @@ function FindingRow({
         </blockquote>
       )}
       <div className="mt-2 flex flex-wrap items-center gap-2 text-xs">
+        {/* No bucket here: a check judges "was this done before the deadline",
+            not "is the deadline before now" — bucketing due_at against today would
+            call every past incident's deadline "overdue" beside a "done" verdict.
+            The due time itself is still meaningful, so it stays. */}
         {finding.due_at && (
           <span className="rounded-full bg-parchment-200 px-2 py-0.5 text-slate-500">
             Due {formatWhen(finding.due_at)}
-            {finding.bucket ? ` · ${BUCKET_LABEL[finding.bucket] ?? finding.bucket}` : ""}
           </span>
         )}
         {heading && finding.section_id != null && onSectionClick && (
@@ -128,7 +122,9 @@ export default function ComplianceCheckPanel({
           <input
             type="file"
             accept=".pdf,.docx"
-            className="hidden"
+            // ponytail: visually hidden but not display:none / hidden — that would
+            // pull it out of the tab order, which is exactly what made it mouse-only.
+            className="absolute h-px w-px overflow-hidden opacity-0"
             aria-label="Upload a case-study document"
             onChange={(e) => {
               const file = e.target.files?.[0];
@@ -174,6 +170,10 @@ export default function ComplianceCheckPanel({
               Incident {formatWhen(check.incident_at) ?? "unknown"}
               {check.incident_source === "upload_time" && " (assumed — the document states no date)"}
             </span>
+            {/* The check succeeded — a requirement cap is a neutral notice about
+                what was checked, not a failure, so it does not use the coral
+                error styling `status === "failed"` gets below. */}
+            {check.error_message && <span>{check.error_message}</span>}
             {VERDICT_GROUPS.map((g) => (
               <span key={g.key} className={`rounded-full px-2 py-0.5 ${g.tone}`}>
                 {g.label} {check.counts[g.key] ?? 0}
