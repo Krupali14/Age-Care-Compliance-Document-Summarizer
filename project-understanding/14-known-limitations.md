@@ -33,7 +33,7 @@ An honest list. Everything here is known, deliberate, and unfixed.
 | **Chat has no memory** | Each question is retrieved and answered independently; "and who signs that off?" has no antecedent | Feed the transcript into retrieval |
 | **Summary is concatenated** | Section summaries joined in order, not synthesised into a document-level summary | A second pass over the section summaries |
 | **Only the PKs and `users.email` are indexed** | Fine at current sizes | Index `document_id` when a query is measurably slow |
-| **Uploads never cleaned up** | The volume grows forever | Delete the file when the document is deleted |
+| **Uploads are cleaned up on delete, but not on failure** | `delete_document` (and, on this branch, `delete_check`) unlinks the file from the volume; a document or check that ends up `failed` and is never deleted still leaves its file behind | Sweep orphaned files, or delete-on-failure |
 
 ## Quality limits
 
