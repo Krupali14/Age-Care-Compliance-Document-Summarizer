@@ -151,3 +151,34 @@ def test_chat_retrieves_extracted_findings_for_a_category_question(client, db_se
     prompt = fake.invoke.call_args[0][0]
     assert "Lodge the SIRS notification" in prompt
     assert "within 24 hours" in prompt
+
+
+def test_chat_prompt_states_how_many_findings_the_document_has(client, db_session):
+    """"How many actions are required?" used to be answered "I don't know": the
+    excerpts hold the actions themselves but never say how many there are in total,
+    so a counting question could not be answered from them. The totals come from the
+    database, where they are already exact."""
+    from unittest.mock import MagicMock, patch
+
+    from app.models import ActionItem, Section
+
+    headers = _chat_auth(client, "counts@b.com")
+    doc = _doc_with_sections(db_session, "counts@b.com")
+    section = db_session.query(Section).filter_by(document_id=doc.id, heading="Reporting").one()
+    db_session.add(ActionItem(
+        document_id=doc.id, section_id=section.id,
+        text="Report progress to the Board monthly until actions are closed",
+        timeframe="Monthly until closure",
+    ))
+    db_session.commit()
+
+    fake = MagicMock()
+    fake.invoke.return_value = MagicMock(content="One.")
+    with patch("app.routers.chat.get_llm", return_value=fake):
+        resp = client.post(f"/api/chat/{doc.id}", headers=headers,
+                           json={"question": "how many action are required?"})
+
+    assert resp.status_code == 200
+    prompt = fake.invoke.call_args[0][0]
+    assert "1 required action" in prompt
+    assert "0 risks" in prompt

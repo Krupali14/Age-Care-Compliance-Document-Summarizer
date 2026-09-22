@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { updateDeadlineStatus, type Deadline } from "../api/extractions";
 
@@ -45,6 +45,33 @@ const STATUSES = [
   { value: "completed", label: "Completed" },
 ];
 
+// How often the countdown chips re-render. A deadline shown in minutes goes stale
+// within a minute; anything finer would re-render the table for no visible change.
+const TICK_MS = 30_000;
+
+/** "2d 4h left", "43m left", or "Deadline passed" once the due time has gone by.
+ *
+ * A relative timeframe ("within 24 hours of the incident") means nothing as a
+ * bucket name — "Counts from the incident" told the user neither how long they
+ * have nor that the window has closed. The resolved due time does, counted from
+ * the incident stand-in the API anchored it on. */
+function countdown(iso: string | null, now: number) {
+  if (!iso) return null;
+  const remaining = new Date(iso).getTime() - now;
+  if (!Number.isFinite(remaining)) return null;
+  if (remaining <= 0) return { label: "Deadline passed", passed: true };
+
+  const minutes = Math.floor(remaining / 60_000);
+  const hours = Math.floor(minutes / 60);
+  const days = Math.floor(hours / 24);
+  // Two units at most: "3d 7h" is precise enough to act on, "3d 7h 12m" is noise.
+  const label =
+    days > 0 ? `${days}d ${hours % 24}h left`
+    : hours > 0 ? `${hours}h ${minutes % 60}m left`
+    : `${Math.max(minutes, 1)}m left`;
+  return { label, passed: false };
+}
+
 /** "17 Sep 2026, 6:00 pm" — deadlines can fall due at an hour, not just on a day. */
 function formatDueAt(iso: string | null) {
   if (!iso) return null;
@@ -67,7 +94,13 @@ export default function DeadlineTable({
   const [bucketFilter, setBucketFilter] = useState<string>("all");
   const [statusFilter, setStatusFilter] = useState<string>("all");
   const [sort, setSort] = useState<"urgency" | "latest" | "status">("urgency");
+  const [now, setNow] = useState(() => Date.now());
   const queryClient = useQueryClient();
+
+  useEffect(() => {
+    const id = setInterval(() => setNow(Date.now()), TICK_MS);
+    return () => clearInterval(id);
+  }, []);
 
   const setStatus = useMutation({
     mutationFn: ({ id, status }: { id: number; status: string }) => updateDeadlineStatus(id, status),
@@ -176,9 +209,17 @@ export default function DeadlineTable({
                   )}
                 </td>
                 <td className="py-3 pr-4">
-                  <span className={`rounded-full px-2 py-0.5 text-xs ${BUCKET_TONE[row.bucket] ?? "bg-parchment-200 text-slate-500"}`}>
-                    {BUCKET_LABEL[row.bucket] ?? row.bucket}
-                  </span>
+                  {(() => {
+                    // Relative timeframes get the live countdown; a fixed calendar
+                    // date already shows its own bucket, which does not drift.
+                    const left = row.bucket === "awaiting_trigger" ? countdown(row.due_at, now) : null;
+                    const tone = left?.passed ? BUCKET_TONE.overdue : BUCKET_TONE[row.bucket];
+                    return (
+                      <span className={`rounded-full px-2 py-0.5 text-xs ${tone ?? "bg-parchment-200 text-slate-500"}`}>
+                        {left?.label ?? BUCKET_LABEL[row.bucket] ?? row.bucket}
+                      </span>
+                    );
+                  })()}
                 </td>
                 <td className="py-3 pr-4">
                   <label className="sr-only" htmlFor={`deadline-status-${row.id}`}>Progress for {row.description}</label>

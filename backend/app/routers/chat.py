@@ -71,6 +71,24 @@ def _findings(doc_id: int, db: Session) -> list[tuple[str, int, str]]:
     return [(text, section_id, kind) for text, section_id, kind in out if section_id is not None]
 
 
+def _inventory(doc_id: int, db: Session) -> str:
+    """How many of each finding the document holds, in a sentence.
+
+    A counting question ("how many actions are required?") cannot be answered from
+    excerpts: they carry the findings themselves but never say how many exist, and
+    only a handful of them fit in the context anyway — so the model correctly said
+    it did not know while the exact totals sat in the database. They are counted
+    here and stated up front.
+    """
+    counts = [
+        (db.query(Obligation).filter(Obligation.document_id == doc_id).count(), "obligation"),
+        (db.query(Risk).filter(Risk.document_id == doc_id).count(), "risk"),
+        (db.query(Deadline).filter(Deadline.document_id == doc_id).count(), "deadline"),
+        (db.query(ActionItem).filter(ActionItem.document_id == doc_id).count(), "required action"),
+    ]
+    return ", ".join(f"{n} {noun}" if n == 1 else f"{n} {noun}s" for n, noun in counts)
+
+
 def _passages(doc_id: int, sections: list[Section], db: Session) -> list[tuple[str, Section, str | None]]:
     candidates = [s for s in sections if len((s.raw_text or "").strip()) >= MIN_SECTION_CHARS]
     if not candidates:
@@ -142,6 +160,7 @@ def chat(doc_id: int, payload: ChatRequest, db: Session = Depends(get_db), user:
 
     chosen, sources = _select(question, _passages(doc_id, document.sections, db))
     context = "\n\n".join(f"## {text}" for text, _section in chosen)
+    inventory = _inventory(doc_id, db)
 
     # "Answer only from the excerpts, otherwise say you don't know" was read as a
     # lookup instruction: asked to summarise, the model refused because no excerpt
@@ -154,6 +173,9 @@ def chat(doc_id: int, payload: ChatRequest, db: Session = Depends(get_db), user:
         "labelled Obligation, Risk, Deadline or Required action were extracted from "
         "this document and are part of it. Answer concisely, in Markdown. Only if "
         "the excerpts genuinely do not cover the question, say you don't know.\n\n"
+        "The totals below are exact and cover the whole document; the excerpts are "
+        "only a selection, so answer a question about how many there are from the "
+        f"totals.\nTotals for this document: {inventory}.\n\n"
         f"Excerpts:\n{context}\n\nQuestion: {question}"
     )
     # The model call is the one part of this that reaches the network, so it is also
