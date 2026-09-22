@@ -563,7 +563,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "models_obligation",
-      "community": 51,
+      "community": 12,
       "norm_label": "obligation.py"
     },
     {
@@ -573,7 +573,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "models_obligation_obligation",
-      "community": 50,
+      "community": 12,
       "norm_label": "obligation"
     },
     {
@@ -763,7 +763,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "routers_actions",
-      "community": 2,
+      "community": 51,
       "norm_label": "actions.py"
     },
     {
@@ -773,7 +773,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "routers_actions_get_action_items",
-      "community": 2,
+      "community": 51,
       "norm_label": "get_action_items()"
     },
     {
@@ -783,7 +783,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "backend_app_routers_actions_py_session",
-      "community": 2,
+      "community": 51,
       "norm_label": "session"
     },
     {
@@ -793,7 +793,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "backend_app_routers_actions_py_user",
-      "community": 2,
+      "community": 51,
       "norm_label": "user"
     },
     {
@@ -917,10 +917,20 @@
       "norm_label": "session"
     },
     {
-      "label": "_passages()",
+      "label": "_inventory()",
       "file_type": "code",
       "source_file": "backend/app/routers/chat.py",
       "source_location": "L74",
+      "_origin": "ast",
+      "id": "routers_chat_inventory",
+      "community": 33,
+      "norm_label": "_inventory()"
+    },
+    {
+      "label": "_passages()",
+      "file_type": "code",
+      "source_file": "backend/app/routers/chat.py",
+      "source_location": "L92",
       "_origin": "ast",
       "id": "routers_chat_passages",
       "community": 33,
@@ -930,7 +940,7 @@
       "label": "Section",
       "file_type": "code",
       "source_file": "backend/app/routers/chat.py",
-      "source_location": "L74",
+      "source_location": "L92",
       "_origin": "ast",
       "id": "section",
       "community": 33,
@@ -940,7 +950,7 @@
       "label": "_select()",
       "file_type": "code",
       "source_file": "backend/app/routers/chat.py",
-      "source_location": "L89",
+      "source_location": "L107",
       "_origin": "ast",
       "id": "routers_chat_select",
       "community": 33,
@@ -950,7 +960,7 @@
       "label": "chat()",
       "file_type": "code",
       "source_file": "backend/app/routers/chat.py",
-      "source_location": "L131",
+      "source_location": "L149",
       "_origin": "ast",
       "id": "routers_chat_chat",
       "community": 33,
@@ -960,7 +970,7 @@
       "label": "User",
       "file_type": "code",
       "source_file": "backend/app/routers/chat.py",
-      "source_location": "L131",
+      "source_location": "L149",
       "_origin": "ast",
       "id": "backend_app_routers_chat_py_user",
       "community": 33,
@@ -977,12 +987,22 @@
       "norm_label": "the document's extracted obligations, risks, deadlines and actions as     (text,"
     },
     {
+      "label": "How many of each finding the document holds, in a sentence.      A counting ques",
+      "file_type": "rationale",
+      "source_file": "backend/app/routers/chat.py",
+      "source_location": "L75",
+      "_origin": "ast",
+      "id": "routers_chat_rationale_75",
+      "community": 33,
+      "norm_label": "how many of each finding the document holds, in a sentence.      a counting ques"
+    },
+    {
       "label": "The k best passages, within a character budget, and the sections to cite.",
       "file_type": "rationale",
       "source_file": "backend/app/routers/chat.py",
-      "source_location": "L90",
+      "source_location": "L108",
       "_origin": "ast",
-      "id": "routers_chat_rationale_90",
+      "id": "routers_chat_rationale_108",
       "community": 33,
       "norm_label": "the k best passages, within a character budget, and the sections to cite."
     },
@@ -993,7 +1013,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "routers_compliance",
-      "community": 52,
+      "community": 10,
       "norm_label": "compliance.py"
     },
     {
@@ -1003,7 +1023,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "routers_compliance_get_owned_check",
-      "community": 52,
+      "community": 10,
       "norm_label": "_get_owned_check()"
     },
     {
@@ -1013,7 +1033,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "backend_app_routers_compliance_py_session",
-      "community": 52,
+      "community": 10,
       "norm_label": "session"
     },
     {
@@ -1023,7 +1043,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "backend_app_routers_compliance_py_user",
-      "community": 52,
+      "community": 10,
       "norm_label": "user"
     },
     {
@@ -1033,7 +1053,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "compliancecheck",
-      "community": 52,
+      "community": 10,
       "norm_label": "compliancecheck"
     },
     {
@@ -1043,7 +1063,7 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "routers_compliance_counts",
-      "community": 52,
+      "community": 10,
       "norm_label": "_counts()"
     },
     {
@@ -1053,7 +1073,7 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "checkfinding",
-      "community": 52,
+      "community": 10,
       "norm_label": "checkfinding"
     },
     {
@@ -1063,7 +1083,7 @@
       "source_location": "L33",
       "_origin": "ast",
       "id": "routers_compliance_iso_utc",
-      "community": 52,
+      "community": 10,
       "norm_label": "_iso_utc()"
     },
     {
@@ -1073,7 +1093,7 @@
       "source_location": "L42",
       "_origin": "ast",
       "id": "routers_compliance_create_check",
-      "community": 52,
+      "community": 10,
       "norm_label": "create_check()"
     },
     {
@@ -1083,7 +1103,7 @@
       "source_location": "L42",
       "_origin": "ast",
       "id": "backend_app_routers_compliance_py_uploadfile",
-      "community": 52,
+      "community": 10,
       "norm_label": "uploadfile"
     },
     {
@@ -1093,7 +1113,7 @@
       "source_location": "L42",
       "_origin": "ast",
       "id": "backend_app_routers_compliance_py_backgroundtasks",
-      "community": 52,
+      "community": 10,
       "norm_label": "backgroundtasks"
     },
     {
@@ -1103,7 +1123,7 @@
       "source_location": "L80",
       "_origin": "ast",
       "id": "routers_compliance_list_checks",
-      "community": 52,
+      "community": 10,
       "norm_label": "list_checks()"
     },
     {
@@ -1113,7 +1133,7 @@
       "source_location": "L104",
       "_origin": "ast",
       "id": "routers_compliance_get_check",
-      "community": 52,
+      "community": 10,
       "norm_label": "get_check()"
     },
     {
@@ -1123,7 +1143,7 @@
       "source_location": "L134",
       "_origin": "ast",
       "id": "routers_compliance_delete_check",
-      "community": 52,
+      "community": 10,
       "norm_label": "delete_check()"
     },
     {
@@ -1133,7 +1153,7 @@
       "source_location": "L34",
       "_origin": "ast",
       "id": "routers_compliance_rationale_34",
-      "community": 52,
+      "community": 10,
       "norm_label": "`incident_at` and `due_at` are naive utc datetimes \u2014 serialising them without"
     },
     {
@@ -1143,7 +1163,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "routers_deadlines",
-      "community": 2,
+      "community": 0,
       "norm_label": "deadlines.py"
     },
     {
@@ -1153,7 +1173,7 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "routers_deadlines_statusupdate",
-      "community": 2,
+      "community": 0,
       "norm_label": "statusupdate"
     },
     {
@@ -1163,7 +1183,7 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "routers_deadlines_get_deadlines",
-      "community": 2,
+      "community": 0,
       "norm_label": "get_deadlines()"
     },
     {
@@ -1173,7 +1193,7 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "backend_app_routers_deadlines_py_session",
-      "community": 2,
+      "community": 0,
       "norm_label": "session"
     },
     {
@@ -1183,7 +1203,7 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "backend_app_routers_deadlines_py_user",
-      "community": 2,
+      "community": 0,
       "norm_label": "user"
     },
     {
@@ -1193,7 +1213,7 @@
       "source_location": "L55",
       "_origin": "ast",
       "id": "routers_deadlines_update_deadline_status",
-      "community": 2,
+      "community": 0,
       "norm_label": "update_deadline_status()"
     },
     {
@@ -1203,7 +1223,7 @@
       "source_location": "L61",
       "_origin": "ast",
       "id": "routers_deadlines_rationale_61",
-      "community": 2,
+      "community": 0,
       "norm_label": "record progress against one deadline."
     },
     {
@@ -1213,7 +1233,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "routers_documents",
-      "community": 2,
+      "community": 10,
       "norm_label": "documents.py"
     },
     {
@@ -1223,7 +1243,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "routers_documents_get_owned_document",
-      "community": 2,
+      "community": 10,
       "norm_label": "_get_owned_document()"
     },
     {
@@ -1233,7 +1253,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "backend_app_routers_documents_py_session",
-      "community": 2,
+      "community": 10,
       "norm_label": "session"
     },
     {
@@ -1243,7 +1263,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "backend_app_routers_documents_py_user",
-      "community": 2,
+      "community": 10,
       "norm_label": "user"
     },
     {
@@ -1253,7 +1273,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "document",
-      "community": 2,
+      "community": 10,
       "norm_label": "document"
     },
     {
@@ -1263,7 +1283,7 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "routers_documents_list_documents",
-      "community": 2,
+      "community": 10,
       "norm_label": "list_documents()"
     },
     {
@@ -1273,7 +1293,7 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "routers_documents_get_document",
-      "community": 2,
+      "community": 10,
       "norm_label": "get_document()"
     },
     {
@@ -1283,7 +1303,7 @@
       "source_location": "L43",
       "_origin": "ast",
       "id": "routers_documents_delete_document",
-      "community": 2,
+      "community": 10,
       "norm_label": "delete_document()"
     },
     {
@@ -1293,7 +1313,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "routers_eval",
-      "community": 2,
+      "community": 10,
       "norm_label": "eval.py"
     },
     {
@@ -1303,7 +1323,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "routers_eval_evalrequest",
-      "community": 2,
+      "community": 10,
       "norm_label": "evalrequest"
     },
     {
@@ -1313,7 +1333,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "routers_eval_serialize",
-      "community": 2,
+      "community": 10,
       "norm_label": "_serialize()"
     },
     {
@@ -1323,7 +1343,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "backend_app_routers_eval_py_evalrun",
-      "community": 2,
+      "community": 10,
       "norm_label": "evalrun"
     },
     {
@@ -1333,7 +1353,7 @@
       "source_location": "L23",
       "_origin": "ast",
       "id": "routers_eval_get_eval_runs",
-      "community": 2,
+      "community": 10,
       "norm_label": "get_eval_runs()"
     },
     {
@@ -1343,7 +1363,7 @@
       "source_location": "L23",
       "_origin": "ast",
       "id": "backend_app_routers_eval_py_session",
-      "community": 2,
+      "community": 10,
       "norm_label": "session"
     },
     {
@@ -1353,7 +1373,7 @@
       "source_location": "L23",
       "_origin": "ast",
       "id": "backend_app_routers_eval_py_user",
-      "community": 2,
+      "community": 10,
       "norm_label": "user"
     },
     {
@@ -1363,7 +1383,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "routers_eval_create_eval_run",
-      "community": 2,
+      "community": 10,
       "norm_label": "create_eval_run()"
     },
     {
@@ -1373,7 +1393,7 @@
       "source_location": "L40",
       "_origin": "ast",
       "id": "routers_eval_create_auto_eval_run",
-      "community": 2,
+      "community": 10,
       "norm_label": "create_auto_eval_run()"
     },
     {
@@ -1383,7 +1403,7 @@
       "source_location": "L41",
       "_origin": "ast",
       "id": "routers_eval_rationale_41",
-      "community": 2,
+      "community": 10,
       "norm_label": "score a document against itself \u2014 no ground truth needed, so the ui can run"
     },
     {
@@ -1393,7 +1413,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "routers_obligations",
-      "community": 2,
+      "community": 10,
       "norm_label": "obligations.py"
     },
     {
@@ -1403,7 +1423,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "routers_obligations_get_obligations",
-      "community": 2,
+      "community": 10,
       "norm_label": "get_obligations()"
     },
     {
@@ -1413,7 +1433,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "backend_app_routers_obligations_py_session",
-      "community": 2,
+      "community": 10,
       "norm_label": "session"
     },
     {
@@ -1423,7 +1443,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "backend_app_routers_obligations_py_user",
-      "community": 2,
+      "community": 10,
       "norm_label": "user"
     },
     {
@@ -1473,7 +1493,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "routers_summarize",
-      "community": 2,
+      "community": 51,
       "norm_label": "summarize.py"
     },
     {
@@ -1483,7 +1503,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "routers_summarize_get_summaries",
-      "community": 2,
+      "community": 51,
       "norm_label": "get_summaries()"
     },
     {
@@ -1493,7 +1513,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "backend_app_routers_summarize_py_session",
-      "community": 2,
+      "community": 51,
       "norm_label": "session"
     },
     {
@@ -1503,7 +1523,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "backend_app_routers_summarize_py_user",
-      "community": 2,
+      "community": 51,
       "norm_label": "user"
     },
     {
@@ -2073,7 +2093,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "services_docling_parser_parsedsection",
-      "community": 4,
+      "community": 29,
       "norm_label": "parsedsection"
     },
     {
@@ -3007,6 +3027,16 @@
       "norm_label": "test_chat_retrieves_extracted_findings_for_a_category_question()"
     },
     {
+      "label": "test_chat_prompt_states_how_many_findings_the_document_has()",
+      "file_type": "code",
+      "source_file": "backend/tests/test_chat.py",
+      "source_location": "L156",
+      "_origin": "ast",
+      "id": "tests_test_chat_test_chat_prompt_states_how_many_findings_the_document_has",
+      "community": 14,
+      "norm_label": "test_chat_prompt_states_how_many_findings_the_document_has()"
+    },
+    {
       "label": "A 13-character contents fragment used to outrank the section that actually     a",
       "file_type": "rationale",
       "source_file": "backend/tests/test_chat.py",
@@ -3025,6 +3055,16 @@
       "id": "tests_test_chat_rationale_126",
       "community": 14,
       "norm_label": "what deadlines are mentioned?\" used to retrieve nothing: the provisions     neve"
+    },
+    {
+      "label": "How many actions are required?\" used to be answered \"I don't know\": the     exce",
+      "file_type": "rationale",
+      "source_file": "backend/tests/test_chat.py",
+      "source_location": "L157",
+      "_origin": "ast",
+      "id": "tests_test_chat_rationale_157",
+      "community": 14,
+      "norm_label": "how many actions are required?\" used to be answered \"i don't know\": the     exce"
     },
     {
       "label": "test_compliance_api.py",
@@ -4043,7 +4083,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tests_test_input_limits",
-      "community": 1,
+      "community": 59,
       "norm_label": "test_input_limits.py"
     },
     {
@@ -4053,7 +4093,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "tests_test_input_limits_auth",
-      "community": 1,
+      "community": 59,
       "norm_label": "_auth()"
     },
     {
@@ -4063,7 +4103,7 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "tests_test_input_limits_doc",
-      "community": 1,
+      "community": 59,
       "norm_label": "_doc()"
     },
     {
@@ -4073,7 +4113,7 @@
       "source_location": "L32",
       "_origin": "ast",
       "id": "tests_test_input_limits_test_an_over_long_email_is_refused",
-      "community": 1,
+      "community": 59,
       "norm_label": "test_an_over_long_email_is_refused()"
     },
     {
@@ -4083,7 +4123,7 @@
       "source_location": "L39",
       "_origin": "ast",
       "id": "tests_test_input_limits_test_an_email_at_the_limit_is_accepted",
-      "community": 1,
+      "community": 59,
       "norm_label": "test_an_email_at_the_limit_is_accepted()"
     },
     {
@@ -4093,7 +4133,7 @@
       "source_location": "L45",
       "_origin": "ast",
       "id": "tests_test_input_limits_test_an_over_long_question_is_refused_before_reaching_the_model",
-      "community": 1,
+      "community": 59,
       "norm_label": "test_an_over_long_question_is_refused_before_reaching_the_model()"
     },
     {
@@ -4103,7 +4143,7 @@
       "source_location": "L62",
       "_origin": "ast",
       "id": "tests_test_input_limits_test_a_question_at_the_limit_is_accepted",
-      "community": 1,
+      "community": 59,
       "norm_label": "test_a_question_at_the_limit_is_accepted()"
     },
     {
@@ -4113,7 +4153,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tests_test_input_limits_rationale_1",
-      "community": 1,
+      "community": 59,
       "norm_label": "regression cover for the input ceilings.  each of these was unbounded: a 300-cha"
     },
     {
@@ -4313,7 +4353,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tests_test_rate_limit",
-      "community": 10,
+      "community": 1,
       "norm_label": "test_rate_limit.py"
     },
     {
@@ -4323,7 +4363,7 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "tests_test_rate_limit_small_limits",
-      "community": 10,
+      "community": 1,
       "norm_label": "_small_limits()"
     },
     {
@@ -4333,7 +4373,7 @@
       "source_location": "L29",
       "_origin": "ast",
       "id": "tests_test_rate_limit_register",
-      "community": 10,
+      "community": 1,
       "norm_label": "_register()"
     },
     {
@@ -4343,7 +4383,7 @@
       "source_location": "L33",
       "_origin": "ast",
       "id": "tests_test_rate_limit_login",
-      "community": 10,
+      "community": 1,
       "norm_label": "_login()"
     },
     {
@@ -4353,7 +4393,7 @@
       "source_location": "L37",
       "_origin": "ast",
       "id": "tests_test_rate_limit_test_login_locks_out_after_the_attempt_limit",
-      "community": 10,
+      "community": 1,
       "norm_label": "test_login_locks_out_after_the_attempt_limit()"
     },
     {
@@ -4363,7 +4403,7 @@
       "source_location": "L49",
       "_origin": "ast",
       "id": "tests_test_rate_limit_test_the_lockout_also_blocks_the_correct_password",
-      "community": 10,
+      "community": 1,
       "norm_label": "test_the_lockout_also_blocks_the_correct_password()"
     },
     {
@@ -4373,7 +4413,7 @@
       "source_location": "L58",
       "_origin": "ast",
       "id": "tests_test_rate_limit_test_registration_is_capped_per_address",
-      "community": 10,
+      "community": 1,
       "norm_label": "test_registration_is_capped_per_address()"
     },
     {
@@ -4383,7 +4423,7 @@
       "source_location": "L64",
       "_origin": "ast",
       "id": "tests_test_rate_limit_test_a_different_account_is_unaffected_by_another_s_lockout",
-      "community": 10,
+      "community": 1,
       "norm_label": "test_a_different_account_is_unaffected_by_another_s_lockout()"
     },
     {
@@ -4403,7 +4443,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tests_test_rate_limit_rationale_1",
-      "community": 10,
+      "community": 1,
       "norm_label": "regression cover for the auth rate limits.  unlimited password guessing against"
     },
     {
@@ -4413,7 +4453,7 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "tests_test_rate_limit_rationale_22",
-      "community": 10,
+      "community": 1,
       "norm_label": "pin the router's limits to something small and deterministic."
     },
     {
@@ -4423,7 +4463,7 @@
       "source_location": "L50",
       "_origin": "ast",
       "id": "tests_test_rate_limit_rationale_50",
-      "community": 10,
+      "community": 1,
       "norm_label": "otherwise an attacker learns they found it from the response changing."
     },
     {
@@ -4433,7 +4473,7 @@
       "source_location": "L65",
       "_origin": "ast",
       "id": "tests_test_rate_limit_rationale_65",
-      "community": 10,
+      "community": 1,
       "norm_label": "the per-address counter must not lock out the whole application."
     },
     {
@@ -5433,7 +5473,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "readme",
-      "community": 5,
+      "community": 63,
       "norm_label": "readme.md"
     },
     {
@@ -5443,7 +5483,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "readme_aged_care_compliance_summariser",
-      "community": 5,
+      "community": 58,
       "norm_label": "aged care compliance summariser"
     },
     {
@@ -5453,7 +5493,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "readme_prerequisites",
-      "community": 5,
+      "community": 58,
       "norm_label": "prerequisites"
     },
     {
@@ -5463,7 +5503,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "readme_setup",
-      "community": 5,
+      "community": 58,
       "norm_label": "setup"
     },
     {
@@ -5473,7 +5513,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "readme_access",
-      "community": 5,
+      "community": 58,
       "norm_label": "access"
     },
     {
@@ -5483,7 +5523,7 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "readme_extraction_performance",
-      "community": 5,
+      "community": 58,
       "norm_label": "extraction performance"
     },
     {
@@ -5493,7 +5533,7 @@
       "source_location": "L38",
       "_origin": "ast",
       "id": "readme_documentation",
-      "community": 5,
+      "community": 58,
       "norm_label": "documentation"
     },
     {
@@ -5503,7 +5543,7 @@
       "source_location": "L56",
       "_origin": "ast",
       "id": "readme_makefile_targets",
-      "community": 5,
+      "community": 58,
       "norm_label": "makefile targets"
     },
     {
@@ -5513,7 +5553,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "docs_evaluation",
-      "community": 5,
+      "community": 63,
       "norm_label": "evaluation.md"
     },
     {
@@ -5593,7 +5633,7 @@
       "source_location": "L141",
       "_origin": "ast",
       "id": "docs_evaluation_3_running_an_evaluation",
-      "community": 5,
+      "community": 62,
       "norm_label": "3. running an evaluation"
     },
     {
@@ -5603,7 +5643,7 @@
       "source_location": "L143",
       "_origin": "ast",
       "id": "docs_evaluation_on_screen",
-      "community": 5,
+      "community": 62,
       "norm_label": "on screen"
     },
     {
@@ -5613,7 +5653,7 @@
       "source_location": "L163",
       "_origin": "ast",
       "id": "docs_evaluation_over_the_api",
-      "community": 5,
+      "community": 62,
       "norm_label": "over the api"
     },
     {
@@ -5623,7 +5663,7 @@
       "source_location": "L186",
       "_origin": "ast",
       "id": "docs_evaluation_from_the_command_line",
-      "community": 5,
+      "community": 62,
       "norm_label": "from the command line"
     },
     {
@@ -5673,7 +5713,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "docs_processing_pipeline_1_the_path_a_file_takes",
-      "community": 7,
+      "community": 61,
       "norm_label": "1. the path a file takes"
     },
     {
@@ -5683,7 +5723,7 @@
       "source_location": "L31",
       "_origin": "ast",
       "id": "docs_processing_pipeline_step_0_upload_routers_upload_py",
-      "community": 7,
+      "community": 61,
       "norm_label": "step 0 \u2014 upload (`routers/upload.py`)"
     },
     {
@@ -5693,7 +5733,7 @@
       "source_location": "L48",
       "_origin": "ast",
       "id": "docs_processing_pipeline_step_1_parsing_docling_parser_py",
-      "community": 7,
+      "community": 61,
       "norm_label": "step 1 \u2014 parsing (`docling_parser.py`)"
     },
     {
@@ -5703,7 +5743,7 @@
       "source_location": "L92",
       "_origin": "ast",
       "id": "docs_processing_pipeline_step_2_the_relevance_gate",
-      "community": 7,
+      "community": 61,
       "norm_label": "step 2 \u2014 the relevance gate"
     },
     {
@@ -5713,7 +5753,7 @@
       "source_location": "L110",
       "_origin": "ast",
       "id": "docs_processing_pipeline_steps_3_5_extraction",
-      "community": 7,
+      "community": 44,
       "norm_label": "steps 3\u20135 \u2014 extraction"
     },
     {
@@ -5723,7 +5763,7 @@
       "source_location": "L115",
       "_origin": "ast",
       "id": "docs_processing_pipeline_optimisation_1_don_t_extract_what_isn_t_content",
-      "community": 7,
+      "community": 44,
       "norm_label": "optimisation 1 \u2014 don't extract what isn't content"
     },
     {
@@ -5733,7 +5773,7 @@
       "source_location": "L128",
       "_origin": "ast",
       "id": "docs_processing_pipeline_optimisation_2_batch_sections_into_one_call",
-      "community": 7,
+      "community": 44,
       "norm_label": "optimisation 2 \u2014 batch sections into one call"
     },
     {
@@ -5743,7 +5783,7 @@
       "source_location": "L149",
       "_origin": "ast",
       "id": "docs_processing_pipeline_optimisation_3_run_the_calls_concurrently",
-      "community": 7,
+      "community": 44,
       "norm_label": "optimisation 3 \u2014 run the calls concurrently"
     },
     {
@@ -5753,7 +5793,7 @@
       "source_location": "L158",
       "_origin": "ast",
       "id": "docs_processing_pipeline_optimisation_4_pace_don_t_retry",
-      "community": 7,
+      "community": 44,
       "norm_label": "optimisation 4 \u2014 pace, don't retry"
     },
     {
@@ -5763,7 +5803,7 @@
       "source_location": "L176",
       "_origin": "ast",
       "id": "docs_processing_pipeline_optimisation_5_one_http_client_for_the_process",
-      "community": 7,
+      "community": 44,
       "norm_label": "optimisation 5 \u2014 one http client for the process"
     },
     {
@@ -5773,7 +5813,7 @@
       "source_location": "L186",
       "_origin": "ast",
       "id": "docs_processing_pipeline_optimisation_6_stable_prompt_prefix",
-      "community": 7,
+      "community": 44,
       "norm_label": "optimisation 6 \u2014 stable prompt prefix"
     },
     {
@@ -5783,7 +5823,7 @@
       "source_location": "L192",
       "_origin": "ast",
       "id": "docs_processing_pipeline_correctness_under_batching_index_heading_echo",
-      "community": 7,
+      "community": 44,
       "norm_label": "correctness under batching: index + heading echo"
     },
     {
@@ -5793,7 +5833,7 @@
       "source_location": "L212",
       "_origin": "ast",
       "id": "docs_processing_pipeline_step_6_persist",
-      "community": 7,
+      "community": 61,
       "norm_label": "step 6 \u2014 persist"
     },
     {
@@ -5963,7 +6003,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "docs_vscode_setup",
-      "community": 5,
+      "community": 63,
       "norm_label": "vscode_setup.md"
     },
     {
@@ -5973,7 +6013,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "docs_vscode_setup_vs_code_red_underlines_in_node_and_react_files",
-      "community": 5,
+      "community": 57,
       "norm_label": "vs code: red underlines in node and react files"
     },
     {
@@ -5983,7 +6023,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "docs_vscode_setup_1_first_which_tool_is_underlining_the_code",
-      "community": 5,
+      "community": 57,
       "norm_label": "1. first: which tool is underlining the code?"
     },
     {
@@ -5993,7 +6033,7 @@
       "source_location": "L33",
       "_origin": "ast",
       "id": "docs_vscode_setup_2_the_cause_in_this_repository",
-      "community": 5,
+      "community": 57,
       "norm_label": "2. the cause in *this* repository"
     },
     {
@@ -6003,7 +6043,7 @@
       "source_location": "L74",
       "_origin": "ast",
       "id": "docs_vscode_setup_if_it_comes_back",
-      "community": 5,
+      "community": 57,
       "norm_label": "if it comes back"
     },
     {
@@ -6013,7 +6053,7 @@
       "source_location": "L90",
       "_origin": "ast",
       "id": "docs_vscode_setup_3_extensions_worth_installing",
-      "community": 5,
+      "community": 57,
       "norm_label": "3. extensions worth installing"
     },
     {
@@ -6023,7 +6063,7 @@
       "source_location": "L109",
       "_origin": "ast",
       "id": "docs_vscode_setup_4_a_note_on_npm_run_lint",
-      "community": 5,
+      "community": 57,
       "norm_label": "4. a note on `npm run lint`"
     },
     {
@@ -6033,7 +6073,7 @@
       "source_location": "L135",
       "_origin": "ast",
       "id": "docs_vscode_setup_5_silencing_a_warning_and_when_that_is_legitimate",
-      "community": 5,
+      "community": 60,
       "norm_label": "5. silencing a warning \u2014 and when that is legitimate"
     },
     {
@@ -6043,7 +6083,7 @@
       "source_location": "L145",
       "_origin": "ast",
       "id": "docs_vscode_setup_typescript_one_line",
-      "community": 5,
+      "community": 60,
       "norm_label": "typescript \u2014 one line"
     },
     {
@@ -6053,7 +6093,7 @@
       "source_location": "L159",
       "_origin": "ast",
       "id": "docs_vscode_setup_typescript_a_third_party_package_with_no_types",
-      "community": 5,
+      "community": 60,
       "norm_label": "typescript \u2014 a third-party package with no types"
     },
     {
@@ -6063,7 +6103,7 @@
       "source_location": "L178",
       "_origin": "ast",
       "id": "docs_vscode_setup_eslint_one_line_one_rule",
-      "community": 5,
+      "community": 60,
       "norm_label": "eslint \u2014 one line, one rule"
     },
     {
@@ -6073,7 +6113,7 @@
       "source_location": "L203",
       "_origin": "ast",
       "id": "docs_vscode_setup_python_ruff_flake8",
-      "community": 5,
+      "community": 60,
       "norm_label": "python \u2014 ruff / flake8"
     },
     {
@@ -6083,7 +6123,7 @@
       "source_location": "L213",
       "_origin": "ast",
       "id": "docs_vscode_setup_python_pylance",
-      "community": 5,
+      "community": 60,
       "norm_label": "python \u2014 pylance"
     },
     {
@@ -6093,7 +6133,7 @@
       "source_location": "L225",
       "_origin": "ast",
       "id": "docs_vscode_setup_6_turning_the_display_down_without_changing_the_code",
-      "community": 5,
+      "community": 57,
       "norm_label": "6. turning the display down (without changing the code)"
     },
     {
@@ -6103,7 +6143,7 @@
       "source_location": "L257",
       "_origin": "ast",
       "id": "docs_vscode_setup_7_the_30_second_checklist",
-      "community": 5,
+      "community": 57,
       "norm_label": "7. the 30-second checklist"
     },
     {
@@ -6853,7 +6893,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "project_understanding_02_architecture",
-      "community": 36,
+      "community": 48,
       "norm_label": "02-architecture.md"
     },
     {
@@ -8023,7 +8063,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "project_understanding_09_security",
-      "community": 36,
+      "community": 48,
       "norm_label": "09-security.md"
     },
     {
@@ -8363,7 +8403,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "project_understanding_12_design_decisions",
-      "community": 36,
+      "community": 48,
       "norm_label": "12-design-decisions.md"
     },
     {
@@ -8593,7 +8633,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "project_understanding_14_known_limitations",
-      "community": 36,
+      "community": 48,
       "norm_label": "14-known-limitations.md"
     },
     {
@@ -8946,7 +8986,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 5,
+      "community": 58,
       "norm_label": "aged care compliance summariser readme",
       "id": "readme_project_overview"
     },
@@ -10050,9 +10090,9 @@
       "source_file": "backend/app/main.py",
       "source_location": "L64",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_main",
-      "target": "app_main_release_interrupted_checks",
-      "confidence_score": 1.0
+      "target": "app_main_release_interrupted_checks"
     },
     {
       "relation": "contains",
@@ -10114,9 +10154,9 @@
       "source_file": "backend/app/main.py",
       "source_location": "L26",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_main_rationale_26",
-      "target": "app_main_release_interrupted_documents",
-      "confidence_score": 1.0
+      "target": "app_main_release_interrupted_documents"
     },
     {
       "relation": "calls",
@@ -10158,9 +10198,9 @@
       "source_file": "backend/app/main.py",
       "source_location": "L94",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_main_lifespan",
-      "target": "app_main_release_interrupted_checks",
-      "confidence_score": 1.0
+      "target": "app_main_release_interrupted_checks"
     },
     {
       "relation": "rationale_for",
@@ -10168,9 +10208,9 @@
       "source_file": "backend/app/main.py",
       "source_location": "L65",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_main_rationale_65",
-      "target": "app_main_release_interrupted_checks",
-      "confidence_score": 1.0
+      "target": "app_main_release_interrupted_checks"
     },
     {
       "relation": "calls",
@@ -10388,6 +10428,17 @@
       "source_location": "L69",
       "weight": 1.0,
       "source": "services_processing_process_document",
+      "target": "models_action_item_actionitem"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/tests/test_chat.py",
+      "source_location": "L168",
+      "weight": 1.0,
+      "source": "tests_test_chat_test_chat_prompt_states_how_many_findings_the_document_has",
       "target": "models_action_item_actionitem"
     },
     {
@@ -11320,6 +11371,16 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/app/routers/chat.py",
+      "source_location": "L74",
+      "weight": 1.0,
+      "source": "routers_chat",
+      "target": "routers_chat_inventory",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/routers/chat.py",
       "source_location": "L138",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -11545,11 +11606,43 @@
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "backend/app/routers/chat.py",
+      "source_location": "L74",
+      "weight": 1.0,
+      "source": "routers_chat_inventory",
+      "target": "backend_app_routers_chat_py_session",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/routers/chat.py",
       "source_location": "L138",
       "weight": 1.0,
       "confidence_score": 1.0,
       "source": "routers_chat_passages",
       "target": "backend_app_routers_chat_py_session"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/routers/chat.py",
+      "source_location": "L163",
+      "weight": 1.0,
+      "source": "routers_chat_chat",
+      "target": "routers_chat_inventory",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/routers/chat.py",
+      "source_location": "L75",
+      "weight": 1.0,
+      "source": "routers_chat_rationale_75",
+      "target": "routers_chat_inventory",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -11599,11 +11692,11 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "backend/app/routers/chat.py",
-      "source_location": "L90",
+      "source_location": "L108",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "routers_chat_rationale_90",
-      "target": "routers_chat_select"
+      "source": "routers_chat_rationale_108",
+      "target": "routers_chat_select",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -11716,9 +11809,9 @@
       "source_file": "backend/app/routers/compliance.py",
       "source_location": "L33",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "routers_compliance",
-      "target": "routers_compliance_iso_utc",
-      "confidence_score": 1.0
+      "target": "routers_compliance_iso_utc"
     },
     {
       "relation": "contains",
@@ -11935,9 +12028,9 @@
       "source_file": "backend/app/routers/compliance.py",
       "source_location": "L112",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "routers_compliance_get_check",
-      "target": "routers_compliance_iso_utc",
-      "confidence_score": 1.0
+      "target": "routers_compliance_iso_utc"
     },
     {
       "relation": "calls",
@@ -11946,9 +12039,9 @@
       "source_file": "backend/app/routers/compliance.py",
       "source_location": "L94",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "routers_compliance_list_checks",
-      "target": "routers_compliance_iso_utc",
-      "confidence_score": 1.0
+      "target": "routers_compliance_iso_utc"
     },
     {
       "relation": "rationale_for",
@@ -11956,9 +12049,9 @@
       "source_file": "backend/app/routers/compliance.py",
       "source_location": "L34",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "routers_compliance_rationale_34",
-      "target": "routers_compliance_iso_utc",
-      "confidence_score": 1.0
+      "target": "routers_compliance_iso_utc"
     },
     {
       "relation": "references",
@@ -12172,9 +12265,9 @@
       "source_file": "backend/app/routers/deadlines.py",
       "source_location": "L61",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "routers_deadlines_rationale_61",
-      "target": "routers_deadlines_update_deadline_status",
-      "confidence_score": 1.0
+      "target": "routers_deadlines_update_deadline_status"
     },
     {
       "relation": "calls",
@@ -13447,9 +13540,9 @@
       "source_file": "backend/app/services/compliance_check.py",
       "source_location": "L138",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_compliance_check_rationale_138",
-      "target": "services_compliance_check_requirement",
-      "confidence_score": 1.0
+      "target": "services_compliance_check_requirement"
     },
     {
       "relation": "references",
@@ -13501,9 +13594,9 @@
       "source_file": "backend/app/services/compliance_check.py",
       "source_location": "L166",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_compliance_check_rationale_166",
-      "target": "services_compliance_check_select_evidence",
-      "confidence_score": 1.0
+      "target": "services_compliance_check_select_evidence"
     },
     {
       "relation": "calls",
@@ -13631,9 +13724,9 @@
       "source_file": "backend/app/services/compliance_check.py",
       "source_location": "L196",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_compliance_check_rationale_196",
-      "target": "services_compliance_check_checkverdict_coerce_evidence",
-      "confidence_score": 1.0
+      "target": "services_compliance_check_checkverdict_coerce_evidence"
     },
     {
       "relation": "calls",
@@ -13685,9 +13778,9 @@
       "source_file": "backend/app/services/compliance_check.py",
       "source_location": "L249",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_compliance_check_rationale_249",
-      "target": "services_compliance_check_verdicts_for",
-      "confidence_score": 1.0
+      "target": "services_compliance_check_verdicts_for"
     },
     {
       "relation": "calls",
@@ -13717,9 +13810,9 @@
       "source_file": "backend/app/services/compliance_check.py",
       "source_location": "L272",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_compliance_check_rationale_272",
-      "target": "services_compliance_check_run_check",
-      "confidence_score": 1.0
+      "target": "services_compliance_check_run_check"
     },
     {
       "relation": "calls",
@@ -13847,9 +13940,9 @@
       "source_file": "backend/app/services/deadlines.py",
       "source_location": "L83",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_deadlines",
-      "target": "services_deadlines_is_relative_due_date",
-      "confidence_score": 1.0
+      "target": "services_deadlines_is_relative_due_date"
     },
     {
       "relation": "contains",
@@ -13888,9 +13981,9 @@
       "source_file": "backend/app/services/deadlines.py",
       "source_location": "L100",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_deadlines_is_relative_due_date",
-      "target": "services_deadlines_parse_relative",
-      "confidence_score": 1.0
+      "target": "services_deadlines_parse_relative"
     },
     {
       "relation": "references",
@@ -13909,9 +14002,9 @@
       "source_file": "backend/app/services/deadlines.py",
       "source_location": "L48",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_deadlines_rationale_48",
-      "target": "services_deadlines_parse_relative",
-      "confidence_score": 1.0
+      "target": "services_deadlines_parse_relative"
     },
     {
       "relation": "calls",
@@ -14018,9 +14111,9 @@
       "source_file": "backend/app/services/deadlines.py",
       "source_location": "L61",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_deadlines_rationale_61",
-      "target": "services_deadlines_resolve_due_at",
-      "confidence_score": 1.0
+      "target": "services_deadlines_resolve_due_at"
     },
     {
       "relation": "references",
@@ -14105,9 +14198,9 @@
       "source_file": "backend/app/services/deadlines.py",
       "source_location": "L84",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_deadlines_rationale_84",
-      "target": "services_deadlines_is_relative_due_date",
-      "confidence_score": 1.0
+      "target": "services_deadlines_is_relative_due_date"
     },
     {
       "relation": "calls",
@@ -14126,9 +14219,9 @@
       "source_file": "backend/app/services/deadlines.py",
       "source_location": "L104",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_deadlines_rationale_104",
-      "target": "services_deadlines_bucket_for",
-      "confidence_score": 1.0
+      "target": "services_deadlines_bucket_for"
     },
     {
       "relation": "calls",
@@ -16172,6 +16265,16 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/tests/test_chat.py",
+      "source_location": "L156",
+      "weight": 1.0,
+      "source": "tests_test_chat",
+      "target": "tests_test_chat_test_chat_prompt_states_how_many_findings_the_document_has",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/test_chat.py",
       "source_location": "L76",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -16245,6 +16348,17 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "backend/tests/test_chat.py",
+      "source_location": "L165",
+      "weight": 1.0,
+      "source": "tests_test_chat_test_chat_prompt_states_how_many_findings_the_document_has",
+      "target": "tests_test_chat_chat_auth",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/test_chat.py",
       "source_location": "L80",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -16294,6 +16408,17 @@
       "confidence_score": 1.0,
       "source": "tests_test_chat_test_chat_retrieves_extracted_findings_for_a_category_question",
       "target": "tests_test_chat_chat_auth"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/test_chat.py",
+      "source_location": "L166",
+      "weight": 1.0,
+      "source": "tests_test_chat_test_chat_prompt_states_how_many_findings_the_document_has",
+      "target": "tests_test_chat_doc_with_sections",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -16360,6 +16485,16 @@
       "target": "tests_test_chat_test_chat_retrieves_extracted_findings_for_a_category_question"
     },
     {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/test_chat.py",
+      "source_location": "L157",
+      "weight": 1.0,
+      "source": "tests_test_chat_rationale_157",
+      "target": "tests_test_chat_test_chat_prompt_states_how_many_findings_the_document_has",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/tests/test_compliance_api.py",
@@ -16385,9 +16520,9 @@
       "source_file": "backend/tests/test_compliance_api.py",
       "source_location": "L101",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_compliance_api",
-      "target": "tests_test_compliance_api_test_deleting_a_running_check_is_rejected",
-      "confidence_score": 1.0
+      "target": "tests_test_compliance_api_test_deleting_a_running_check_is_rejected"
     },
     {
       "relation": "contains",
@@ -16448,9 +16583,9 @@
       "source_file": "backend/tests/test_compliance_api.py",
       "source_location": "L106",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_compliance_api_test_deleting_a_running_check_is_rejected",
-      "target": "tests_test_compliance_api_document",
-      "confidence_score": 1.0
+      "target": "tests_test_compliance_api_document"
     },
     {
       "relation": "calls",
@@ -16626,9 +16761,9 @@
       "source_file": "backend/tests/test_compliance_incident_time.py",
       "source_location": "L52",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_compliance_incident_time",
-      "target": "tests_test_compliance_incident_time_test_the_trigger_sentences_own_date_is_used_not_an_earlier_report_date",
-      "confidence_score": 1.0
+      "target": "tests_test_compliance_incident_time_test_the_trigger_sentences_own_date_is_used_not_an_earlier_report_date"
     },
     {
       "relation": "contains",
@@ -16646,9 +16781,9 @@
       "source_file": "backend/tests/test_compliance_incident_time.py",
       "source_location": "L53",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_compliance_incident_time_rationale_53",
-      "target": "tests_test_compliance_incident_time_test_the_trigger_sentences_own_date_is_used_not_an_earlier_report_date",
-      "confidence_score": 1.0
+      "target": "tests_test_compliance_incident_time_test_the_trigger_sentences_own_date_is_used_not_an_earlier_report_date"
     },
     {
       "relation": "contains",
@@ -16696,9 +16831,9 @@
       "source_file": "backend/tests/test_compliance_run.py",
       "source_location": "L203",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_compliance_run",
-      "target": "tests_test_compliance_run_test_run_check_caps_requirements_and_tells_the_user_how_many_it_checked",
-      "confidence_score": 1.0
+      "target": "tests_test_compliance_run_test_run_check_caps_requirements_and_tells_the_user_how_many_it_checked"
     },
     {
       "relation": "contains",
@@ -16787,9 +16922,9 @@
       "source_file": "backend/tests/test_compliance_run.py",
       "source_location": "L211",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_compliance_run_test_run_check_caps_requirements_and_tells_the_user_how_many_it_checked",
-      "target": "tests_test_compliance_run_db",
-      "confidence_score": 1.0
+      "target": "tests_test_compliance_run_db"
     },
     {
       "relation": "calls",
@@ -16853,9 +16988,9 @@
       "source_file": "backend/tests/test_compliance_run.py",
       "source_location": "L212",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_compliance_run_test_run_check_caps_requirements_and_tells_the_user_how_many_it_checked",
-      "target": "tests_test_compliance_run_seed",
-      "confidence_score": 1.0
+      "target": "tests_test_compliance_run_seed"
     },
     {
       "relation": "calls",
@@ -16918,9 +17053,9 @@
       "source_file": "backend/tests/test_compliance_run.py",
       "source_location": "L138",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_compliance_run_rationale_138",
-      "target": "tests_test_compliance_run_test_run_check_fails_the_check_when_something_breaks_mid_run",
-      "confidence_score": 1.0
+      "target": "tests_test_compliance_run_test_run_check_fails_the_check_when_something_breaks_mid_run"
     },
     {
       "relation": "rationale_for",
@@ -16928,9 +17063,9 @@
       "source_file": "backend/tests/test_compliance_run.py",
       "source_location": "L204",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_compliance_run_rationale_204",
-      "target": "tests_test_compliance_run_test_run_check_caps_requirements_and_tells_the_user_how_many_it_checked",
-      "confidence_score": 1.0
+      "target": "tests_test_compliance_run_test_run_check_caps_requirements_and_tells_the_user_how_many_it_checked"
     },
     {
       "relation": "contains",
@@ -16978,9 +17113,9 @@
       "source_file": "backend/tests/test_deadline_scheduling.py",
       "source_location": "L70",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_deadline_scheduling",
-      "target": "tests_test_deadline_scheduling_test_a_relative_timeframe_is_awaiting_trigger_not_overdue",
-      "confidence_score": 1.0
+      "target": "tests_test_deadline_scheduling_test_a_relative_timeframe_is_awaiting_trigger_not_overdue"
     },
     {
       "relation": "contains",
@@ -17018,9 +17153,9 @@
       "source_file": "backend/tests/test_deadline_scheduling.py",
       "source_location": "L86",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_deadline_scheduling",
-      "target": "tests_test_deadline_scheduling_test_deadlines_endpoint_marks_relative_timeframes_awaiting_trigger",
-      "confidence_score": 1.0
+      "target": "tests_test_deadline_scheduling_test_deadlines_endpoint_marks_relative_timeframes_awaiting_trigger"
     },
     {
       "relation": "contains",
@@ -17081,9 +17216,9 @@
       "source_file": "backend/tests/test_deadline_scheduling.py",
       "source_location": "L88",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_deadline_scheduling_test_deadlines_endpoint_marks_relative_timeframes_awaiting_trigger",
-      "target": "tests_test_deadline_scheduling_seed",
-      "confidence_score": 1.0
+      "target": "tests_test_deadline_scheduling_seed"
     },
     {
       "relation": "calls",
@@ -17113,9 +17248,9 @@
       "source_file": "backend/tests/test_deadline_scheduling.py",
       "source_location": "L71",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_deadline_scheduling_rationale_71",
-      "target": "tests_test_deadline_scheduling_test_a_relative_timeframe_is_awaiting_trigger_not_overdue",
-      "confidence_score": 1.0
+      "target": "tests_test_deadline_scheduling_test_a_relative_timeframe_is_awaiting_trigger_not_overdue"
     },
     {
       "relation": "calls",
@@ -18380,9 +18515,9 @@
       "source_file": "backend/tests/test_startup_recovery.py",
       "source_location": "L30",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_startup_recovery",
-      "target": "tests_test_startup_recovery_check",
-      "confidence_score": 1.0
+      "target": "tests_test_startup_recovery_check"
     },
     {
       "relation": "contains",
@@ -18410,9 +18545,9 @@
       "source_file": "backend/tests/test_startup_recovery.py",
       "source_location": "L107",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_startup_recovery",
-      "target": "tests_test_startup_recovery_test_a_database_failure_at_startup_does_not_stop_the_app_for_checks",
-      "confidence_score": 1.0
+      "target": "tests_test_startup_recovery_test_a_database_failure_at_startup_does_not_stop_the_app_for_checks"
     },
     {
       "relation": "contains",
@@ -18420,9 +18555,9 @@
       "source_file": "backend/tests/test_startup_recovery.py",
       "source_location": "L77",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_startup_recovery",
-      "target": "tests_test_startup_recovery_test_checks_left_mid_processing_are_failed_with_a_reason",
-      "confidence_score": 1.0
+      "target": "tests_test_startup_recovery_test_checks_left_mid_processing_are_failed_with_a_reason"
     },
     {
       "relation": "contains",
@@ -18440,9 +18575,9 @@
       "source_file": "backend/tests/test_startup_recovery.py",
       "source_location": "L94",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_startup_recovery",
-      "target": "tests_test_startup_recovery_test_finished_checks_are_untouched",
-      "confidence_score": 1.0
+      "target": "tests_test_startup_recovery_test_finished_checks_are_untouched"
     },
     {
       "relation": "contains",
@@ -18471,9 +18606,9 @@
       "source_file": "backend/tests/test_startup_recovery.py",
       "source_location": "L31",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_startup_recovery_check",
-      "target": "tests_test_startup_recovery_doc",
-      "confidence_score": 1.0
+      "target": "tests_test_startup_recovery_doc"
     },
     {
       "relation": "calls",
@@ -18504,9 +18639,9 @@
       "source_file": "backend/tests/test_startup_recovery.py",
       "source_location": "L82",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_startup_recovery_test_checks_left_mid_processing_are_failed_with_a_reason",
-      "target": "tests_test_startup_recovery_check",
-      "confidence_score": 1.0
+      "target": "tests_test_startup_recovery_check"
     },
     {
       "relation": "calls",
@@ -18515,9 +18650,9 @@
       "source_file": "backend/tests/test_startup_recovery.py",
       "source_location": "L96",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_startup_recovery_test_finished_checks_are_untouched",
-      "target": "tests_test_startup_recovery_check",
-      "confidence_score": 1.0
+      "target": "tests_test_startup_recovery_check"
     },
     {
       "relation": "rationale_for",
@@ -18525,9 +18660,9 @@
       "source_file": "backend/tests/test_startup_recovery.py",
       "source_location": "L54",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_startup_recovery_rationale_54",
-      "target": "tests_test_startup_recovery_test_finished_documents_are_untouched",
-      "confidence_score": 1.0
+      "target": "tests_test_startup_recovery_test_finished_documents_are_untouched"
     },
     {
       "relation": "rationale_for",
@@ -18535,9 +18670,9 @@
       "source_file": "backend/tests/test_startup_recovery.py",
       "source_location": "L69",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_startup_recovery_rationale_69",
-      "target": "tests_test_startup_recovery_test_a_database_failure_at_startup_does_not_stop_the_app",
-      "confidence_score": 1.0
+      "target": "tests_test_startup_recovery_test_a_database_failure_at_startup_does_not_stop_the_app"
     },
     {
       "relation": "rationale_for",
@@ -18545,9 +18680,9 @@
       "source_file": "backend/tests/test_startup_recovery.py",
       "source_location": "L78",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_startup_recovery_rationale_78",
-      "target": "tests_test_startup_recovery_test_checks_left_mid_processing_are_failed_with_a_reason",
-      "confidence_score": 1.0
+      "target": "tests_test_startup_recovery_test_checks_left_mid_processing_are_failed_with_a_reason"
     },
     {
       "relation": "contains",
@@ -19931,9 +20066,9 @@
       "source_file": "project-understanding/03-data-model.md",
       "source_location": "L113",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "project_understanding_03_data_model",
-      "target": "docs_risk_priority",
-      "confidence_score": 1.0
+      "target": "docs_risk_priority"
     },
     {
       "relation": "contains",
@@ -21791,9 +21926,9 @@
       "source_file": "project-understanding/07-frontend-guide.md",
       "source_location": "L133",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "project_understanding_07_frontend_guide",
-      "target": "project_understanding_05_processing_pipeline",
-      "confidence_score": 1.0
+      "target": "project_understanding_05_processing_pipeline"
     },
     {
       "relation": "contains",
@@ -22191,9 +22326,9 @@
       "source_file": "project-understanding/07-frontend-guide.md",
       "source_location": "L131",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "project_understanding_07_frontend_guide_components_worth_knowing",
-      "target": "project_understanding_07_frontend_guide_compliancecheckpanel",
-      "confidence_score": 1.0
+      "target": "project_understanding_07_frontend_guide_compliancecheckpanel"
     },
     {
       "relation": "contains",
@@ -23358,5 +23493,5 @@
       "source_file": "docs/superpowers/specs/2026-08-17-aged-care-compliance-summariser-design.md"
     }
   ],
-  "built_at_commit": "1635a841f19167a8e653003034b47f24f02b0e3c"
+  "built_at_commit": "1e4fe60af8f598d5af285703eda4d7d04c29e1ec"
 }

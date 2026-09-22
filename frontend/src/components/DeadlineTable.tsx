@@ -187,7 +187,7 @@ export default function DeadlineTable({
               <th className="py-3 pl-5">Deadline</th>
               <th className="py-3">Role</th>
               <th className="py-3">Due</th>
-              <th className="py-3">Urgency</th>
+              <th className="py-3 whitespace-nowrap">Urgency</th>
               <th className="py-3">Progress</th>
               <th className="py-3 pr-5">Source section</th>
             </tr>
@@ -208,14 +208,16 @@ export default function DeadlineTable({
                     <span className="block font-mono text-[11px] text-slate-400">{row.due_date}</span>
                   )}
                 </td>
-                <td className="py-3 pr-4">
+                <td className="py-3 pr-4 whitespace-nowrap">
                   {(() => {
                     // Relative timeframes get the live countdown; a fixed calendar
                     // date already shows its own bucket, which does not drift.
                     const left = row.bucket === "awaiting_trigger" ? countdown(row.due_at, now) : null;
                     const tone = left?.passed ? BUCKET_TONE.overdue : BUCKET_TONE[row.bucket];
                     return (
-                      <span className={`rounded-full px-2 py-0.5 text-xs ${tone ?? "bg-parchment-200 text-slate-500"}`}>
+                      // A pill that wraps breaks its own background across two lines:
+                      // keep the label on one line and let the column carry the width.
+                      <span className={`inline-block whitespace-nowrap rounded-full px-2 py-0.5 text-xs ${tone ?? "bg-parchment-200 text-slate-500"}`}>
                         {left?.label ?? BUCKET_LABEL[row.bucket] ?? row.bucket}
                       </span>
                     );

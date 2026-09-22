@@ -40,12 +40,12 @@
     "semantic_hash": "196437e1b13802bfc8850b94b6228edb"
   },
   "backend/app/main.py": {
-    "mtime": 1789702077.5776124,
+    "mtime": 1789702607.9977336,
     "ast_hash": "db5ceafea9ec75ba3acac76fbff46b55",
     "semantic_hash": ""
   },
   "backend/app/models/__init__.py": {
-    "mtime": 1789662942.990789,
+    "mtime": 1789702607.9981792,
     "ast_hash": "df904548cbab4bb10683fedf9956b4b8",
     "semantic_hash": ""
   },
@@ -55,7 +55,7 @@
     "semantic_hash": "9757c77f53b103531828a10fdaac5143"
   },
   "backend/app/models/deadline.py": {
-    "mtime": 1789655595.2219245,
+    "mtime": 1789702607.999145,
     "ast_hash": "4ef9cabaa2f815e38329934527821a22",
     "semantic_hash": ""
   },
@@ -110,17 +110,17 @@
     "semantic_hash": ""
   },
   "backend/app/routers/chat.py": {
-    "mtime": 1789662623.10181,
-    "ast_hash": "2a92318bec20688929022def3f683ffb",
+    "mtime": 1790092909.8352787,
+    "ast_hash": "388bddc8af42be744d2a0b61e2351112",
     "semantic_hash": ""
   },
   "backend/app/routers/deadlines.py": {
-    "mtime": 1789701969.5643308,
+    "mtime": 1789702608.000309,
     "ast_hash": "6113ae9d1d459b96e011cb187188c1c0",
     "semantic_hash": ""
   },
   "backend/app/routers/documents.py": {
-    "mtime": 1789664898.3505154,
+    "mtime": 1789702608.0011432,
     "ast_hash": "a28dc1b414e68edeedfbf59f30f3363d",
     "semantic_hash": ""
   },
@@ -145,7 +145,7 @@
     "semantic_hash": "ed3230c98b36cf8f72ac78d4466b9aa3"
   },
   "backend/app/routers/upload.py": {
-    "mtime": 1789662694.4270723,
+    "mtime": 1789702608.0014925,
     "ast_hash": "64773d89373549d7349c3ca1be361fbb",
     "semantic_hash": ""
   },
@@ -170,7 +170,7 @@
     "semantic_hash": ""
   },
   "backend/app/services/extraction.py": {
-    "mtime": 1789666944.2019377,
+    "mtime": 1789702608.0029857,
     "ast_hash": "f3a23337199cd4dfdd1e4e520b91bf69",
     "semantic_hash": ""
   },
@@ -210,8 +210,8 @@
     "semantic_hash": ""
   },
   "backend/tests/test_chat.py": {
-    "mtime": 1789150696.5773895,
-    "ast_hash": "afdf1fec0bffd1ce7f4d789e6c274ede",
+    "mtime": 1790092759.927157,
+    "ast_hash": "786f80cf5427dc11c3f8d4e76f511cc9",
     "semantic_hash": ""
   },
   "backend/tests/test_config.py": {
@@ -225,7 +225,7 @@
     "semantic_hash": ""
   },
   "backend/tests/test_documents.py": {
-    "mtime": 1789664861.6420968,
+    "mtime": 1789702608.005477,
     "ast_hash": "31ea89d77b3e7b019756f4ed7f1732f0",
     "semantic_hash": ""
   },
@@ -295,7 +295,7 @@
     "semantic_hash": ""
   },
   "frontend/src/api/extractions.ts": {
-    "mtime": 1789655666.1952348,
+    "mtime": 1789702608.0071914,
     "ast_hash": "98400ef290b727556e58bd5477d02ecb",
     "semantic_hash": ""
   },
@@ -335,7 +335,7 @@
     "semantic_hash": ""
   },
   "frontend/src/pages/DocumentDetail.tsx": {
-    "mtime": 1789665278.262712,
+    "mtime": 1789702608.0083172,
     "ast_hash": "7e381bdac72bcfdbb88ab64f048f8219",
     "semantic_hash": ""
   },
@@ -495,7 +495,7 @@
     "semantic_hash": ""
   },
   "backend/alembic/versions/0003_deadline_status.py": {
-    "mtime": 1789655595.2220566,
+    "mtime": 1789702607.9968271,
     "ast_hash": "bc74846c3fe9c9f9aff48be18c5f089f",
     "semantic_hash": ""
   },
@@ -505,12 +505,12 @@
     "semantic_hash": ""
   },
   "backend/app/services/deadlines.py": {
-    "mtime": 1789701960.9007204,
+    "mtime": 1789702608.002333,
     "ast_hash": "651504d3a7879e5767acff303e394249",
     "semantic_hash": ""
   },
   "backend/tests/test_deadline_scheduling.py": {
-    "mtime": 1789701939.3888433,
+    "mtime": 1789702608.0050344,
     "ast_hash": "0a28e6055ab67cdbc755896205106645",
     "semantic_hash": ""
   },
@@ -525,7 +525,7 @@
     "semantic_hash": ""
   },
   "backend/tests/test_startup_recovery.py": {
-    "mtime": 1789702058.0039508,
+    "mtime": 1789702608.0061471,
     "ast_hash": "0d448e81ae387704967b2c5e27634f77",
     "semantic_hash": ""
   },
@@ -570,8 +570,8 @@
     "semantic_hash": ""
   },
   "frontend/src/components/DeadlineTable.tsx": {
-    "mtime": 1789702136.6940055,
-    "ast_hash": "c8a9df039695a92ee4f5f0b2125bb51f",
+    "mtime": 1790094253.2836506,
+    "ast_hash": "a1819cd74205e42af8db05c59377603e",
     "semantic_hash": ""
   },
   "frontend/src/lib/suggestions.ts": {
@@ -595,7 +595,7 @@
     "semantic_hash": ""
   },
   "docs/RISK-PRIORITY.md": {
-    "mtime": 1789655685.0381978,
+    "mtime": 1789702608.0066638,
     "ast_hash": "6f92a589b7d154b9c5405be9568a91d0",
     "semantic_hash": ""
   },
@@ -620,17 +620,17 @@
     "semantic_hash": ""
   },
   "project-understanding/03-data-model.md": {
-    "mtime": 1789701339.586891,
+    "mtime": 1789702608.020625,
     "ast_hash": "1b64503636880bfefd3ee36c4e610638",
     "semantic_hash": ""
   },
   "project-understanding/04-api-reference.md": {
-    "mtime": 1789667558.886659,
+    "mtime": 1789702608.0211692,
     "ast_hash": "3306024a1be4935e48da1be4c076c5c3",
     "semantic_hash": ""
   },
   "project-understanding/05-processing-pipeline.md": {
-    "mtime": 1789667584.7185066,
+    "mtime": 1789702608.0216396,
     "ast_hash": "9b914e203f824a8f4371b1db9ab000c7",
     "semantic_hash": ""
   },
@@ -640,7 +640,7 @@
     "semantic_hash": ""
   },
   "project-understanding/07-frontend-guide.md": {
-    "mtime": 1789701358.1404343,
+    "mtime": 1789702608.0221834,
     "ast_hash": "b1dce17d1d3eda2e6d9b66a01b7b2a76",
     "semantic_hash": ""
   },
@@ -675,12 +675,12 @@
     "semantic_hash": ""
   },
   "project-understanding/14-known-limitations.md": {
-    "mtime": 1789702177.0116768,
-    "ast_hash": "7e36b593daf0e5799d1e6cf04f617fea",
+    "mtime": 1789702608.0227785,
+    "ast_hash": "58ad6d1d77eb02b89a915a28dd760ba4",
     "semantic_hash": ""
   },
   "samples/README.md": {
-    "mtime": 1789701377.1256986,
+    "mtime": 1789702608.0264401,
     "ast_hash": "ca1e0af57d76e5211e334e43432ccf5d",
     "semantic_hash": ""
   },
@@ -740,77 +740,77 @@
     "semantic_hash": ""
   },
   "backend/alembic/versions/0004_compliance_checks.py": {
-    "mtime": 1789662950.7740555,
+    "mtime": 1789702607.9973059,
     "ast_hash": "ee73406cb9fdb441108e5b11a81a3e45",
     "semantic_hash": ""
   },
   "backend/app/models/check_finding.py": {
-    "mtime": 1789662936.140203,
+    "mtime": 1789702607.9985273,
     "ast_hash": "6cc69bf986984224979f08ecd0fcefad",
     "semantic_hash": ""
   },
   "backend/app/models/compliance_check.py": {
-    "mtime": 1789662931.0799417,
+    "mtime": 1789702607.9987996,
     "ast_hash": "4d777c8eab70532bfe435b3c3c8ea579",
     "semantic_hash": ""
   },
   "backend/app/routers/compliance.py": {
-    "mtime": 1789702030.9238625,
+    "mtime": 1789702607.999889,
     "ast_hash": "eb6d9dcbf5a9d5c5b050c36200817574",
     "semantic_hash": ""
   },
   "backend/app/services/compliance_check.py": {
-    "mtime": 1789701919.989092,
+    "mtime": 1789702608.0020003,
     "ast_hash": "2408a54dfe0abc71267afc771d8bde38",
     "semantic_hash": ""
   },
   "backend/app/services/retrieval.py": {
-    "mtime": 1789662594.5143838,
+    "mtime": 1789702608.0033188,
     "ast_hash": "924dfd781fca287642fae732265caf29",
     "semantic_hash": ""
   },
   "backend/tests/test_compliance_api.py": {
-    "mtime": 1789702011.8623853,
+    "mtime": 1789702608.003703,
     "ast_hash": "67cce10cfc1346018eb22aefe8e35297",
     "semantic_hash": ""
   },
   "backend/tests/test_compliance_incident_time.py": {
-    "mtime": 1789701833.8803916,
+    "mtime": 1789702608.0039237,
     "ast_hash": "0a071f7859c2fc3148d5cece0a9e1c5e",
     "semantic_hash": ""
   },
   "backend/tests/test_compliance_models.py": {
-    "mtime": 1789662913.522796,
+    "mtime": 1789702608.0041528,
     "ast_hash": "08d1294eba1bff16d4e0f0811a32a894",
     "semantic_hash": ""
   },
   "backend/tests/test_compliance_run.py": {
-    "mtime": 1789701898.4183762,
+    "mtime": 1789702608.004506,
     "ast_hash": "823ea8be7df3e3d0650b7b7ad8d2f459",
     "semantic_hash": ""
   },
   "backend/tests/test_retrieval.py": {
-    "mtime": 1789662568.6412497,
+    "mtime": 1789702608.005757,
     "ast_hash": "4ac882f77c1e91aec90d4e909e31137e",
     "semantic_hash": ""
   },
   "backend/tests/test_upload_helper.py": {
-    "mtime": 1789662653.6367338,
+    "mtime": 1789702608.0064058,
     "ast_hash": "84b3f265519cd3f61e68c7c73fc4e423",
     "semantic_hash": ""
   },
   "frontend/src/api/compliance.ts": {
-    "mtime": 1789665239.4153676,
+    "mtime": 1789702608.0069013,
     "ast_hash": "fea5249c912381a43d3d90ab4faa5530",
     "semantic_hash": ""
   },
   "frontend/src/components/ComplianceCheckPanel.tsx": {
-    "mtime": 1789702156.8822482,
+    "mtime": 1789702608.0076778,
     "ast_hash": "d4257cfe466c7ded6d040f070759f383",
     "semantic_hash": ""
   },
   "samples/generate_escalation_samples.py": {
-    "mtime": 1789666568.88711,
+    "mtime": 1789702608.026813,
     "ast_hash": "1b975e4d16140107ae1123b4816d284b",
     "semantic_hash": ""
   },
