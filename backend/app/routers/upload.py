@@ -51,7 +51,7 @@ def save_upload(file: UploadFile, dest_dir: Path, name_prefix: str) -> tuple[Pat
     extension allow-list, the magic-byte check, the size cap and the filename byte
     budget cannot drift apart between upload paths.
     """
-    # ponytail: strip directory components so a crafted filename (e.g. "../../etc/x.pdf")
+    # Strip directory components so a crafted filename (e.g. "../../etc/x.pdf")
     # can't escape dest_dir — Path.name discards any path segments, keeping only the basename.
     safe_filename = _fit_filename(Path(file.filename).name)
     ext = Path(safe_filename).suffix.lower()

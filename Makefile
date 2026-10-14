@@ -9,7 +9,7 @@ setup:
 	@if (-not (Test-Path .env)) { Copy-Item .env.example .env; Write-Host "created .env from .env.example" }
 	@$$c = Get-Content .env -Raw; if ($$c -match 'JWT_SECRET=changeme') { $$s = -join ((1..32) | ForEach-Object { '{0:x2}' -f (Get-Random -Maximum 256) }); Set-Content .env (($$c -replace 'JWT_SECRET=.*', "JWT_SECRET=$$s")) -NoNewline; Write-Host "generated JWT_SECRET" }
 	@New-Item -ItemType Directory -Force -Path backend/uploads | Out-Null
-	@# ponytail: chmod is a no-op on Windows; Docker Desktop mounts are already writable.
+	@# Chmod is a no-op on Windows; Docker Desktop mounts are already writable.
 
 else
 

@@ -29,7 +29,7 @@ _UNITS = {
     "day": timedelta(days=1),
     "week": timedelta(weeks=1),
     "fortnight": timedelta(days=14),
-    # ponytail: calendar months/years would need dateutil; these averages are close
+    # Calendar months/years would need dateutil; these averages are close
     # enough for bucketing and sorting. Swap for relativedelta if exactness matters.
     "month": timedelta(days=30),
     "year": timedelta(days=365),

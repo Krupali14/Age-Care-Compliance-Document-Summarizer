@@ -24,13 +24,13 @@ EXTRACTABLE_MIN_CHARS = 40
 
 
 def process_document(document_id: int, file_path: str) -> None:
-    # ponytail: no db.close() here — SessionLocal() gives each real call its own
+    # No db.close() here — SessionLocal() gives each real call its own
     # session that FastAPI's background-task process just garbage-collects; tests
     # patch SessionLocal to hand back a shared session for assertions, and closing
     # it would expunge objects out from under those assertions.
     db = SessionLocal()
 
-    # ponytail: this runs as a FastAPI BackgroundTasks callback fired after the
+    # This runs as a FastAPI BackgroundTasks callback fired after the
     # response is sent — an unhandled exception here must not escape and blow up
     # the request cycle, so fetching the row is guarded too (e.g. row not visible
     # yet/at all on this connection, id doesn't exist, DB unreachable).

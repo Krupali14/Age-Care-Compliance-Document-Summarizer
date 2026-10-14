@@ -17,12 +17,6 @@ venv/
 !.vscode/settings.json
 .idea/
 
-.superpowers/
-.playwright-mcp/
-graphify-out/
-.claude/
-.impeccable/
-
 # QA working file — never committed
 bug-refinments.md
 

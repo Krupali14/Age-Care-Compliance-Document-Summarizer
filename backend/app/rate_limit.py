@@ -1,6 +1,6 @@
 """A small in-process rate limiter for the authentication endpoints.
 
-ponytail: a dict and a deque, not Redis. This process is the only thing serving
+A dict and a deque, not Redis. This process is the only thing serving
 the API, so a per-process counter is the whole truth; the moment there is a second
 worker or a second container, each one enforces its own share of the limit and the
 effective ceiling multiplies. Swap the store for Redis at that point — the call

@@ -35,7 +35,7 @@ def _release_interrupted_documents() -> None:
     state is a casualty of the last shutdown. Marking it failed turns an invisible
     permanent hang into a state the user can act on.
 
-    ponytail: this is recovery, not a queue. A real queue would re-run the work
+    This is recovery, not a queue. A real queue would re-run the work
     instead of asking the user to upload again — see docs/PROCESSING_PIPELINE.md.
     """
     # The session is opened inside the try: if the database is unreachable,

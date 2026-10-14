@@ -270,7 +270,7 @@ def _verdicts_for(batch: list[Requirement], evidence_text: str) -> dict[int, Che
 
 def run_check(check_id: int, file_path: str) -> None:
     """Background task: parse the case study, judge every requirement, store findings."""
-    # ponytail: no db.close() — same as process_document, whose comment explains why.
+    # No db.close() — same as process_document, whose comment explains why.
     db = SessionLocal()
     try:
         check = db.query(ComplianceCheck).filter(ComplianceCheck.id == check_id).first()

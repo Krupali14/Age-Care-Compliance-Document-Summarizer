@@ -43,7 +43,7 @@ def get_document(doc_id: int, db: Session = Depends(get_db), user: User = Depend
 def delete_document(doc_id: int, db: Session = Depends(get_db), user: User = Depends(get_current_user)):
     document = _get_owned_document(doc_id, db, user)
 
-    # ponytail: no ON DELETE CASCADE on these FKs, so delete children explicitly
+    # No ON DELETE CASCADE on these FKs, so delete children explicitly
     # before the parent row to avoid a foreign-key violation.
     db.query(EvalRun).filter(EvalRun.document_id == doc_id).delete()
     db.query(ActionItem).filter(ActionItem.document_id == doc_id).delete()

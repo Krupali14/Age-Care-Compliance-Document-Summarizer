@@ -122,7 +122,7 @@ export default function ComplianceCheckPanel({
           <input
             type="file"
             accept=".pdf,.docx"
-            // ponytail: visually hidden but not display:none / hidden — that would
+            // Visually hidden but not display:none / hidden — that would
             // pull it out of the tab order, which is exactly what made it mouse-only.
             className="absolute h-px w-px overflow-hidden opacity-0"
             aria-label="Upload a case-study document"

@@ -126,7 +126,7 @@ def _parse_pdf_text_layer(file_path: str) -> list[ParsedSection]:
     return sections
 
 
-# ponytail: cache the converter per DocumentConverter class object rather than in a
+# Cache the converter per DocumentConverter class object rather than in a
 # plain global — building one reloads the layout/table models, and keying on the
 # class keeps tests that patch DocumentConverter from sharing a stale instance.
 _converter_cache: dict[type, DocumentConverter] = {}

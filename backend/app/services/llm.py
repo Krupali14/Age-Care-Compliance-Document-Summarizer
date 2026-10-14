@@ -7,7 +7,7 @@ from langchain_openai import ChatOpenAI
 from app.config import settings
 
 
-# ponytail: one cached client for the process — extraction fires hundreds of calls
+# One cached client for the process — extraction fires hundreds of calls
 # concurrently, and a fresh ChatOpenAI per call builds a fresh HTTP connection pool
 # each time, paying the TLS handshake over and over.
 @lru_cache(maxsize=1)
